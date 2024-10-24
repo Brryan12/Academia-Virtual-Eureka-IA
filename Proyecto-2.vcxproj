@@ -127,6 +127,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Curso.cpp" />
     <ClCompile Include="Estudiante.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Persona.cpp" />
@@ -136,6 +137,7 @@
     <None Include="proyecto2.pdf" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Curso.h" />
     <ClInclude Include="Estudiante.h" />
     <ClInclude Include="Persona.h" />
     <ClInclude Include="Profesor.h" />
