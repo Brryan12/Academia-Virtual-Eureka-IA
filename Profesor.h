@@ -1,5 +1,15 @@
 #pragma once
-class Profesor
+#include "Persona.h"
+class Profesor : public Persona
 {
+private:
+	std::string gradoAcademico;
+public:
+	Profesor() = default;
+	Profesor(std::string nombre, std::string cedula, std::string telefono, std::string email, std::string gradoAcademico);
+	~Profesor();
+	std::string getGradoAcademico() const;
+	void setGradoAcademico(std::string gradoAcademico);
+	std::string toString() const override;
 };
 

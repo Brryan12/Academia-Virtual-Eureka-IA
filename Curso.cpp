@@ -1,33 +1,26 @@
 #include "Curso.h"
-#include <iostream>
-#include <sstream>
-using namespace std;
 
-Curso::Curso() {}
-
-Curso::Curso(string n, string id2, string h, double p, bool e): nombre(n), id(id2), horas(h), precio(p), estado(e){}
+Curso::Curso(string nombre, string id, string horas, double precio, bool estado): nombre(nombre), id(id), horas(horas), precio(precio), estado(estado){}
 Curso::~Curso(){}
-string Curso::getNombre() { return nombre; }
-string Curso::gethora() { return horas; }
-string Curso::getid() { return id; }
-double Curso::getprecio() { return precio; }
-bool Curso::getestado() { return estado; }
-void Curso::setNombre(string n) { nombre = n; }
-void Curso::sethora(string h) { horas = h; }
-void Curso::setid(string id2) { id = id2; }
-void Curso::setprecio(double p) { precio = p; }
-void Curso::setestado(bool e) { estado = e; }
+string Curso::getNombre() const  { return nombre; }
+string Curso::getHoras() const { return horas; }
+string Curso::getId() const { return id; }
+double Curso::getPrecio() const { return precio; }
+bool Curso::getEstado() const { return estado; }
+void Curso::setNombre(string nombre) { nombre = nombre; }
+void Curso::setHoras(string horas) { horas = horas; }
+void Curso::setId(string id) { id = id; }
+void Curso::setPrecio(double precio) { precio = precio; }
+void Curso::setEstado(bool estado) { estado = estado; }
 string Curso::toString() const{
 	stringstream s;
 
-	s << "Nombre del curso: " << nombre<<endl;
-	s << "Hora del curso: " << horas << endl;
-	s << "ID del Curso: " << id << endl;
-	s << " Precio del curso: " << precio<< endl;
-	s << "Estado del curso: " << estado << endl;
+	s << "Nombre del curso: " << nombre << endl
+		<< "Hora del curso: " << horas << endl
+		<< "ID del Curso: " << id << endl
+		<< " Precio del curso: " << precio << endl
+		<< "Estado del curso: " << estado << endl;
 
 	return s.str();
-
-
 
 }

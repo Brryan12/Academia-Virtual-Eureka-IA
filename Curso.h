@@ -10,18 +10,18 @@ protected:
 	double precio;
 	bool estado;
 public:
-	Curso();
+	Curso() = default;
 	Curso(string nombre, string id, string horas, double precio, bool estado);
 	virtual ~Curso();
-	string getNombre();
-	string gethora();
-	string getid();
-	double getprecio();
-	bool getestado();
+	string getNombre() const;
+	string getHoras() const;
+	string getId() const;
+	double getPrecio() const;
+	bool getEstado() const;
 	void setNombre (string nombre);
-	void sethora (string horas);
-	void setid(string id);
-	void setprecio(double precio);
-	void setestado(bool estado);
+	void setHoras (string horas);
+	void setId(string id);
+	void setPrecio(double precio);
+	void setEstado(bool estado);
 	virtual string toString() const;
 };
