@@ -2,19 +2,11 @@
 
 Grupo::Grupo(Curso* curso, int IdGrupo, int cupo, int cantidadEstudiantes, Horario* horario) : IdGrupo(IdGrupo), cupo(cupo), cantidadEstudiantes(cantidadEstudiantes), horario(horario), curso(curso){
 	profesor = nullptr;
-	primero = nullptr;
-	actual = nullptr;
 }
 
 Grupo::~Grupo()
 {
-	Node* actual = primero;
-	while (actual != nullptr)
-	{
-		primero = primero->next;
-		delete actual;
-		actual = primero;
-	}
+
 	delete horario;
 	delete curso;
 	delete profesor;

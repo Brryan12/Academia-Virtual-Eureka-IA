@@ -16,6 +16,11 @@ void Estudiante::setEspecialidad(std::string especialidad)
 	this->especialidad = especialidad;
 }
 
+Lista<Grupo> Estudiante::agregarGrupo()
+{
+	return Lista<Grupo>();
+}
+
 std::string Estudiante::toString() const
 {
 	std::stringstream s;

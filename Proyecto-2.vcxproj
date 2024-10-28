@@ -131,7 +131,9 @@
     <ClCompile Include="Estudiante.cpp" />
     <ClCompile Include="Grupo.cpp" />
     <ClCompile Include="Horario.cpp" />
+    <ClCompile Include="ListaCursos.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Menu.cpp" />
     <ClCompile Include="Periodos.cpp" />
     <ClCompile Include="Persona.cpp" />
     <ClCompile Include="Profesor.cpp" />
@@ -144,6 +146,9 @@
     <ClInclude Include="Estudiante.h" />
     <ClInclude Include="Grupo.h" />
     <ClInclude Include="Horario.h" />
+    <ClInclude Include="Lista.h" />
+    <ClInclude Include="ListaCursos.h" />
+    <ClInclude Include="Menu.h" />
     <ClInclude Include="Periodos.h" />
     <ClInclude Include="Persona.h" />
     <ClInclude Include="Profesor.h" />

@@ -1,7 +1,6 @@
 #pragma once
 #include "Profesor.h"
 #include "Horario.h"
-#include "Estudiante.h"
 #include "Curso.h"
 class Grupo
 {
@@ -12,14 +11,6 @@ private:
 	int cantidadEstudiantes;
 	Profesor* profesor;
 	Horario *horario;
-
-	struct Node
-	{
-		Node* next;
-		Estudiante* estudiante;
-	};
-	Node* primero;
-	Node* actual;
 
 
 public:

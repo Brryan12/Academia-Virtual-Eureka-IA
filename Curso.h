@@ -1,6 +1,7 @@
 #pragma once
 #include <iostream>
 #include <sstream>
+#include "Lista.h"
 using namespace std;
 class Curso {
 protected:
