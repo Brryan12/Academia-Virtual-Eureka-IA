@@ -1,6 +1,8 @@
 #include "Curso.h"
 
-Curso::Curso(string nombre, string id, string horas, double precio, bool estado): nombre(nombre), id(id), horas(horas), precio(precio), estado(estado){}
+Curso::Curso(string nombre, string id, string horas, double precio, bool estado): nombre(nombre), id(id), horas(horas), precio(precio), estado(estado){
+if(periodo==)
+}
 Curso::~Curso(){}
 string Curso::getNombre() const  { return nombre; }
 string Curso::getHoras() const { return horas; }

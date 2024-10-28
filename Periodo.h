@@ -1,5 +1,6 @@
 #pragma once
-class ListaCursos
+class Periodo
 {
+
 };
 

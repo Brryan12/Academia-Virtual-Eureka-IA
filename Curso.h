@@ -10,6 +10,7 @@ protected:
 	string horas;
 	double precio;
 	bool estado;
+	int periodo;
 public:
 	Curso() = default;
 	Curso(string nombre, string id, string horas, double precio, bool estado);
