@@ -13,7 +13,7 @@ private:
 	int cantidadEstudiantes;
 	Profesor* profesor;
 	Horario *horario;
-	ListaEst estudiantes;
+	Lista<Estudiante> estudiantes;
 public:
 	Grupo() = default;
 	Grupo(Curso* curso, int IdGrupo, int cantidadEstudiantes, Horario* horario);
