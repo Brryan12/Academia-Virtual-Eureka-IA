@@ -2,8 +2,7 @@
 #include "Profesor.h"
 #include "Horario.h"
 #include "Curso.h"
-#include "ListaEst.h"
-class ListaEst;
+#include "Estudiante.h"
 class Grupo
 {
 private:

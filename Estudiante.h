@@ -1,6 +1,5 @@
 #pragma once
 #include "Persona.h"
-#include "ListaGrupos.h"
 #include "Grupo.h"
 class ListaGrupos;	
 class Estudiante : public Persona

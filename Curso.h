@@ -2,6 +2,7 @@
 #include <iostream>
 #include <sstream>
 #include "Lista.h"
+#include "Grupo.h"
 using namespace std;
 class Curso {
 private:
@@ -11,6 +12,8 @@ private:
 	double precio;
 	bool estado;
 	int periodo;
+	Lista<Grupo> *grupos;
+
 public:
 	Curso() = default;
 	Curso(string nombre, string id, string horas, double precio, bool estado);
