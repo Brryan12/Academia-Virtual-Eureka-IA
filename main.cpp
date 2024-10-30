@@ -124,6 +124,9 @@ int main()
 
                 case 2:
                     // Llamar a la función de desmatricular estudiante
+					listaGrupo->eliminarEstudiante(id); //
+					Estudiante->ListaGrupo->EliminarGrupo(id); //
+					ListaGrupo->setCupo(--) //
                     break;
 
                 case 0:

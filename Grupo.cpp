@@ -2,6 +2,7 @@
 
 Grupo::Grupo(Curso* curso, int IdGrupo, int cantidadEstudiantes, Horario* horario) : IdGrupo(IdGrupo), cantidadEstudiantes(cantidadEstudiantes), horario(horario), curso(curso){
 	profesor = nullptr;
+	Lista<Estudiante>* estudiantes = new Lista<Estudiante>();
 }
 
 Grupo::~Grupo()
@@ -10,6 +11,8 @@ Grupo::~Grupo()
 	delete horario;
 	delete curso;
 	delete profesor;
+	if (estudiantes != NULL)
+		delete estudiantes;
 }
 
 int Grupo::getIdGrupo() const
@@ -79,5 +82,51 @@ std::string Grupo::toString() const
 	{
 		s << "Profesor: " << "No asignado" << std::endl;
 	}
+	s << "Estudiantes: " << std::endl;
+	if (estudiantes != NULL)
+	{
+		s << estudiantes->toString()<<std::endl;
+	}
+	else
+	{
+		s << "No hay estudiantes" << std::endl;
+	}
 	return s.str();
+}
+
+bool Grupo::insertarEstudiante(Estudiante* estudiante)
+{
+	return false;
+}
+
+bool Grupo::eliminarEstudiante(Estudiante* estudiante)
+{
+	return false;
+}
+
+void Grupo::guardarConEstudiantes(std::ostream& salida) const
+{
+	salida << IdGrupo << "\t"
+		<< cantidadEstudiantes << "\t"
+		<< horario->toString() << "\t";
+	if (profesor != nullptr)
+	{
+		salida << profesor->getNombre()  + " " + profesor->getCedula() << "\t";
+	}
+	else
+	{
+		salida << "No asignado" << std::endl;
+	}
+	if (estudiantes != NULL)
+	{
+		salida << estudiantes->guardarEnArchivo(salida) << std::endl;
+	}
+	else
+	{
+		salida << "No hay estudiantes" << std::endl;
+	}
+}
+
+void Grupo::leerConEstudiantes(std::istream& entrada)
+{
 }

@@ -23,3 +23,23 @@ std::string Estudiante::toString() const
 		<< "Especialidad: " << especialidad << std::endl;
 	return s.str();
 }
+
+void Estudiante::guardar(std::ostream& salida) const 
+{
+
+}
+
+Estudiante* Estudiante::leer(std::istream& entrada)
+{
+	std::string nombre, cedula, telefono, email, especialidad;
+	getline(entrada, nombre, '\t');
+	getline(entrada, cedula, '\t');
+	getline(entrada, telefono, '\t');
+	getline(entrada, email, '\t');
+	getline(entrada, especialidad, '\n');
+	if (nombre.empty() || cedula.empty() || telefono.empty() || email.empty() || especialidad.empty())
+	{
+		return nullptr;
+	}
+	return new Estudiante(nombre, cedula, telefono, email, especialidad);
+}

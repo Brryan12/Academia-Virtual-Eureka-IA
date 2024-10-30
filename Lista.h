@@ -21,8 +21,8 @@ public:
     virtual ~Lista();
     bool insertar(Datatype* data);
     std::string toString() const;
-    bool guardarEnArchivo(const std::string& nombreArchivo) const;
-    Datatype* leerDeArchivo(const std::string& nombreArchivo);
+    bool guardarEnArchivo(std::ostream& salida) const;
+    Datatype* leerDeArchivo(std::istream& entrada);
 };
 
 template<typename Datatype>
@@ -72,32 +72,31 @@ inline std::string Lista<Datatype>::toString() const {
 
 // Método para guardar en archivo
 template<typename Datatype>
-bool Lista<Datatype>::guardarEnArchivo(const std::string& nombreArchivo) const {
-    std::ofstream archivo(nombreArchivo);
-    if (!archivo.is_open()) {
+bool Lista<Datatype>::guardarEnArchivo(std::ostream& salida) const {
+    if (!salida.is_open()) {
         return false;
     }
 
     Node* actual = primero;
     while (actual != nullptr) {
-        archivo << actual->data->toString() << std::endl;  // Convierte cada objeto a una línea
+        salida << actual->data->toString() << std::endl;  // Convierte cada objeto a una línea
         actual = actual->next;
     }
 
-    archivo.close();
+    salida.close();
     return true;
 }
 
 // Método para leer desde archivo
 template<typename Datatype>
-Datatype* Lista<Datatype>::leerDeArchivo(const std::string& nombreArchivo) {
-    std::ifstream archivo(nombreArchivo);
-    if (!archivo.is_open()) {
-        return false;
+Datatype* Lista<Datatype>::leerDeArchivo(std::istream& entrada) {
+    if (!entrada) {
+        std::cerr << "Error al abrir archivo de lectura" << std::endl;
+        return nullptr;
     }
 
     std::string linea;
-    while (std::getline(archivo, linea)) {
+    while (std::getline(entrada, linea)) {
         Datatype* nuevoDato = new Datatype();
         if (!nuevoDato->fromString(linea)) {  // Debes implementar fromString en cada clase
             delete nuevoDato;
@@ -106,6 +105,5 @@ Datatype* Lista<Datatype>::leerDeArchivo(const std::string& nombreArchivo) {
         insertar(nuevoDato);
     }
 
-    archivo.close();
-    return true;
+
 }

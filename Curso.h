@@ -4,7 +4,7 @@
 #include "Lista.h"
 using namespace std;
 class Curso {
-protected:
+private:
 	string nombre;
 	string id;
 	string horas;
