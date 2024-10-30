@@ -1,6 +1,6 @@
 #include "Grupo.h"
 
-Grupo::Grupo(Curso* curso, int IdGrupo, int cupo, int cantidadEstudiantes, Horario* horario) : IdGrupo(IdGrupo), cupo(cupo), cantidadEstudiantes(cantidadEstudiantes), horario(horario), curso(curso){
+Grupo::Grupo(Curso* curso, int IdGrupo, int cantidadEstudiantes, Horario* horario) : IdGrupo(IdGrupo), cantidadEstudiantes(cantidadEstudiantes), horario(horario), curso(curso){
 	profesor = nullptr;
 }
 
@@ -17,10 +17,6 @@ int Grupo::getIdGrupo() const
 	return IdGrupo;
 }
 
-int Grupo::getCupo() const
-{
-	return cupo;
-}
 
 int Grupo::getCantidadEstudiantes() const
 {
@@ -45,11 +41,6 @@ Profesor* Grupo::getProfesor() const
 void Grupo::setIdGrupo(int IdGrupo)
 {
 	this->IdGrupo = IdGrupo;
-}
-
-void Grupo::setCupo(int cupo)
-{
-	this->cupo = cupo;
 }
 
 void Grupo::setCantidadEstudiantes(int cantidadEstudiantes)

@@ -2,29 +2,28 @@
 #include "Profesor.h"
 #include "Horario.h"
 #include "Curso.h"
+#include "ListaEst.h"
+class ListaEst;
 class Grupo
 {
 private:
 	Curso* curso;
 	int IdGrupo;
-	int cupo;
+	const int cupo=30;	
 	int cantidadEstudiantes;
 	Profesor* profesor;
 	Horario *horario;
-
-
+	ListaEst estudiantes;
 public:
 	Grupo() = default;
-	Grupo(Curso* curso, int IdGrupo, int cupo, int cantidadEstudiantes, Horario* horario);
+	Grupo(Curso* curso, int IdGrupo, int cantidadEstudiantes, Horario* horario);
 	virtual ~Grupo();
 	int getIdGrupo() const;
-	int getCupo() const;
 	int getCantidadEstudiantes() const;
 	Curso* getCurso() const;
 	Horario* getHorario() const;
 	Profesor* getProfesor() const;
 	void setIdGrupo(int IdGrupo);
-	void setCupo(int cupo);
 	void setCantidadEstudiantes(int cantidadEstudiantes);
 	void setCurso(Curso* curso);
 	void setHorario(Horario* horario);

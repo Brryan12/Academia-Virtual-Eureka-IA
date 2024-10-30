@@ -44,6 +44,7 @@
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v143</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
+    <EnableASAN>true</EnableASAN>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
@@ -131,11 +132,13 @@
     <ClCompile Include="Estudiante.cpp" />
     <ClCompile Include="Grupo.cpp" />
     <ClCompile Include="Horario.cpp" />
+    <ClCompile Include="ListaCursos.cpp" />
+    <ClCompile Include="ListaEst.cpp" />
+    <ClCompile Include="ListaGrupos.cpp" />
     <ClCompile Include="ListaProfe.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Menu.cpp" />
     <ClCompile Include="Periodo.cpp" />
-    <ClCompile Include="Periodos.cpp" />
     <ClCompile Include="Persona.cpp" />
     <ClCompile Include="Profesor.cpp" />
   </ItemGroup>
@@ -148,10 +151,12 @@
     <ClInclude Include="Grupo.h" />
     <ClInclude Include="Horario.h" />
     <ClInclude Include="Lista.h" />
+    <ClInclude Include="ListaCursos.h" />
+    <ClInclude Include="ListaEst.h" />
+    <ClInclude Include="ListaGrupos.h" />
     <ClInclude Include="ListaProfe.h" />
     <ClInclude Include="Menu.h" />
     <ClInclude Include="Periodo.h" />
-    <ClInclude Include="Periodos.h" />
     <ClInclude Include="Persona.h" />
     <ClInclude Include="Profesor.h" />
   </ItemGroup>
