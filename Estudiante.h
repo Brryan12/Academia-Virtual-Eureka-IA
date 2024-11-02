@@ -1,14 +1,15 @@
 #pragma once
 #include "Persona.h"
-#include "Grupo.h"
-class ListaGrupos;	
+#include "Lista.h"
+
+class Grupo;
 class Estudiante : public Persona
 {
 private:
 	std::string especialidad;
 	Lista<Grupo> listaGrupo;
 public:
-	Estudiante() = default;
+	Estudiante();
 	Estudiante(std::string nombre, std::string cedula, std::string telefono, std::string email, std::string especialidad);
 	virtual ~Estudiante();
 	std::string getEspecialidad() const;

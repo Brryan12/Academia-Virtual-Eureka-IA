@@ -2,27 +2,30 @@
 #include "Profesor.h"
 #include "Horario.h"
 #include "Curso.h"
+#include "Lista.h"
+#include "Periodo.h"
 #include "Estudiante.h"
 class Grupo
 {
 private:
+	Periodo* periodo;
 	Curso* curso;
-	int IdGrupo;
+	std::string IdGrupo;
 	const int cupo=30;	
 	int cantidadEstudiantes;
 	Profesor* profesor;
 	Horario *horario;
 	Lista<Estudiante>* estudiantes;
 public:
-	Grupo() = default;
-	Grupo(Curso* curso, int IdGrupo, int cantidadEstudiantes, Horario* horario);
+	Grupo();
+	Grupo(Periodo* periodo, Curso* curso, std::string IdGrupo, int cantidadEstudiantes, Horario* horario);
 	virtual ~Grupo();
-	int getIdGrupo() const;
+	std::string getId() const;
 	int getCantidadEstudiantes() const;
 	Curso* getCurso() const;
 	Horario* getHorario() const;
 	Profesor* getProfesor() const;
-	void setIdGrupo(int IdGrupo);
+	void setIdGrupo(std::string IdGrupo);
 	void setCantidadEstudiantes(int cantidadEstudiantes);
 	void setCurso(Curso* curso);
 	void setHorario(Horario* horario);

@@ -1,9 +1,8 @@
 #include "Grupo.h"
 
-Grupo::Grupo(Curso* curso, int IdGrupo, int cantidadEstudiantes, Horario* horario) : IdGrupo(IdGrupo), cantidadEstudiantes(cantidadEstudiantes), horario(horario), curso(curso){
-	profesor = nullptr;
-	Lista<Estudiante>* estudiantes = new Lista<Estudiante>();
-}
+Grupo::Grupo() : periodo(nullptr), curso(nullptr), IdGrupo(""), cantidadEstudiantes(0), profesor(nullptr), horario(nullptr), estudiantes(nullptr) {}
+
+Grupo::Grupo(Periodo* periodo, Curso* curso, std::string IdGrupo, int cantidadEstudiantes, Horario* horario) : periodo(nullptr), curso(nullptr), IdGrupo(""), cantidadEstudiantes(0), profesor(nullptr), horario(nullptr), estudiantes(new Lista<Estudiante>()) {}
 
 Grupo::~Grupo()
 {
@@ -11,11 +10,12 @@ Grupo::~Grupo()
 	delete horario;
 	delete curso;
 	delete profesor;
+	delete periodo;
 	if (estudiantes != NULL)
 		delete estudiantes;
 }
 
-int Grupo::getIdGrupo() const
+std::string Grupo::getId() const
 {
 	return IdGrupo;
 }
@@ -41,7 +41,7 @@ Profesor* Grupo::getProfesor() const
 	return profesor;
 }
 
-void Grupo::setIdGrupo(int IdGrupo)
+void Grupo::setIdGrupo(std::string IdGrupo)
 {
 	this->IdGrupo = IdGrupo;
 }
@@ -111,7 +111,7 @@ void Grupo::guardarConEstudiantes(std::ostream& salida) const
 		<< horario->toString() << "\t";
 	if (profesor != nullptr)
 	{
-		salida << profesor->getNombre()  + " " + profesor->getCedula() << "\t";
+		salida << profesor->getNombre()  + " " + profesor->getId() << "\t";
 	}
 	else
 	{

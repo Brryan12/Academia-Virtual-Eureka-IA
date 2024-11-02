@@ -8,11 +8,11 @@ protected:
 	std::string telefono;
 	std::string email;
 public:
-	Persona()=default;
+	Persona();
 	Persona(std::string nombre, std::string cedula, std::string telefono, std::string email);
 	virtual ~Persona();
 	std::string getNombre() const;
-	std::string getCedula() const;
+	std::string getId() const;
 	std::string getTelefono() const;
 	std::string getEmail() const;
 	void setNombre(std::string nombre);

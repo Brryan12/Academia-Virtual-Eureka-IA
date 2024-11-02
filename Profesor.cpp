@@ -1,5 +1,7 @@
 #include "Profesor.h"
 
+Profesor::Profesor() : Persona(), gradoAcademico(""){}
+
 Profesor::Profesor(std::string nombre, std::string cedula, std::string telefono, std::string email, std::string gradoAcademico) : Persona(nombre, cedula, telefono, email), gradoAcademico(gradoAcademico) {}
 
 Profesor::~Profesor()

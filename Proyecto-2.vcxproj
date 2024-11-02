@@ -146,6 +146,7 @@
     <ClInclude Include="Estudiante.h" />
     <ClInclude Include="Grupo.h" />
     <ClInclude Include="Horario.h" />
+    <ClInclude Include="Include.h" />
     <ClInclude Include="Lista.h" />
     <ClInclude Include="Menu.h" />
     <ClInclude Include="Periodo.h" />

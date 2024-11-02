@@ -1,4 +1,7 @@
 #include "Estudiante.h"
+#include "Grupo.h"
+
+Estudiante::Estudiante() : Persona(), especialidad("") {}
 
 Estudiante::Estudiante(std::string nombre, std::string cedula, std::string telefono, std::string email, std::string especialidad) : Persona(nombre, cedula, telefono, email), especialidad(especialidad) {}
 

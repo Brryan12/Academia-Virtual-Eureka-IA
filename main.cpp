@@ -1,14 +1,5 @@
-#include <iostream>
-#include <string>
-#include "Profesor.h"
-#include "Lista.h"
-#if defined(_WIN64) || defined(_WIN32)
-#define cls "cls"
-#define pause "pause"
-#elif defined(__linux__) || defined(__unix__) || defined(__APPLE__)
-#define cls "clear"
-#define pause "read -n1 -r -p \"Press any key to continue...\""
-#endif
+#include "Include.h"
+
 
 int main()
 {
@@ -20,8 +11,23 @@ int main()
     std::string gradoAcademico;
     std::string especialidad;
     Profesor* profAux;
-    Lista<Profesor> listaProfesores;
+	Lista<Profesor>* listaProfesores = new Lista<Profesor>();
+    //Profesor::Profesor(std::string nombre, std::string cedula, std::string telefono, std::string email, std::string gradoAcademico)
+    Profesor* prof1 = new Profesor("Juan", "123456789", "1234567", "gaihfd@gmail.com", "Master");
+	Profesor* prof2 = new Profesor("Pedro", "123456789", "1234567", "fsdfs@gmail.com", "Doctor");
 
+	if(listaProfesores->insertar(prof1))
+		cout << "Profesor ingresado correctamente" << endl;
+	else
+		cout << "Error al ingresar el profesor" << endl;
+
+    if (listaProfesores->insertar(prof2))
+        cout << "Profesor ingresado correctamente" << endl;
+    else
+        cout << "Error al ingresar el profesor" << endl;
+
+	cout << listaProfesores->toString() << endl;
+	return 0;
     do {
         system(cls);
         std::endl(std::cout);
@@ -41,10 +47,9 @@ int main()
                 std::endl(std::cout);
                 std::cout << "(1) Ingresar Profesor" << std::endl;
                 std::cout << "(2) Ingresar Estudiante" << std::endl;
-                std::cout << "(3) Ingresar Bloque o Periodo" << std::endl;
-                std::cout << "(4) Ingresar Curso" << std::endl;
-                std::cout << "(5) Ingresar Grupo" << std::endl;
-                std::cout << "(6) Asignar Profesor a Grupo" << std::endl;
+                std::cout << "(3) Ingresar Curso" << std::endl;
+                std::cout << "(4) Ingresar Grupo" << std::endl;
+                std::cout << "(5) Asignar Profesor a Grupo" << std::endl;
                 std::cout << "(0) Regresar al Menu Principal" << std::endl;
                 std::cout << "Seleccione una opcion: "; std::cin >> op1;
 
@@ -63,7 +68,7 @@ int main()
                     std::cout << "Ingrese el grado academico del profesor: "; getline(std::cin, gradoAcademico);
                     std::cout << "Grado Academico: " << gradoAcademico << std::endl;
                     profAux = new Profesor(nombre, cedula, telefono, email, gradoAcademico);
-                    if (listaProfesores.insertar(profAux)) {
+                    if (listaProfesores->insertar(profAux)) {
                         std::cout << "Profesor ingresado correctamente." << std::endl;
                     }
                     else {
@@ -74,23 +79,32 @@ int main()
                     break;
 
                 case 2:
+                    std::cout << "Ingrese los datos del estudiante\n";
+                    std::cout << "Ingrese el nombre del estudiante: "; getline(std::cin, nombre);
+                    std::cout << "Nombre: " << nombre << std::endl;
+                    std::cout << "Ingrese la cédula del estudiante: "; std::cin >> cedula;
+                    std::cout << "Cedula: " << cedula << std::endl;
+                    std::cout << "Ingrese el teléfono del profesor: "; getline(std::cin, telefono);
+                    std::cout << "Telefono: " << telefono << std::endl;
+                    std::cout << "Ingrese el email del profesor: "; getline(std::cin, email);
+                    std::cout << "Email: " << email << std::endl;
+                    std::cout << "Ingrese el grado academico del profesor: "; getline(std::cin, gradoAcademico);
                     // Llamar a la función de ingresar estudiante
                     break;
 
                 case 3:
-                    // Llamar a la función de ingresar bloque o periodo
+                    // Llamar a la función de ingresar curso
+
                     break;
 
                 case 4:
-                    // Llamar a la función de ingresar curso
+                    // Llamar a la función de ingresar grupo
+
                     break;
 
                 case 5:
-                    // Llamar a la función de ingresar grupo
-                    break;
-
-                case 6:
                     // Llamar a la función de asignar profesor a grupo
+
                     break;
 
                 case 0:
@@ -124,9 +138,9 @@ int main()
 
                 case 2:
                     // Llamar a la función de desmatricular estudiante
-					listaGrupo->eliminarEstudiante(id); //
-					Estudiante->ListaGrupo->EliminarGrupo(id); //
-					ListaGrupo->setCupo(--) //
+					//listaGrupo->eliminarEstudiante(id); //
+					//Estudiante->ListaGrupo->EliminarGrupo(id); //
+					//ListaGrupo->setCupo(--) //
                     break;
 
                 case 0:

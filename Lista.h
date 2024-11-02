@@ -20,6 +20,7 @@ public:
 	Lista() : primero(nullptr), actual(nullptr) {}
     virtual ~Lista();
     bool insertar(Datatype* data);
+    bool yaExisteElemento(std::string id);
     std::string toString() const;
     bool guardarEnArchivo(std::ostream& salida) const;
     Datatype* leerDeArchivo(std::istream& entrada);
@@ -53,27 +54,40 @@ inline bool Lista<Datatype>::insertar(Datatype* data)
         {
             actual = actual->next;
         }
-        actual->next = new Node(data, nullptr);
-        return true;
+		if (this->yaExisteElemento(data->getId()) == false){
+            actual->next = new Node(data, nullptr);
+            return true;
+        }
+    }
+    return false;
+}
+template<typename Datatype>
+inline bool Lista<Datatype>::yaExisteElemento(std::string id)
+{
+    actual = primero;
+    while (actual != nullptr) {
+        if (actual->data->getId() == id) {
+            return true;
+        }
+		actual = actual->next;
     }
     return false;
 }
 template<typename Datatype>
 inline std::string Lista<Datatype>::toString() const {
-    Node* actual = primero;
-    std::stringstream s;
-    while (actual != nullptr)
-    {
-        s << actual->data->toString() << std::endl;
-        actual = actual->next;
-    }
-    return s.str();
+	std::stringstream ss;
+	Node* actual = primero;
+	while (actual != nullptr) {
+		ss << actual->data->toString() << std::endl;
+		actual = actual->next;
+	}
+	return ss.str();
 }
 
 // Método para guardar en archivo
 template<typename Datatype>
 bool Lista<Datatype>::guardarEnArchivo(std::ostream& salida) const {
-    if (!salida.is_open()) {
+    if (!salida) {
         return false;
     }
 
@@ -83,7 +97,6 @@ bool Lista<Datatype>::guardarEnArchivo(std::ostream& salida) const {
         actual = actual->next;
     }
 
-    salida.close();
     return true;
 }
 

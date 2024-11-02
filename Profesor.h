@@ -5,7 +5,7 @@ class Profesor : public Persona
 private:
 	std::string gradoAcademico;
 public:
-	Profesor() = default;
+	Profesor();
 	Profesor(std::string nombre, std::string cedula, std::string telefono, std::string email, std::string gradoAcademico);
 	~Profesor();
 	std::string getGradoAcademico() const;

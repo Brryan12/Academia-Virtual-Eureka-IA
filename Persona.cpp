@@ -1,5 +1,7 @@
 #include "Persona.h"
 
+Persona::Persona() : nombre(""), cedula(""), telefono(""), email(""){}
+
 Persona::Persona(std::string nombre, std::string cedula, std::string telefono, std::string email): nombre(nombre), cedula(cedula), telefono(telefono), email(email){}
 
 Persona::~Persona()
@@ -11,7 +13,7 @@ std::string Persona::getNombre() const
     return nombre;
 }
 
-std::string Persona::getCedula() const
+std::string Persona::getId() const
 {
     return cedula;
 }
@@ -55,4 +57,12 @@ std::string Persona::toString() const
 		<< "Telefono: " << telefono << std::endl
 		<< "Email: " << email << std::endl;
     return s.str();
+}
+
+void Persona::guardar(std::ostream& salida) const
+{
+}
+
+void Persona::leer(std::istream& entrada)
+{
 }
