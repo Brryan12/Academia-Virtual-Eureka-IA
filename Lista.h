@@ -21,6 +21,7 @@ public:
     virtual ~Lista();
     bool insertar(Datatype* data);
     bool yaExisteElemento(std::string id);
+	Datatype* buscarElemento(std::string id);
     std::string toString() const;
     bool guardarEnArchivo(std::ostream& salida) const;
     Datatype* leerDeArchivo(std::istream& entrada);
@@ -72,6 +73,21 @@ inline bool Lista<Datatype>::yaExisteElemento(std::string id)
 		actual = actual->next;
     }
     return false;
+}
+template<typename Datatype>
+inline Datatype* Lista<Datatype>::buscarElemento(std::string id)
+{
+	actual = primero;
+	if (!yaExisteElemento(id)) {
+		return nullptr;
+	}
+	while (actual != nullptr) {
+		if (actual->data->getId() == id) {
+			return actual->data;
+		}
+		actual = actual->next;
+	}
+    return nullptr;
 }
 template<typename Datatype>
 inline std::string Lista<Datatype>::toString() const {
