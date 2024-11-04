@@ -15,10 +15,11 @@ int main()
 	int pos;
     std::string dia;
 	std::string dia2;
+	std::string periodo;
+	std::string periodos[4] = { "Periodo I", "Periodo II", "Periodo III", "Periodo IV" };
     const std::string dias[5] = { "Lunes", "Martes", "Miércoles", "Jueves", "Viernes" };
 	double precio;
 	bool estado;
-    int cant;
     Profesor* profAux=nullptr;
 	Lista<Profesor>* listaProfesores = new Lista<Profesor>();
     Curso* cursoAux = nullptr;
@@ -70,11 +71,17 @@ int main()
                 switch (op1)
                 {
                 case 1:
+                    system(cls);
 					cin.ignore();
                     std::cout << "Ingrese los datos del profesor" << std::endl;
                     std::cout << "Ingrese el nombre del profesor: "; getline(std::cin, nombre);
                     std::cout << "Nombre: " << nombre << std::endl;
                     std::cout << "Ingrese la cédula del profesor: "; std::cin >> id;
+                    if (listaProfesores->buscarElemento(id)) {
+                        std::cout << "Error ya existe un profesor con esa cedula" << std::endl;
+						system(pause);
+						break;
+                    }
                     std::cout << "Cedula: " << id << std::endl; cin.ignore();
                     std::cout << "Ingrese el teléfono del profesor: "; getline(std::cin, telefono);
                     std::cout << "Telefono: " << telefono << std::endl;
@@ -88,17 +95,24 @@ int main()
                     }
                     else {
                         std::cout << "Error al ingresar el profesor." << std::endl;
+                        system(pause);
                         break;
                     }
                     system(pause);
                     break;
 
                 case 2:
+                    system(cls);
                     cin.ignore();
                     std::cout << "Ingrese los datos del estudiante\n";
                     std::cout << "Ingrese el nombre del estudiante: "; getline(std::cin, nombre);
                     std::cout << "Nombre: " << nombre << std::endl; 
                     std::cout << "Ingrese la cédula del estudiante: "; std::cin >> id;
+					if (listaEstudiantes->buscarElemento(id)) {
+						std::cout << "Error ya existe un estudiante con esa cedula" << std::endl;
+						system(pause);
+						break;
+					}
                     std::cout << "Cedula: " << id << std::endl; cin.ignore();
                     std::cout << "Ingrese el teléfono del estudiante: "; getline(std::cin, telefono);
                     std::cout << "Telefono: " << telefono << std::endl;
@@ -112,17 +126,24 @@ int main()
                     }
                     else {
                         std::cout << "Error al ingresar el estudiante." << std::endl;
+						system(pause);
                         break;
                     }
+                    system(pause);
                     break;
 
                 case 3:
-                    // Llamar a la función de ingresar curso
+                    system(cls);
 					cin.ignore();
 					std::cout << "Ingrese los datos del curso\n";
 					std::cout << "Ingrese el nombre del curso: "; getline(std::cin, nombre);
 					std::cout << "Nombre: " << nombre << std::endl;
 					std::cout << "Ingrese el id del curso: "; std::cin >> id;
+					if (listaCursos->buscarElemento(id)) {
+						std::cout << "Error ya existe un curso con ese id" << std::endl;
+						system(pause);
+						break;
+					}
 					std::cout << "ID: " << id << std::endl; cin.ignore();
 					std::cout << "Ingrese las horas del curso: "; getline(std::cin, horas);
 					std::cout << "Horas: " << horas << std::endl;
@@ -133,6 +154,7 @@ int main()
 					std::cout << "Ingrese el estado del curso: "; cin >> estado;
 					if (estado != 0 && estado != 1) {
 						std::cout << "Error al ingresar el estado del curso" << std::endl;
+						system(pause);
 						break;
 					}
 					else if (estado != 0) {
@@ -147,27 +169,33 @@ int main()
                     }
                     else {
                         std::cout << "Error al ingresar el curso." << std::endl;
+                        system(pause);
                         break;
                     }
 					system(pause);
                     break;
 
                 case 4:
-                    // Llamar a la función de ingresar grupo
+                    system(cls);
 					cin.ignore(); //(Periodo * periodo, Curso * curso, std::string IdGrupo, int cantidadEstudiantes, Horario * horario)
 					std::cout << "Ingrese los datos del grupo\n";
+                    std::cout << "Los grupos tienen un cupo de 30 estudiantes\n";
                     //periodo
 					std::cout << "Ingrese el id del curso: "; std::cin >> id;
                     if (listaCursos->buscarElemento(id)) 
 						cursoAux = listaCursos->buscarElemento(id);
                     else {
                         std::cout << "Error no hay curso con ese id" << std::endl;
+						system(pause);
                         break;
                     }
                     std::cout << "Ingrese el id del grupo: "; std::cin >> id;
+					if (listaGrupo->buscarElemento(id)) {
+						std::cout << "Error ya existe un grupo con ese id" << std::endl;
+						system(pause);
+						break;
+					}
 					std::cout << "ID: " << id << std::endl;
-					std::cout << "Ingrese la cantidad de estudiantes: "; std::cin >> id;
-					std::cout << "Cantidad de estudiantes: " << id << std::endl;
                     std::cout << "Ingrese el horario del grupo\n";
 					std::cout << "Ingrese la hora de inicio: "; std::cin >> horaInicio;
                     std::cout << "Ingrese la hora de finalizacion: "; std::cin >> horaFinaliza;
@@ -188,13 +216,13 @@ int main()
                     std::cout << "Dia 1 seleccionado: " << dia << std::endl;
                     std::cout << "Dia 2 seleccionado: " << dia2 << std::endl;
 
-					grupoAux = new Grupo(nullptr, cursoAux, id, cant, new Horario(horaInicio, horaFinaliza, dia, dia2));
+					grupoAux = new Grupo(periodo, cursoAux, id, new Horario(horaInicio, horaFinaliza, dia, dia2));
 
-
+                    system(pause);
                     break;
 
                 case 5:
-                    // Llamar a la función de asignar profesor a grupo
+                    system(cls);
 
                     break;
 
@@ -225,13 +253,76 @@ int main()
                 {
                 case 1:
                     // Llamar a la función de matricular estudiante
+                    std::cout << "(1) Matricular Estudiante" << std::endl;
+					std::cout << "Ingrese el id del estudiante: "; std::cin >> id;
+					if (listaEstudiantes->buscarElemento(id))
+						estudianteAux = listaEstudiantes->buscarElemento(id);
+                    else {
+                        std::cout << "Error no hay estudiante con ese id" << std::endl;
+                        system(pause);
+                        break;
+                    }
+					std::cout << "Ingrese el id del grupo: "; std::cin >> id;
+					if (listaGrupo->buscarElemento(id))
+						grupoAux = listaGrupo->buscarElemento(id);
+					else {
+						std::cout << "Error no hay grupo con ese id" << std::endl;
+						system(pause);
+                        break;
+					}
+                    if (estudianteAux->insertarGrupo(grupoAux)) {
+                        if (grupoAux->getCantidadEstudiantes() < 30) {
+                            if (grupoAux->insertarEstudiante(id)) {
+                                std::cout << "Estudiante matriculado correctamente." << std::endl;
+							}
+                            else {
+                                std::cout << "Error al matricular el estudiante." << std::endl;
+                                system(pause);
+                                break;
+                            }
+                        }
+                        else {
+                            std::cout << "Error el grupo ya tiene 30 estudiantes" << std::endl;
+                            system(pause);
+                            break;
+                        }
+					}
+					else {
+						std::cout << "Error el estudiante ya esta matriculado en un grupo" << std::endl;
+						system(pause);
+						break;
+					}
                     break;
 
                 case 2:
-                    // Llamar a la función de desmatricular estudiante
-					//listaGrupo->eliminarEstudiante(id); //
-					//Estudiante->ListaGrupo->EliminarGrupo(id); //
-					//ListaGrupo->setCupo(--) //
+					std::cout << "(2) Desmatricular Estudiante" << std::endl;
+					std::cout << "Ingrese el id del estudiante: "; std::cin >> id;
+					if (listaEstudiantes->buscarElemento(id))
+						estudianteAux = listaEstudiantes->buscarElemento(id);
+					else {
+						std::cout << "Error no hay estudiante con ese id" << std::endl;
+						system(pause);
+                        break;
+					}
+					std::cout << "Grupos del estudiante: " << estudianteAux->getListaGrupo()->toString() << std::endl;
+					std::cout << "Ingrese el id del grupo: "; std::cin >> id;
+					if (listaGrupo->buscarElemento(id))
+						grupoAux = listaGrupo->buscarElemento(id);
+					else {
+						std::cout << "Error no hay grupo con ese id" << std::endl;
+						system(pause);
+						break;
+					}
+                    if (estudianteAux->eliminarGrupo(grupoAux->getId())) {
+                        if (grupoAux->eliminarEstudiante(id)) {
+                            std::cout << "Estudiante desmatriculado correctamente." << std::endl;
+                        }
+                    }
+                        else {
+                            std::cout << "Error al desmatricular el estudiante." << std::endl;
+                            system(pause);
+                            break;
+                        }
                     break;
 
                 case 0:
@@ -316,4 +407,15 @@ int main()
             break;
         }
     } while (op != 5);
+
+    delete profAux;
+    delete listaCursos;
+    delete estudianteAux;
+	delete listaEstudiantes;
+	delete cursoAux;
+	delete grupoAux;
+	delete listaGrupo;
+    delete prof1;
+	delete prof2;
+	return 0;
 }

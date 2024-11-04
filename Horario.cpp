@@ -1,9 +1,6 @@
 #include "Horario.h"
 
-std::string Horario::toStringDias()
-{
-	return std::string();
-}
+Horario::Horario() : horaInicio(0), horaFinaliza(0), dia1(""), dia2("") {}
 
 Horario::Horario(int horaInicio, int horaFinaliza,std::string dia1, std::string dia2): horaInicio(horaInicio),horaFinaliza(horaFinaliza), dia1(dia1), dia2(dia2){}
 
@@ -48,6 +45,14 @@ void Horario::setDia1(std::string dia1)
 void Horario::setDia2(std::string dia2)
 {
 	this->dia2 = dia2;
+}
+
+bool Horario::compararHorarios(Horario* h)
+{
+	if (this->dia1 == h->getDia1() || this->dia2 == h->getDia2())
+		return (this->horaFinaliza > h->getHoraInicio());
+
+	return false;
 }
 
 std::string Horario::toString() const

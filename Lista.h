@@ -7,7 +7,7 @@
 template <typename Datatype>
 class Lista
 {
-protected:
+private:
     struct Node
     {
         Node* next;
@@ -20,9 +20,13 @@ public:
 	Lista() : primero(nullptr), actual(nullptr) {}
     virtual ~Lista();
     bool insertar(Datatype* data);
-    bool yaExisteElemento(std::string id);
+    bool eliminar(std::string id);
 	Datatype* buscarElemento(std::string id);
     std::string toString() const;
+	Node* getPrimero() const { return primero; }
+	Node* getActual() const { return actual; }
+	void setPrimero(Node* primero) { this->primero = primero; }
+	void setActual(Node* actual) { this->actual = actual; }
     bool guardarEnArchivo(std::ostream& salida) const;
     Datatype* leerDeArchivo(std::istream& entrada);
 };
@@ -43,52 +47,62 @@ inline Lista<Datatype>::~Lista()
 template<typename Datatype>
 inline bool Lista<Datatype>::insertar(Datatype* data)
 {
-    actual = primero;
-    if (primero == nullptr)
-    {
-        primero = new Node(data, nullptr);
-        return true;
-    }
-    else
-    {
-        while (actual->next != nullptr)
-        {
-            actual = actual->next;
-        }
-		if (this->yaExisteElemento(data->getId()) == false){
-            actual->next = new Node(data, nullptr);
-            return true;
-        }
-    }
-    return false;
+    actual = new Node(data, nullptr);
+    actual->next = primero;
+    primero = actual;
+    return true;
 }
 template<typename Datatype>
-inline bool Lista<Datatype>::yaExisteElemento(std::string id)
+inline bool Lista<Datatype>::eliminar(std::string id)
 {
     actual = primero;
-    while (actual != nullptr) {
-        if (actual->data->getId() == id) {
-            return true;
-        }
-		actual = actual->next;
+    Node* anterior = nullptr;
+
+    //lista vacia
+    if (actual == nullptr) {
+        return false;
     }
-    return false;
+
+    //recorrer lista
+    while (actual != nullptr && actual->data->getId() != id) {
+        anterior = actual;
+        actual = actual->next;
+    }
+
+    //Nunca encontro el nodo
+    if (actual == nullptr) {
+        return false;
+    }
+
+    //Caso si el primero es el que se quiere eliminar
+    if (anterior == nullptr) {
+        primero = actual->next;
+    }
+
+    //caso donde es x nodo
+    else {
+        anterior->next = actual->next;
+    }
+    delete actual;
+    return true;
 }
+
 template<typename Datatype>
 inline Datatype* Lista<Datatype>::buscarElemento(std::string id)
 {
 	actual = primero;
-	if (!yaExisteElemento(id)) {
+    if (actual == nullptr) {
+        return nullptr;
+    }
+    while (actual != nullptr && actual->data->getId() != id) {
+        actual=actual->next;
+    }
+	if (actual == nullptr) {
 		return nullptr;
 	}
-	while (actual != nullptr) {
-		if (actual->data->getId() == id) {
-			return actual->data;
-		}
-		actual = actual->next;
-	}
-    return nullptr;
+    return actual->data;
 }
+
 template<typename Datatype>
 inline std::string Lista<Datatype>::toString() const {
 	std::stringstream ss;

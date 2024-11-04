@@ -9,10 +9,8 @@ private:
 	int horaFinaliza;
 	std::string dia1;
 	std::string dia2;
-	
-	static std::string toStringDias();
 public:
-	Horario() = default;
+	Horario();
 	Horario(int horaInicio, int horaFinaliza, std::string dia1, std::string dia2 );
 	~Horario();
 	int getHoraInicio() const;
@@ -23,6 +21,11 @@ public:
 	void setHoraFinaliza(int horaFinaliza);
 	void setDia1(std::string dia1);
 	void setDia2(std::string dia2);
+
+	/// @brief Comparar si dos horarios chocan
+	/// @param h Horario con el que se desea comparar
+	/// @return false si no chocan y true si chocan
+	bool compararHorarios(Horario* h);
 
 	std::string toString() const;
 };
