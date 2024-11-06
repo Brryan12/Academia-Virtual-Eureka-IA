@@ -28,6 +28,40 @@ int main()
 	Estudiante* estudianteAux = nullptr;
 	Lista<Estudiante>* listaEstudiantes = new Lista<Estudiante>();
 
+	Estudiante* estudianteAux1 = new Estudiante("Juan", "123", "11-23", "adas@gmail.com", "Mate");
+	Estudiante* estudianteAux2 = new Estudiante("Pedro", "124", "128-4", "das@gmail.com", "Medicina");
+	Estudiante* estudianteAux3 = new Estudiante("Maria", "125", "125-5", "das@gmail.com", "Mota");
+	Profesor* profAux1 = new Profesor("Juan", "123", "1245-3", "das@gmail.com", "Doctor");
+	Profesor* profAux2 = new Profesor("Pedro", "124", "125-644", "das@gmail.com", "Maestro");
+    Profesor* profAux3 = new Profesor("Maria", "125", "1744-25", "das@gmail.com", "Pedo");
+	listaEstudiantes->insertar(estudianteAux1);
+	listaEstudiantes->insertar(estudianteAux2);
+	listaEstudiantes->insertar(estudianteAux3);
+	listaProfesores->insertar(profAux1);
+	listaProfesores->insertar(profAux2);
+	listaProfesores->insertar(profAux3);
+	Curso* cursoAux1 = new Curso("Mate", "123", "12", 100, true);
+	Curso* cursoAux2 = new Curso("Fisica", "124", "12", 100, true);
+	Curso* cursoAux3 = new Curso("Quimica", "125", "12", 100, true);
+	listaCursos->insertar(cursoAux1);
+	listaCursos->insertar(cursoAux2);
+	listaCursos->insertar(cursoAux3);
+	Grupo* grupoAux1 = new Grupo(periodos[0], cursoAux1, "123", new Horario(12, 14, "Lunes", "Miercoles"));
+    Grupo* grupoAux11 = new Grupo(periodos[3], cursoAux1, "113", new Horario(12, 14, "Lunes", "Miercoles"));
+
+	Grupo* grupoAux2 = new Grupo(periodos[0], cursoAux2, "124", new Horario(12, 14, "Martes", "Jueves"));
+    Grupo* grupoAux22 = new Grupo(periodos[1], cursoAux3, "1232", new Horario(12, 14, "Martes", "Jueves"));
+
+	Grupo* grupoAux3 = new Grupo(periodos[2], cursoAux3, "125", new Horario(12, 14, "Viernes", "Sabado"));
+    Grupo* grupoAux33 = new Grupo(periodos[3], cursoAux3, "125745", new Horario(12, 14, "Viernes", "Sabado"));
+	listaGrupo->insertar(grupoAux1);
+	listaGrupo->insertar(grupoAux11);
+	listaGrupo->insertar(grupoAux2);
+	listaGrupo->insertar(grupoAux22);
+	listaGrupo->insertar(grupoAux3);
+	listaGrupo->insertar(grupoAux33);
+
+
     do {
         system(cls);
         std::endl(std::cout);
@@ -35,7 +69,7 @@ int main()
         std::cout << "1- Submenu Administración" << std::endl;
         std::cout << "2- Submenu Matricula " << std::endl;
         std::cout << "3- Submenu Busquedas e Informes" << std::endl;
-        std::cout << "4- - Guardar los Datos en Archivos " << std::endl;
+        std::cout << "4- Guardar los Datos en Archivos " << std::endl;
         std::cout << "5- Salir" << std::endl;
         std::cout << "Seleccione una opcion: "; std::cin >> op;
         switch (op)
@@ -207,8 +241,15 @@ int main()
 					std::cout << "Periodo seleccionado: " << periodo << std::endl;
 					std::cout << "Cursos registrados: \n" << listaCursos->toString() << std::endl;
 					std::cout << "Ingrese el id del curso: "; std::cin >> id;
-                    if (listaCursos->buscarElemento(id)) 
-						cursoAux = listaCursos->buscarElemento(id);
+                    if (listaCursos->buscarElemento(id)) {
+                        cursoAux = listaCursos->buscarElemento(id);
+                        if (cursoAux->getEstado() == false) {
+                            std::cerr << "El curso esta inactivo, no se puede crear grupo" << std::endl;
+                            system(pause);
+                            break;
+                        }
+                    }
+
                     else {
                         std::cerr << "Error no hay curso con ese id" << std::endl;
 						system(pause);
@@ -265,7 +306,14 @@ int main()
                         break;
                     }
 					grupoAux = new Grupo(periodo, cursoAux, id, new Horario(horaInicio, horaFinaliza, dia, dia2));
-
+					if (listaGrupo->insertar(grupoAux)) {
+						std::cout << "Grupo ingresado correctamente." << std::endl;
+					}
+					else {
+						std::cerr << "Error al ingresar el grupo." << std::endl;
+						system(pause);
+						break;
+					}
                     system(pause);
                     break;
 
@@ -346,6 +394,7 @@ int main()
 						system(pause);
 						break;
 					}
+                    std::cout << "Estudiantes: \n" << listaEstudiantes->toString()<<std::endl;
 					std::cout << "Ingrese el id del estudiante: "; std::cin >> id;
 					if (listaEstudiantes->buscarElemento(id))
 						estudianteAux = listaEstudiantes->buscarElemento(id);
@@ -354,9 +403,15 @@ int main()
                         system(pause);
                         break;
                     }
+                    std::cout << "Nombre del estudiante: " <<estudianteAux->getNombre() << std::endl;
+                    std::cout << "Grupos: \n" << listaGrupo->toStringBasico();
 					std::cout << "Ingrese el id del grupo: "; std::cin >> id;
-					if (listaGrupo->buscarElemento(id))
-						grupoAux = listaGrupo->buscarElemento(id);
+                    if (listaGrupo->buscarElemento(id)) {
+                        grupoAux = listaGrupo->buscarElemento(id);
+                        if (!grupoAux->getProfesor()) {
+							std::cerr << "Error el grupo no tiene profesor asignado" << std::endl;
+                        }
+                    }
 					else {
 						std::cerr << "Error no hay grupo con ese id" << std::endl;
 						system(pause);

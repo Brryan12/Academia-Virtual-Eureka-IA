@@ -88,7 +88,7 @@ std::string Grupo::toString() const
 		<< "IdGrupo: " << IdGrupo << std::endl
 		<< "Cupo: " << cupo << std::endl
 		<< "Cantidad de Estudiantes: " << cantidadEstudiantes << std::endl
-		<< "Horario: " << horario << std::endl;
+		<< "Horario: " << horario->toString() << std::endl;
 	if (profesor != nullptr)
 	{
 		s << "Profesor: " << profesor->toString() << std::endl;
@@ -171,7 +171,7 @@ std::string Grupo::toStringPeriodos(Lista<Grupo>* lista) const
 			<< "IdGrupo: " << IdGrupo << std::endl
 			<< "Cupo: " << cupo << std::endl
 			<< "Cantidad de Estudiantes: " << cantidadEstudiantes << std::endl
-			<< "Horario: " << horario << std::endl;
+			<< "Horario: " << horario->toString() << std::endl;
 		if (profesor != nullptr)
 		{
 			s << "Profesor: " << profesor->toString() << std::endl;
