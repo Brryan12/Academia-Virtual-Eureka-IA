@@ -204,6 +204,8 @@ int main()
                         break;
                     }
                     periodo = periodos[pos - 1];
+					std::cout << "Periodo seleccionado: " << periodo << std::endl;
+					std::cout << "Cursos registrados: \n" << listaCursos->toString() << std::endl;
 					std::cout << "Ingrese el id del curso: "; std::cin >> id;
                     if (listaCursos->buscarElemento(id)) 
 						cursoAux = listaCursos->buscarElemento(id);

@@ -20,7 +20,7 @@ string Curso::toString() const{
 	s << "Nombre del curso: " << nombre << endl
 		<< "Horas del curso: " << horas << endl
 		<< "ID del Curso: " << id << endl
-		<< " Precio del curso: " << precio << endl
+		<< "Precio del curso: " << precio << endl
 		<< "Estado del curso: " << estado << endl;
 
 	return s.str();
