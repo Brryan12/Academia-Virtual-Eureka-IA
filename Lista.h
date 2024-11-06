@@ -23,6 +23,10 @@ public:
     bool eliminar(std::string id);
 	Datatype* buscarElemento(std::string id);
     std::string toString() const;
+
+	/// @brief Metodo que verifica si la lista esta vacia
+	/// @return false si la lista no esta vacia, true si la lista esta vacia
+	bool vacio() const { return primero == nullptr; }
 	Node* getPrimero() const { return primero; }
 	Node* getActual() const { return actual; }
 	void setPrimero(Node* primero) { this->primero = primero; }

@@ -73,22 +73,25 @@ void Grupo::setHorario(Horario* horario)
 	this->horario = horario;
 }
 
-void Grupo::setProfesor(Profesor* profesor)
+bool Grupo::setProfesor(Profesor* profesor)
 {
 	this->profesor = profesor;
-
+	return true;
 }
 
 std::string Grupo::toString() const
 {
 	std::stringstream s;
-	s << "IdGrupo: " << IdGrupo << std::endl
+
+	s << "Periodo: " << periodo << std::endl
+		<< "Curso: " << curso->getNombre() << std::endl
+		<< "IdGrupo: " << IdGrupo << std::endl
 		<< "Cupo: " << cupo << std::endl
 		<< "Cantidad de Estudiantes: " << cantidadEstudiantes << std::endl
 		<< "Horario: " << horario << std::endl;
 	if (profesor != nullptr)
 	{
-		s << "Profesor: " << profesor->getNombre() << std::endl;
+		s << "Profesor: " << profesor->toString() << std::endl;
 	}
 	else
 	{
@@ -141,4 +144,22 @@ void Grupo::guardarConEstudiantes(std::ostream& salida) const
 
 void Grupo::leerConEstudiantes(std::istream& entrada)
 {
+}
+
+std::string Grupo::toStringPeriodos(Lista<Grupo>* lista) const
+{
+	std::stringstream s;
+	for (int i = 0; i < CANTIDAD_PERIODOS; i++)
+	{
+		s << periodos[i] << duracion[i];
+		lista->setActual(lista->getPrimero());
+		while (lista->getActual() != nullptr) {
+			if (lista->getActual()->data->getPeriodo() == periodos[i]) {
+				s << lista->getActual()->data->getCurso() << std::endl
+					<< lista->getActual()->data->getId() << std::endl;
+			}
+			lista->setActual(lista->getActual()->next);
+		}
+	}
+	return s.str();
 }

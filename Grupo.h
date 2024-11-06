@@ -4,6 +4,7 @@
 #include "Curso.h"
 #include "Lista.h"
 #include "Estudiante.h"
+#include "Constantes.h"
 class Grupo
 {
 private:
@@ -31,12 +32,12 @@ public:
 	void setCantidadEstudiantes(int cantidadEstudiantes);
 	void setCurso(Curso* curso);
 	void setHorario(Horario* horario);
-	void setProfesor(Profesor* profesor);
+	bool setProfesor(Profesor* profesor);
 	std::string toString() const;
 	bool insertarEstudiante(std::string id);
 	bool eliminarEstudiante(std::string id);
 	void guardarConEstudiantes(std::ostream& salida) const;
 	void leerConEstudiantes(std::istream& entrada);
-
+	std::string toStringPeriodos(Lista<Grupo>* lista) const;
 };
 

@@ -142,6 +142,7 @@
     <None Include="proyecto2.pdf" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Constantes.h" />
     <ClInclude Include="Curso.h" />
     <ClInclude Include="Estudiante.h" />
     <ClInclude Include="Grupo.h" />
