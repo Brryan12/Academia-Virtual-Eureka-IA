@@ -23,6 +23,7 @@ public:
     bool eliminar(std::string id);
 	Datatype* buscarElemento(std::string id);
     std::string toString() const;
+    std::string toStringBasico() const;
 
 	/// @brief Metodo que verifica si la lista esta vacia
 	/// @return false si la lista no esta vacia, true si la lista esta vacia
@@ -116,6 +117,18 @@ inline std::string Lista<Datatype>::toString() const {
 		actual = actual->next;
 	}
 	return ss.str();
+}
+
+template<typename Datatype>
+inline std::string Lista<Datatype>::toStringBasico() const
+{
+    std::stringstream ss;
+    Node* actual = primero;
+    while (actual != nullptr) {
+        ss << actual->data->toStringBasico() << std::endl;
+        actual = actual->next;
+    }
+    return ss.str();
 }
 
 // Método para guardar en archivo

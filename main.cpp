@@ -74,6 +74,13 @@ int main()
                     std::cout << "Email: " << email << std::endl;
                     std::cout << "Ingrese el grado academico del profesor: "; getline(std::cin, gradoAcademico);
                     std::cout << "Grado Academico: " << gradoAcademico << std::endl;
+                    if (nombre.empty() || id.empty() || telefono.empty() || email.empty() || gradoAcademico.empty()) {
+                        std::endl(std::cout);
+						std::cerr << "Error al ingresar los datos" << std::endl;
+						std::cerr << "Hay datos vacios" << std::endl;
+						system(pause);
+						break;
+                    }
                     profAux = new Profesor(nombre, id, telefono, email, gradoAcademico);
                     if (listaProfesores->insertar(profAux)) {
                         std::cout << "Profesor ingresado correctamente." << std::endl;
@@ -105,6 +112,13 @@ int main()
                     std::cout << "Email: " << email << std::endl;
                     std::cout << "Ingrese la especialidad del estudiante: "; getline(std::cin, especialidad);
 					std::cout << "Especialidad: " << especialidad << std::endl;
+                    if (nombre.empty() || id.empty() || telefono.empty() || email.empty() || especialidad.empty()) {
+                        std::endl(std::cout);
+                        std::cerr << "Error al ingresar los datos" << std::endl;
+                        std::cerr << "Hay datos vacios" << std::endl;
+                        system(pause);
+                        break;
+                    }
 					estudianteAux = new Estudiante(nombre, id, telefono, email, especialidad);
                     if (listaEstudiantes->insertar(estudianteAux)) {
                         std::cout << "Estudiante ingresado correctamente." << std::endl;
@@ -138,6 +152,7 @@ int main()
                     std::cout << "Ingrese 1 si el curso esta activo " << std::endl;
 					std::cout << "Ingrese el estado del curso: "; cin >> estado;
 					if (estado != 0 && estado != 1) {
+                        std::endl(std::cout);
 						std::cerr << "Error al ingresar el estado del curso" << std::endl;
 						system(pause);
 						break;
@@ -148,6 +163,13 @@ int main()
 					else {
 						std::cout << "Estado: Inactivo" << std::endl;
 					}
+                    if (nombre.empty() || id.empty() || horas.empty()) {
+                        std::endl(std::cout);
+                        std::cerr << "Error al ingresar los datos" << std::endl;
+                        std::cerr << "Hay datos vacios" << std::endl;
+                        system(pause);
+                        break;
+                    }
 					cursoAux = new Curso(nombre, id, horas, precio, estado);
                     if (listaCursos->insertar(cursoAux)) {
                         std::cout << "Curso ingresado correctamente." << std::endl;
@@ -233,7 +255,13 @@ int main()
 
                     std::cout << "Dia 1 seleccionado: " << dia << std::endl;
                     std::cout << "Dia 2 seleccionado: " << dia2 << std::endl;
-
+                    if (periodo.empty() || id.empty() || dia.empty() || dia2.empty()) {
+                        std::endl(std::cout);
+                        std::cerr << "Error al ingresar los datos" << std::endl;
+                        std::cerr << "Hay datos vacios" << std::endl;
+                        system(pause);
+                        break;
+                    }
 					grupoAux = new Grupo(periodo, cursoAux, id, new Horario(horaInicio, horaFinaliza, dia, dia2));
 
                     system(pause);
@@ -308,6 +336,7 @@ int main()
                 switch (op2)
                 {
                 case 1:
+                    system(cls);
                     // Llamar a la función de matricular estudiante
                     std::cout << "(1) Matricular Estudiante" << std::endl;
 					if (listaEstudiantes->vacio() || listaGrupo->vacio()) {
@@ -357,6 +386,7 @@ int main()
                     break;
 
                 case 2:
+                    system(cls);
 					std::cout << "(2) Desmatricular Estudiante" << std::endl;
                     if (listaEstudiantes->vacio() || listaGrupo->vacio()) {
                         std::cerr << "Error no hay estudiantes o grupos registrados" << std::endl;
@@ -410,6 +440,7 @@ int main()
 
         case 3:
             do {
+                system(cls);
                 std::cout << "(1) Informe Profesores Registrados" << std::endl;
                 std::cout << "(2) Informe Estudiantes Registrados" << std::endl;
                 std::cout << "(3) Informe Cursos Matriculados por un Estudiante" << std::endl;
@@ -422,6 +453,7 @@ int main()
                 switch (op3)
                 {
                 case 1:
+                    system(cls);
                     std::cout << "(1) Informe Profesores Registrados" << std::endl;
                     if (!listaProfesores->vacio()) {
                         std::cout << listaProfesores->toString();
@@ -436,6 +468,7 @@ int main()
                     break;
 
                 case 2:
+                    system(cls);
                     std::cout << "(2) Informe Estudiantes Registrados" << std::endl;
 
                     if (!listaEstudiantes->vacio()) {
@@ -449,7 +482,13 @@ int main()
                     system(pause);
                     break;
                 case 3:
+                    system(cls);
                     std::cout << "(3) Informe Cursos Matriculados por un Estudiante" << std::endl;
+                    if (listaEstudiantes->vacio() || listaGrupo->vacio()) {
+                        std::cerr << "No hay estudiantes ingresados o grupos ingresados" << std::endl;
+                        system(pause);
+                        break;
+                    }
                     std::cout << "Ingrese el id del estudiante: "; std::cin >> id;
 					if (listaEstudiantes->buscarElemento(id))
 						estudianteAux = listaEstudiantes->buscarElemento(id);
@@ -459,12 +498,18 @@ int main()
 						break;
 					}
 					std::cout << "Datos del estudiante: \n" << estudianteAux->toString() << std::endl;
-					std::cout << "Grupo del estudiante: \n" << estudianteAux->getListaGrupo()->toString() << std::endl;
+					std::cout << "Grupos del estudiante: \n" << estudianteAux->getListaGrupo()->toStringBasico() << std::endl;
                     system(pause);
                     break;
 
                 case 4:
+                    system(cls);
                     std::cout << "(4) Informe Profesor Especifico" << std::endl;
+                    if (listaProfesores->vacio()) {
+                        std::cerr << "No hay profesores ingresados " << std::endl;
+                        system(pause);
+                        break;
+                    }
                     std::cout << "Ingrese el id del profesor: "; std::cin >> id;
                     if (listaProfesores->buscarElemento(id))
                         profAux = listaProfesores->buscarElemento(id);
@@ -481,8 +526,9 @@ int main()
                     break;
 
                 case 5:
+                    system(cls);
                     std::cout << "(5) Informe Periodos Habilitados para el Ano" << std::endl;
-					if (!listaGrupo->vacio() && !listaCursos->vacio() && !listaCursos->vacio())
+					if (!listaGrupo->vacio() && !listaCursos->vacio())
 					grupoAux->toStringPeriodos(listaGrupo);
                     else {
                         std::cerr << "No hay grupos registrados o cursos registrados" << std::endl;
@@ -493,9 +539,10 @@ int main()
                     break;
 
                 case 6:
+                    system(cls);
                     std::cout << "(6) Informe Grupo Especifico" << std::endl;
-					if (listaGrupo->vacio()) {
-						std::cerr << "Error no hay grupos registrados" << std::endl;
+					if (listaGrupo->vacio() || listaCursos->vacio()) {
+						std::cerr << "Error no hay grupos registrados o Cursos registrados" << std::endl;
 						system(pause);
 						break;
 					}
@@ -528,11 +575,13 @@ int main()
             break; // Falta este break para cerrar el case 3
 
         case 4:
+            system(cls);
             // Llamar a la funcion de guardar los datos en archivos
             system(pause);
             break;
 
         case 5:
+            system(cls);
             std::cout << "Saliendo del programa..." << std::endl;
             system(pause);
             break;

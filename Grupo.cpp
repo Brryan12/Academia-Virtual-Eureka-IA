@@ -163,3 +163,22 @@ std::string Grupo::toStringPeriodos(Lista<Grupo>* lista) const
 	}
 	return s.str();
 }
+	std::string Grupo::toStringBasico() const {
+
+		std::stringstream s;
+		s << "Periodo: " << periodo << std::endl
+			<< "Curso: " << curso->getNombre() << std::endl
+			<< "IdGrupo: " << IdGrupo << std::endl
+			<< "Cupo: " << cupo << std::endl
+			<< "Cantidad de Estudiantes: " << cantidadEstudiantes << std::endl
+			<< "Horario: " << horario << std::endl;
+		if (profesor != nullptr)
+		{
+			s << "Profesor: " << profesor->toString() << std::endl;
+		}
+		else
+		{
+			s << "Profesor: " << "No asignado" << std::endl;
+		}
+		return s.str();
+}
