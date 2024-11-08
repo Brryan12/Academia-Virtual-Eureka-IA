@@ -17,7 +17,7 @@ public:
 	static int submenuAdministracion();
 	static int submenuMatricula();
 	static int submenuBusquedasEInformes();
-	static void  guardarLosDatosEnArchivos();
+	static void guardarLosDatosEnArchivos();
 	static void defaultSwitch();
 	static void regresarMenuPrincipal();
 	static void ingresarProfesor(Lista<Profesor>* listaProfesores);
