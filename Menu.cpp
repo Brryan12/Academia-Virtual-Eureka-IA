@@ -334,14 +334,16 @@ void Menu::asignarProfesorAGrupo(Lista<Grupo>* listaGrupo, Lista<Profesor>* list
         system(pause);
         return;
     }
-    std::cout << "Ingrese el id del profesor a asignar: "; std::cin >> id;
+	std::cout << listaProfesores->toString() << std::endl;
+    std::cout << "Ingrese la cedula del profesor a asignar: "; std::cin >> id;
     if (listaProfesores->buscarElemento(id))
         profAux = listaProfesores->buscarElemento(id);
     else {
-        std::cerr << "Error no hay profesor con ese id" << std::endl;
+        std::cerr << "Error no hay profesor con esa cedula" << std::endl;
         system(pause);
         return;
     }
+	std::cout << Grupo::GruposSinProfesor(listaGrupo) << std::endl;
     std::cout << "Ingrese el id del grupo: "; std::cin >> id;
     if (listaGrupo->buscarElemento(id))
         grupoAux = listaGrupo->buscarElemento(id);
@@ -382,16 +384,16 @@ void Menu::matricularEstudiante(Lista<Grupo>* listaGrupo, Lista<Estudiante>* lis
         return;
     }
     std::cout << "Estudiantes: \n" << listaEstudiantes->toString() << std::endl;
-    std::cout << "Ingrese el id del estudiante: "; std::cin >> id;
+    std::cout << "Ingrese la cedula del estudiante: "; std::cin >> id;
     if (listaEstudiantes->buscarElemento(id))
         estudianteAux = listaEstudiantes->buscarElemento(id);
     else {
-        std::cerr << "Error no hay estudiante con ese id" << std::endl;
+        std::cerr << "Error no hay estudiante con esa cedula" << std::endl;
         system(pause);
         return;
     }
     std::cout << "Nombre del estudiante: " << estudianteAux->getNombre() << std::endl;
-    std::cout << "Grupos: \n" << listaGrupo->toStringBasico();
+    std::cout << "Grupos: \n" << Grupo::GruposConProfesor(listaGrupo);
     std::cout << "Ingrese el id del grupo: "; std::cin >> id;
     if (listaGrupo->buscarElemento(id)) {
         grupoAux = listaGrupo->buscarElemento(id);
@@ -422,7 +424,7 @@ void Menu::matricularEstudiante(Lista<Grupo>* listaGrupo, Lista<Estudiante>* lis
         }
     }
     else {
-        std::cerr << "Error el estudiante ya esta matriculado en un grupo" << std::endl;
+        std::cerr << "Error el estudiante ya esta matriculado en un grupo con este curso" << std::endl;
         system(pause);
         return;
     }
@@ -441,11 +443,11 @@ void Menu::desmatricularEstudiante(Lista<Grupo>* listaGrupo, Lista<Estudiante>* 
         system(pause);
         return;
     }
-    std::cout << "Ingrese el id del estudiante: "; std::cin >> id;
+    std::cout << "Ingrese la cedula del estudiante: "; std::cin >> id;
     if (listaEstudiantes->buscarElemento(id))
         estudianteAux = listaEstudiantes->buscarElemento(id);
     else {
-        std::cerr << "Error no hay estudiante con ese id" << std::endl;
+        std::cerr << "Error no hay estudiante con esa cedula" << std::endl;
         system(pause);
         return;
     }
@@ -478,7 +480,7 @@ void Menu::generarFactura(Lista<Estudiante>* listaEstudiantes)
 	Factura* facturaAux = nullptr;
 	system(cls);
     std::cout << "(3) Generar Factura del pago del estudiante" << std::endl;
-    std::cout << "Ingrese el id del estudiante: "; std::cin >> id;
+    std::cout << "Ingrese la cedula del estudiante: "; std::cin >> id;
     if (listaEstudiantes->buscarElemento(id)) {
         estudianteAux = listaEstudiantes->buscarElemento(id);
         if (estudianteAux->getListaGrupo()->vacio()) {
@@ -488,7 +490,7 @@ void Menu::generarFactura(Lista<Estudiante>* listaEstudiantes)
         }
     }
     else {
-        std::cerr << "Error no hay estudiante con ese id" << std::endl;
+        std::cerr << "Error no hay estudiante con esa cedula" << std::endl;
         system(pause);
         return;
     }
@@ -541,16 +543,16 @@ void Menu::informeCursosMatriculadosPorEstudiante(Lista<Grupo>* listaGrupo, List
         system(pause);
         return;
     }
-    std::cout << "Ingrese el id del estudiante: "; std::cin >> id;
+    std::cout << "Ingrese la cedula del estudiante: "; std::cin >> id;
     if (listaEstudiantes->buscarElemento(id))
         estudianteAux = listaEstudiantes->buscarElemento(id);
     else {
-        std::cerr << "Error no hay estudiante con ese id" << std::endl;
+        std::cerr << "Error no hay estudiante con esa cedula" << std::endl;
         system(pause);
         return;
     }
     std::cout << "Datos del estudiante: \n" << estudianteAux->toString() << std::endl;
-    std::cout << "Grupos del estudiante: \n" << estudianteAux->getListaGrupo()->toStringBasico() << std::endl;
+    std::cout << "Grupos del estudiante: \n" << Grupo::toStringBasico(estudianteAux->getListaGrupo()) << std::endl;
     system(pause);
 }
 
@@ -565,11 +567,11 @@ void Menu::informeProfesorEspecifico(Lista<Profesor>* listaProfesores)
         system(pause);
         return;
     }
-    std::cout << "Ingrese el id del profesor: "; std::cin >> id;
+    std::cout << "Ingrese la cedula del profesor: "; std::cin >> id;
     if (listaProfesores->buscarElemento(id))
         profAux = listaProfesores->buscarElemento(id);
     else {
-        std::cerr << "Error no hay profesor con ese id" << std::endl;
+        std::cerr << "Error no hay profesor con esa cedula" << std::endl;
         system(pause);
         return;
     }

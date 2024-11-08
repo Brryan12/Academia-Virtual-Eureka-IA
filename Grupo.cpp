@@ -167,23 +167,65 @@ std::string Grupo::toStringPeriodos(Lista<Grupo>* lista)
 
 	return s.str();
 }
-	std::string Grupo::toStringBasico() const {
-
-		std::stringstream s;
-		s << "Periodo: " << periodo << std::endl
-			<< "Curso: " << curso->getNombre() << std::endl
-			<< "Precio: " << curso->getPrecio() << std::endl
-			<< "IdGrupo: " << IdGrupo << std::endl
-			<< "Cupo: " << cupo << std::endl
-			<< "Cantidad de Estudiantes: " << cantidadEstudiantes << std::endl
-			<< "Horario: " << horario->toString() << std::endl;
-		if (profesor != nullptr)
-		{
-			s << "Profesor: " << profesor->toString() << std::endl;
-		}
-		else
-		{
-			s << "Profesor: " << "No asignado" << std::endl;
-		}
+std::string Grupo::toStringBasico(Lista<Grupo>* lista){
+	std::stringstream s;
+	lista->setActual(lista->getPrimero());
+	while (lista->getActual() != nullptr){
+		s << "Periodo: " << lista->getActual()->data->getPeriodo() << std::endl
+			<< "Curso: " << lista->getActual()->data->getCurso()->getNombre() << std::endl
+			<< "Precio: " << lista->getActual()->data->getCurso()->getPrecio() << std::endl
+			<< "IdGrupo: " << lista->getActual()->data->getId() << std::endl
+			<< "Cupo: " << lista->getActual()->data->getCupo() << std::endl
+			<< "Cantidad de Estudiantes: " << lista->getActual()->data->getCantidadEstudiantes() << std::endl
+			<< "Horario: " << lista->getActual()->data->getHorario()->toString() << std::endl;
+	if (lista->getActual()->data->getProfesor() != nullptr)
+	{
+		s << "Profesor: " << lista->getActual()->data->getProfesor()->toString() << std::endl;
+	}
+	else
+	{
+		s << "Profesor: " << "No asignado" << std::endl;
+	}
+}
 		return s.str();
+}
+
+std::string Grupo::GruposSinProfesor(Lista<Grupo>* lista){
+	std::stringstream s;
+	
+	lista->setActual(lista->getPrimero());
+	while (lista->getActual() != nullptr) {
+		if (lista->getActual()->data->getProfesor() == nullptr)
+		{
+			s << "Periodo: " << lista->getActual()->data->getPeriodo() << std::endl
+				<< "Curso: " << lista->getActual()->data->getCurso()->getNombre() << std::endl
+				<< "Precio: " << lista->getActual()->data->getCurso()->getPrecio() << std::endl
+				<< "IdGrupo: " << lista->getActual()->data->getId() << std::endl
+				<< "Cupo: " << lista->getActual()->data->getCupo() << std::endl
+				<< "Cantidad de Estudiantes: " << lista->getActual()->data->getCantidadEstudiantes() << std::endl
+				<< "Horario: " << lista->getActual()->data->getHorario()->toString() << std::endl;
+		}
+		lista->setActual(lista->getActual()->next);
+	}
+	return s.str();
+}
+
+std::string Grupo::GruposConProfesor(Lista<Grupo>* lista) {
+	std::stringstream s;
+	lista->setActual(lista->getPrimero());
+	while (lista->getActual() != nullptr) {
+		if (lista->getActual()->data->getProfesor() != nullptr)
+		{
+			s << "Periodo: " << lista->getActual()->data->getPeriodo() << std::endl
+				<< "Curso: " << lista->getActual()->data->getCurso()->getNombre() << std::endl
+				<< "Precio: " << lista->getActual()->data->getCurso()->getPrecio() << std::endl
+				<< "IdGrupo: " << lista->getActual()->data->getId() << std::endl
+				<< "Cupo: " << lista->getActual()->data->getCupo() << std::endl
+				<< "Cantidad de Estudiantes: " << lista->getActual()->data->getCantidadEstudiantes() << std::endl
+				<< "Horario: " << lista->getActual()->data->getHorario()->toString() << std::endl
+				<< "Profesor: " << lista->getActual()->data->getProfesor()->toString() << std::endl;
+		}
+		lista->setActual(lista->getActual()->next);
+	}
+	return s.str();
 }

@@ -39,6 +39,8 @@ public:
 	void guardarConEstudiantes(std::ostream& salida) const;
 	void leerConEstudiantes(std::istream& entrada);
 	static std::string toStringPeriodos(Lista<Grupo>* lista);
-	std::string toStringBasico() const;
+	static std::string toStringBasico(Lista<Grupo>* lista);
+	static std::string GruposSinProfesor(Lista<Grupo>* lista);
+	static std::string GruposConProfesor(Lista<Grupo>* lista);
 };
 

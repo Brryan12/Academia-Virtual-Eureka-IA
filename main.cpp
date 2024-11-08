@@ -170,6 +170,6 @@ int main()
     delete listaCursos;
 	delete listaEstudiantes;
 	delete listaGrupo;
-	delete listaProfesores;
+	delete listaProfesores;  
 	return 0;
 }
