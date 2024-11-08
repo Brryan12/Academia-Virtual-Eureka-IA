@@ -9,7 +9,7 @@ int Menu::menuPrincipal()
     std::cout << "1- Submenu Administración" << std::endl;
     std::cout << "2- Submenu Matricula " << std::endl;
     std::cout << "3- Submenu Busquedas e Informes" << std::endl;
-    std::cout << "4- Guardar los Datos en Archivos " << std::endl;
+   // std::cout << "4- Guardar los Datos en Archivos " << std::endl;
     std::cout << "5- Salir" << std::endl;
     std::cout << "Seleccione una opcion: "; std::cin >> op;
 	return op;
