@@ -15,7 +15,7 @@ double Factura::montoPagar()
 
 bool Factura::descuentoPeriodo()
 {
-    return estudiante->minimoUnGrupoPorPeriodo();
+    return estudiante->minimoDosGrupoPorPeriodo();
 }
 
 bool Factura::descuentoAnual()
