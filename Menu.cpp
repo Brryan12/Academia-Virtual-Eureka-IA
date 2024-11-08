@@ -582,11 +582,10 @@ void Menu::informeProfesorEspecifico(Lista<Profesor>* listaProfesores)
 
 void Menu::informePeriodosHabilitadosParaElAno(Lista<Grupo>* listaGrupo, Lista<Curso>* listaCursos)
 {
-	Grupo* grupoAux;    
     system(cls);
     std::cout << "(5) Informe Periodos Habilitados para el Ano" << std::endl;
     if (!listaGrupo->vacio() && !listaCursos->vacio())
-        grupoAux->toStringPeriodos(listaGrupo);
+        Grupo::toStringPeriodos(listaGrupo);
     else {
         std::cerr << "No hay grupos registrados o cursos registrados" << std::endl;
         system(pause);

@@ -7,8 +7,7 @@ Estudiante::Estudiante(std::string nombre, std::string cedula, std::string telef
 
 Estudiante::~Estudiante()
 {
-	if (listaGrupo != nullptr)
-		delete listaGrupo;
+	delete listaGrupo;
 }
 
 std::string Estudiante::getEspecialidad() const
@@ -82,6 +81,7 @@ bool Estudiante::minimoDosGrupoPorPeriodo() const
 			return true;
 		}
 	}
+	return false;
 }
 
 double Estudiante::montoPagar() const

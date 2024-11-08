@@ -38,7 +38,7 @@ public:
 	bool eliminarEstudiante(std::string id);
 	void guardarConEstudiantes(std::ostream& salida) const;
 	void leerConEstudiantes(std::istream& entrada);
-	std::string toStringPeriodos(Lista<Grupo>* lista) const;
+	static std::string toStringPeriodos(Lista<Grupo>* lista);
 	std::string toStringBasico() const;
 };
 

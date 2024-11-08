@@ -10,8 +10,7 @@ Grupo::~Grupo()
 	delete horario;
 	delete curso;
 	delete profesor;
-	if (estudiantes != nullptr)
-		delete estudiantes;
+	delete estudiantes;
 }
 int Grupo::getCupo() const
 {
@@ -147,7 +146,7 @@ void Grupo::leerConEstudiantes(std::istream& entrada)
 {
 }
 
-std::string Grupo::toStringPeriodos(Lista<Grupo>* lista) const
+std::string Grupo::toStringPeriodos(Lista<Grupo>* lista)
 {
 	std::stringstream s;
 	for (int i = 0; i < CANTIDAD_PERIODOS; i++)

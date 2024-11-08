@@ -1,5 +1,6 @@
 #pragma once
 #include "Grupo.h"
+#include "Lista.h"
 #include "Factura.h"
 
 #if defined(_WIN64) || defined(_WIN32)
