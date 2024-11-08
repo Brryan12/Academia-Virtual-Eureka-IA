@@ -151,16 +151,20 @@ std::string Grupo::toStringPeriodos(Lista<Grupo>* lista)
 	std::stringstream s;
 	for (int i = 0; i < CANTIDAD_PERIODOS; i++)
 	{
-		s << periodos[i] << duracion[i];
+		s << std::endl<<periodos[i] << duracion[i]<<std::endl;
 		lista->setActual(lista->getPrimero());
 		while (lista->getActual() != nullptr) {
 			if (lista->getActual()->data->getPeriodo() == periodos[i]) {
-				s << lista->getActual()->data->getCurso() << std::endl
-					<< lista->getActual()->data->getId() << std::endl;
+				s << "------------------------------------------------------------\n";
+				s<<"Nombre del curso: " << lista->getActual()->data->getCurso()->getNombre() << std::endl
+					<<"Id del grupo: " << lista->getActual()->data->getId() << std::endl;
 			}
 			lista->setActual(lista->getActual()->next);
 		}
+		s << "------------------------------------------------------------\n";
+
 	}
+
 	return s.str();
 }
 	std::string Grupo::toStringBasico() const {

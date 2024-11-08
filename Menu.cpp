@@ -80,7 +80,7 @@ void Menu::regresarMenuPrincipal()
 void Menu::ingresarProfesor(Lista<Profesor> * listaProfesores)
 {
 	std::string nombre, id, telefono, email, gradoAcademico;
-	Profesor* profAux;
+	Profesor* profAux=nullptr;
     system(cls);
     cin.ignore();
     std::cout << "(1) Ingresar Profesor" << std::endl;
@@ -121,7 +121,7 @@ void Menu::ingresarProfesor(Lista<Profesor> * listaProfesores)
 void Menu::ingresarEstudiante(Lista<Estudiante>* listaEstudiantes)
 {
 	std::string nombre, id, telefono, email, especialidad;
-	Estudiante* estudianteAux;
+	Estudiante* estudianteAux = nullptr;
     system(cls);
     cin.ignore();
     std::cout << "(2) Ingresar Estudiante" << std::endl;
@@ -164,7 +164,7 @@ void Menu::ingresarCurso(Lista<Curso>* listaCursos)
 	std::string nombre, id, horas;
 	double precio;
 	int estado;
-	Curso* cursoAux;
+	Curso* cursoAux = nullptr;
 
     system(cls);
     cin.ignore();
@@ -220,8 +220,8 @@ void Menu::ingresarGrupo(Lista<Grupo>* listaGrupo, Lista<Curso>* listaCursos)
 {
 	std::string periodo, id, dia, dia2;
 	int pos, horaInicio, horaFinaliza;
-	Curso* cursoAux;
-	Grupo* grupoAux;
+	Curso* cursoAux = nullptr;
+	Grupo* grupoAux = nullptr;
     system(cls);
     cin.ignore();
     if (listaCursos->vacio()) {
@@ -325,8 +325,8 @@ void Menu::ingresarGrupo(Lista<Grupo>* listaGrupo, Lista<Curso>* listaCursos)
 void Menu::asignarProfesorAGrupo(Lista<Grupo>* listaGrupo, Lista<Profesor>* listaProfesores)
 {
 	std::string id;
-	Profesor* profAux;
-	Grupo* grupoAux;
+	Profesor* profAux = nullptr;
+	Grupo* grupoAux = nullptr;
     system(cls);
     std::cout << "(5) Asignar Profesor a Grupo" << std::endl;
     if (listaProfesores->vacio() || listaGrupo->vacio()) {
@@ -372,8 +372,8 @@ void Menu::asignarProfesorAGrupo(Lista<Grupo>* listaGrupo, Lista<Profesor>* list
 void Menu::matricularEstudiante(Lista<Grupo>* listaGrupo, Lista<Estudiante>* listaEstudiantes)
 {
 	std::string id;
-	Estudiante* estudianteAux;
-	Grupo* grupoAux;
+	Estudiante* estudianteAux = nullptr;
+	Grupo* grupoAux = nullptr;
     system(cls);
     std::cout << "(1) Matricular Estudiante" << std::endl;
     if (listaEstudiantes->vacio() || listaGrupo->vacio()) {
@@ -432,8 +432,8 @@ void Menu::matricularEstudiante(Lista<Grupo>* listaGrupo, Lista<Estudiante>* lis
 void Menu::desmatricularEstudiante(Lista<Grupo>* listaGrupo, Lista<Estudiante>* listaEstudiantes)
 {
 	std::string id;
-	Estudiante* estudianteAux;
-	Grupo* grupoAux;
+	Estudiante* estudianteAux = nullptr;
+	Grupo* grupoAux = nullptr;
     system(cls);
     std::cout << "(2) Desmatricular Estudiante" << std::endl;
     if (listaEstudiantes->vacio() || listaGrupo->vacio()) {
@@ -474,8 +474,8 @@ void Menu::desmatricularEstudiante(Lista<Grupo>* listaGrupo, Lista<Estudiante>* 
 void Menu::generarFactura(Lista<Estudiante>* listaEstudiantes)
 {
 	std::string id;
-	Estudiante* estudianteAux;
-	Factura* facturaAux;
+	Estudiante* estudianteAux = nullptr;
+	Factura* facturaAux = nullptr;
 	system(cls);
     std::cout << "(3) Generar Factura del pago del estudiante" << std::endl;
     std::cout << "Ingrese el id del estudiante: "; std::cin >> id;
@@ -532,7 +532,7 @@ void Menu::informeEstudiantesRegistrados(Lista<Estudiante>* listaEstudiantes)
 void Menu::informeCursosMatriculadosPorEstudiante(Lista<Grupo>* listaGrupo, Lista<Estudiante>* listaEstudiantes)
 {
 	std::string id;
-	Estudiante* estudianteAux;
+	Estudiante* estudianteAux = nullptr;
 
     system(cls);
     std::cout << "(3) Informe Cursos Matriculados por un Estudiante" << std::endl;
@@ -557,7 +557,7 @@ void Menu::informeCursosMatriculadosPorEstudiante(Lista<Grupo>* listaGrupo, List
 void Menu::informeProfesorEspecifico(Lista<Profesor>* listaProfesores)
 {
 	std::string id;
-	Profesor* profAux;
+	Profesor* profAux = nullptr;
     system(cls);
     std::cout << "(4) Informe Profesor Especifico" << std::endl;
     if (listaProfesores->vacio()) {
@@ -585,7 +585,7 @@ void Menu::informePeriodosHabilitadosParaElAno(Lista<Grupo>* listaGrupo, Lista<C
     system(cls);
     std::cout << "(5) Informe Periodos Habilitados para el Ano" << std::endl;
     if (!listaGrupo->vacio() && !listaCursos->vacio())
-        Grupo::toStringPeriodos(listaGrupo);
+        std::cout<<Grupo::toStringPeriodos(listaGrupo)<<std::endl;
     else {
         std::cerr << "No hay grupos registrados o cursos registrados" << std::endl;
         system(pause);
@@ -597,7 +597,7 @@ void Menu::informePeriodosHabilitadosParaElAno(Lista<Grupo>* listaGrupo, Lista<C
 void Menu::informeGrupoEspecifico(Lista<Grupo>* listaGrupo, Lista<Curso>* listaCursos)
 {
 	std::string id;
-	Grupo* grupoAux;
+	Grupo* grupoAux=nullptr;
     system(cls);
     std::cout << "(6) Informe Grupo Especifico" << std::endl;
     if (listaGrupo->vacio() || listaCursos->vacio()) {
