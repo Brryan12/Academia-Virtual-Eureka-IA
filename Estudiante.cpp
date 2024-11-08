@@ -65,10 +65,69 @@ bool Estudiante::insertarGrupo(Grupo* grupoAux)
 	return puedeInsertar;
 }
 
+bool Estudiante::minimoUnGrupoPorPeriodo() const
+{
+	int cant = 0;
+	for (int i = 0; i < CANTIDAD_PERIODOS; i++) {
+		this->listaGrupo->setActual(this->listaGrupo->getPrimero());
+		while (this->listaGrupo->getActual() != nullptr)
+		{
+
+			if (this->listaGrupo->getActual()->data->getPeriodo() == periodos[i]) {
+				cant++;
+			}
+			this->listaGrupo->setActual(this->listaGrupo->getActual()->next);
+		}
+		if (cant > 1) {
+			return true;
+		}
+	}
+}
+
+double Estudiante::montoPagar() const
+{
+	double monto = 0.0;
+	this->listaGrupo->setActual(this->listaGrupo->getPrimero());
+	while (this->listaGrupo->getActual() != nullptr)
+	{
+		monto += this->listaGrupo->getActual()->data->getCurso()->getPrecio();
+
+		this->listaGrupo->setActual(this->listaGrupo->getActual()->next);
+	}
+	return monto;
+}
+
+std::string Estudiante::infoCursos() const
+{
+	listaGrupo->setActual(listaGrupo->getPrimero());
+	std::stringstream s;
+	while (listaGrupo->getActual() != nullptr)
+	{
+		s << listaGrupo->getActual()->data->getCurso()->getNombre() << std::endl;
+		s << listaGrupo->getActual()->data->getCurso()->getPrecio() << std::endl;
+		listaGrupo->setActual(listaGrupo->getActual()->next);
+	}
+	return s.str();
+}
+
+
 bool Estudiante::eliminarGrupo(std::string id)
 {
 	return this->listaGrupo->eliminar(id);
 }
+
+//std::string Estudiante::Factura() const
+//{
+//	listaGrupo->setActual(listaGrupo->getPrimero());
+//
+//	while (listaGrupo->getActual() != nullptr)
+//	{
+//		std::cout << listaGrupo->getActual()->data->getCurso()->getNombre() << std::endl;
+//		std::cout << listaGrupo->getActual()->data->getCurso()->getPrecio() << std::endl;
+//		listaGrupo->setActual(listaGrupo->getActual()->next);
+//	}
+//	return std::string();
+//}
 
 void Estudiante::guardar(std::ostream& salida) const 
 {

@@ -85,6 +85,7 @@ std::string Grupo::toString() const
 
 	s << "Periodo: " << periodo << std::endl
 		<< "Curso: " << curso->getNombre() << std::endl
+		<< "Precio: " << curso->getPrecio() << std::endl
 		<< "IdGrupo: " << IdGrupo << std::endl
 		<< "Cupo: " << cupo << std::endl
 		<< "Cantidad de Estudiantes: " << cantidadEstudiantes << std::endl
@@ -168,6 +169,7 @@ std::string Grupo::toStringPeriodos(Lista<Grupo>* lista) const
 		std::stringstream s;
 		s << "Periodo: " << periodo << std::endl
 			<< "Curso: " << curso->getNombre() << std::endl
+			<< "Precio: " << curso->getPrecio() << std::endl
 			<< "IdGrupo: " << IdGrupo << std::endl
 			<< "Cupo: " << cupo << std::endl
 			<< "Cantidad de Estudiantes: " << cantidadEstudiantes << std::endl

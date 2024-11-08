@@ -1,4 +1,5 @@
 #pragma once
+#include "Constantes.h"
 #include "Persona.h"
 #include "Lista.h"
 
@@ -18,10 +19,10 @@ public:
 	void setListaGrupo(Lista<Grupo>* listaGrupo);
 	std::string toString() const override;
 	bool insertarGrupo(Grupo* grupoAux);
-
-
+	bool minimoUnGrupoPorPeriodo() const;
+	double montoPagar() const;
+	std::string infoCursos() const;
 	bool eliminarGrupo(std::string id);
-
 	void guardar(std::ostream& salida) const override;
 	static Estudiante* leer(std::istream& entrada);
 };

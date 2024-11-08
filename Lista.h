@@ -31,6 +31,15 @@ public:
 	Node* getPrimero() const { return primero; }
 	Node* getActual() const { return actual; }
 	void setPrimero(Node* primero) { this->primero = primero; }
+	int cantidadElementos() const {
+		int cant = 0;
+		Node* actual = primero;
+		while (actual != nullptr) {
+			cant++;
+			actual = actual->next;
+		}
+		return cant;
+	}
 	void setActual(Node* actual) { this->actual = actual; }
     bool guardarEnArchivo(std::ostream& salida) const;
     Datatype* leerDeArchivo(std::istream& entrada);
