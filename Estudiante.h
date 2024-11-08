@@ -19,7 +19,7 @@ public:
 	void setListaGrupo(Lista<Grupo>* listaGrupo);
 	std::string toString() const override;
 	bool insertarGrupo(Grupo* grupoAux);
-	bool minimoUnGrupoPorPeriodo() const;
+	bool minimoDosGrupoPorPeriodo() const;
 	double montoPagar() const;
 	std::string infoCursos() const;
 	bool eliminarGrupo(std::string id);
