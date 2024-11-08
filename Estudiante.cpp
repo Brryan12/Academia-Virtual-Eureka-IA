@@ -65,7 +65,7 @@ bool Estudiante::insertarGrupo(Grupo* grupoAux)
 	return puedeInsertar;
 }
 
-bool Estudiante::minimoUnGrupoPorPeriodo() const
+bool Estudiante::minimoDosGrupoPorPeriodo() const
 {
 	int cant = 0;
 	for (int i = 0; i < CANTIDAD_PERIODOS; i++) {
