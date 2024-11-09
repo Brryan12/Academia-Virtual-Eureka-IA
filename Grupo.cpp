@@ -234,11 +234,11 @@ void Grupo::guardar(std::ostream& salida) const
 		<< horario->getHoraInicio() << "\t"
 		<< horario->getHoraFinaliza() << "\t"
 		<< horario->getDia1() << "\t";
-		
+
 	if (profesor != nullptr)
 	{
-		salida<< horario->getDia2() << "\t"
-		<< profesor->getNombre() << "\t"
+		salida << horario->getDia2() << "\t"
+			<< profesor->getNombre() << "\t"
 			<< profesor->getId() << "\t"
 			<< profesor->getTelefono() << "\t"
 			<< profesor->getEmail() << "\t"
@@ -250,81 +250,10 @@ void Grupo::guardar(std::ostream& salida) const
 
 Grupo* Grupo::leer(std::istream& entrada)
 {
-	std::string periodo, nombreCurso, idCurso, IdGrupo, horasCurso, precioCurso, horaInicio,HoraFinal,dia1, dia2;
+	std::string periodo, nombreCurso, idCurso, IdGrupo, horasCurso, precioCurso, horaInicio, HoraFinal, dia1, dia2;
 	bool estado;
 	Profesor* profesor = nullptr;
 	std::string nombre, cedula, telefono, email, gradoAcademico;
-
-	Horario* horario = nullptr;
-	Curso* curso = nullptr;
-	getline(entrada, periodo, '\t');
-	getline(entrada, nombreCurso, '\t');
-	getline(entrada, idCurso, '\t');
-	getline(entrada, horasCurso, '\t');
-	getline(entrada, precioCurso, '\t');
-	entrada >> estado; cin.ignore(1);
-	if (!nombreCurso.empty() && !idCurso.empty() && !horasCurso.empty() && !precioCurso.empty())
-	{
-		curso = new Curso(nombreCurso, idCurso, horasCurso, std::stod(precioCurso), estado);
-	}
-	getline(entrada, IdGrupo, '\t');
-	getline(entrada, horaInicio, '\t');
-	getline(entrada, HoraFinal, '\t');
-	getline(entrada, dia1, '\t');
-	getline(entrada, dia2, '\t');
-	if (!dia2.empty()&& !dia1.empty() && !horaInicio.empty() && !HoraFinal.empty())
-	{
-		horario = new Horario(std::stoi(horaInicio), std::stoi(HoraFinal), dia1, dia2);
-	}
-	getline(entrada, cedula, '\t');
-	std::getline(entrada, nombre, '\t');
-	std::getline(entrada, cedula, '\t');
-	std::getline(entrada, telefono, '\t');
-	std::getline(entrada, email, '\t');
-	std::getline(entrada, gradoAcademico, '\n');
-	if (!nombre.empty() && !cedula.empty() && !telefono.empty() && !email.empty() && !gradoAcademico.empty())
-		{
-			profesor = new Profesor(nombre, cedula, telefono, email, gradoAcademico);
-		}
-	else {
-		entrada.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-	}
-	if (!periodo.empty() && curso != nullptr && !IdGrupo.empty() && horario != nullptr)
-	{
-		if (profesor != nullptr)
-		{
-			return new Grupo(periodo, curso, IdGrupo, horario, profesor);
-		}
-		else
-		{
-			return new Grupo(periodo, curso, IdGrupo, horario);
-		}
-	}
-	else
-	{
-		return nullptr;
-	}
-}
-
-void Grupo::guardarPorPeriodos(std::ostream& salida) const
-{
-	salida << periodo << "\t"
-		<< curso->getNombre() << "\t"
-		<< curso->getId() << "\t"
-		<< curso->getHoras() << "\t"
-		<< curso->getPrecio() << "\t"
-		<< curso->getEstado() << "\t"
-		<< IdGrupo << "\t"
-		<< horario->getHoraInicio() << "\t"
-		<< horario->getHoraFinaliza() << "\t"
-		<< horario->getDia1() << "\t"
-		<< horario->getDia2() << "\n";
-}
-
-Grupo* Grupo::leerPorPeriodos(std::istream& entrada)
-{
-	std::string periodo, nombreCurso, idCurso, IdGrupo, horasCurso, precioCurso, horaInicio, HoraFinal, dia1, dia2;
-	bool estado;
 	Horario* horario = nullptr;
 	Curso* curso = nullptr;
 	getline(entrada, periodo, '\t');
@@ -335,7 +264,7 @@ Grupo* Grupo::leerPorPeriodos(std::istream& entrada)
 	entrada >> estado;
 	if (!nombreCurso.empty() && !idCurso.empty() && !horasCurso.empty() && !precioCurso.empty())
 		curso = new Curso(nombreCurso, idCurso, horasCurso, std::stod(precioCurso), estado);
-	else 
+	else
 		return nullptr;
 	getline(entrada, IdGrupo, '\t');
 	getline(entrada, horaInicio, '\t');
@@ -346,8 +275,26 @@ Grupo* Grupo::leerPorPeriodos(std::istream& entrada)
 		horario = new Horario(std::stoi(horaInicio), std::stoi(HoraFinal), dia1, dia2);
 	else
 		return nullptr;
-	if (!periodo.empty() && curso != nullptr && !IdGrupo.empty() && horario != nullptr)
-		return new Grupo(periodo, curso, IdGrupo, horario);
-	else 
+	getline(entrada, cedula, '\t');
+	std::getline(entrada, nombre, '\t');
+	std::getline(entrada, cedula, '\t');
+	std::getline(entrada, telefono, '\t');
+	std::getline(entrada, email, '\t');
+	std::getline(entrada, gradoAcademico, '\n');
+	if (!nombre.empty() && !cedula.empty() && !telefono.empty() && !email.empty() && !gradoAcademico.empty())
+		profesor = new Profesor(nombre, cedula, telefono, email, gradoAcademico);
+	else {
+		entrada.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+	}
+	if (!periodo.empty() && curso != nullptr && !IdGrupo.empty() && horario != nullptr) {
+		if (profesor != nullptr) {
+			return new Grupo(periodo, curso, IdGrupo, horario, profesor);
+		}
+		else {
+			return new Grupo(periodo, curso, IdGrupo, horario);
+		}
+	}
+	else {
 		return nullptr;
+	}
 }

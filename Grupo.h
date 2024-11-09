@@ -44,7 +44,5 @@ public:
 	
 	void guardar(std::ostream& salida) const;
 	static Grupo* leer(std::istream& entrada);
-	void guardarPorPeriodos(std::ostream& salida) const;
-	static Grupo* leerPorPeriodos(std::istream& entrada);
 };
 

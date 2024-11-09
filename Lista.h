@@ -40,8 +40,8 @@ public:
 		return cant;
 	}
 	void setActual(Node* actual) { this->actual = actual; }
-    bool guardarEnArchivo(std::ostream& salida) const;
-    Datatype* leerDeArchivo(std::istream& entrada);
+    bool guardarEnArchivo(std::string nombreArchivo) const;
+    Datatype* leerDeArchivo(std::string nombreArchivo);
 };
 
 template<typename Datatype>
@@ -129,14 +129,12 @@ inline std::string Lista<Datatype>::toString() const {
 
 // Método para guardar en archivo
 template<typename Datatype>
-bool Lista<Datatype>::guardarEnArchivo(std::ostream& salida) const {
-    if (!salida) {
-        return false;
-    }
+bool Lista<Datatype>::guardarEnArchivo(std::string nombreArchivo) const {
+
 
     Node* actual = primero;
     while (actual != nullptr) {
-        salida << actual->data->toString() << std::endl;  // Convierte cada objeto a una línea
+        salida << actual->data->guardar(salida);  // Convierte cada objeto a una línea
         actual = actual->next;
     }
 
@@ -145,21 +143,10 @@ bool Lista<Datatype>::guardarEnArchivo(std::ostream& salida) const {
 
 // Método para leer desde archivo
 template<typename Datatype>
-Datatype* Lista<Datatype>::leerDeArchivo(std::istream& entrada) {
-    if (!entrada) {
-        std::cerr << "Error al abrir archivo de lectura" << std::endl;
-        return nullptr;
-    }
+Datatype* Lista<Datatype>::leerDeArchivo(std::istream& entrada, std::string nombreArchivo) {
+	Lista<Datatype>* lista = new Lista<Datatype>;
+	Datatype* data = nullptr;
 
-    std::string linea;
-    while (std::getline(entrada, linea)) {
-        Datatype* nuevoDato = new Datatype();
-        if (!nuevoDato->fromString(linea)) {  // Debes implementar fromString en cada clase
-            delete nuevoDato;
-            continue;
-        }
-        insertar(nuevoDato);
-    }
-
+	entrada(nombreArchivo);
 
 }
