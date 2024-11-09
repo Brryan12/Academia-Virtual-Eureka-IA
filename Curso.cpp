@@ -32,6 +32,7 @@ Curso* Curso::leer(std::istream& entrada)
 	getline(entrada, horas, '\t');
 	getline(entrada, precio, '\t');
 	entrada >> estado;
+	entrada.ignore();
 	if (nombre.empty() || id.empty() || horas.empty() || precio.empty())
 	{
 		return nullptr;

@@ -261,6 +261,7 @@ Grupo* Grupo::leer(std::istream& entrada)
 	getline(entrada, horasCurso, '\t');
 	getline(entrada, precioCurso, '\t');
 	entrada >> estado;
+	entrada.ignore();
 	if (!nombreCurso.empty() && !idCurso.empty() && !horasCurso.empty() && !precioCurso.empty())
 		curso = new Curso(nombreCurso, idCurso, horasCurso, std::stod(precioCurso), estado);
 	else

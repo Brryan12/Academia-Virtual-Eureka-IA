@@ -5,7 +5,12 @@ void Archivos::guardarEstudiantes(Lista<Estudiante>* listaEstudiantes)
 	salida.open("Estudiantes.txt");
     if (salida.good()) {
 		listaEstudiantes->guardarEnArchivo(salida);
-    }
+	}
+	else {
+		std::cerr << "Error al abrir el archivo" << endl;
+		system(pause);
+		return;
+	}
 	salida.close();
 }
 
@@ -15,6 +20,12 @@ void Archivos::guardarProfesores(Lista<Profesor>* listaProfesores)
 	if (salida.good()) {
 		listaProfesores->guardarEnArchivo(salida);
 	}
+	else {
+		std::cerr << "Error al abrir el archivo" << endl;
+		system(pause);
+		return;
+	}
+
 	salida.close();
 }
 
@@ -24,6 +35,11 @@ void Archivos::guardarCursos(Lista<Curso>* listaCursos)
 	if (salida.good()) {
 		listaCursos->guardarEnArchivo(salida);
 	}
+	else {
+		std::cerr << "Error al abrir el archivo" << endl;
+		system(pause);
+		return;
+	}
 	salida.close();
 }
 
@@ -32,6 +48,11 @@ void Archivos::guardarGrupos(Lista<Grupo>* listaGrupo)
 	salida.open("Grupos.txt");
 	if (salida.good()) {
 		listaGrupo->guardarEnArchivo(salida);
+	}
+	else {
+		std::cerr << "Error al abrir el archivo" << endl;
+		system(pause);
+		return;
 	}
 	salida.close();
 }
@@ -43,8 +64,7 @@ Lista<Estudiante>* Archivos::cargarEstudiantes()
 	entrada.open("Estudiantes.txt");
 	if (entrada.good()) {
 		while (!entrada.eof()) {
-			estudiante = new Estudiante();
-			estudiante = estudiante->leer(entrada);
+			estudiante=Estudiante::leer(entrada);
 			if (estudiante != nullptr) {
 				listaEstudiantes->insertar(estudiante);
 			}
@@ -61,8 +81,7 @@ Lista<Profesor>* Archivos::cargarProfesores()
 	entrada.open("Profesores.txt");
 	if (entrada.good()) {
 		while (!entrada.eof()) {
-			profesor = new Profesor();
-			profesor = profesor->leer(entrada);
+			profesor = Profesor::leer(entrada);
 			if (profesor != nullptr) {
 				listaProfesores->insertar(profesor);
 			}
@@ -79,10 +98,10 @@ Lista<Curso>* Archivos::cargarCursos()
 	entrada.open("Cursos.txt");
 	if (entrada.good()) {
 		while (!entrada.eof()) {
-			curso = new Curso();
-			curso = curso->leer(entrada);
+			curso = Curso::leer(entrada);
 			if (curso != nullptr) {
 				listaCursos->insertar(curso);
+				curso = nullptr;
 			}
 		}
 	}
@@ -97,10 +116,10 @@ Lista<Grupo>* Archivos::cargarGrupos()
 	entrada.open("Grupos.txt");
 	if (entrada.good()) {
 		while (!entrada.eof()) {
-			grupo = new Grupo();
-			grupo = grupo->leer(entrada);
+			grupo = Grupo::leer(entrada);
 			if (grupo != nullptr) {
 				listaGrupos->insertar(grupo);
+				grupo = nullptr;
 			}
 		}
 	}

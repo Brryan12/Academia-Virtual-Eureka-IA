@@ -60,6 +60,10 @@ inline Lista<Datatype>::~Lista()
 template<typename Datatype>
 inline bool Lista<Datatype>::insertar(Datatype* data)
 {
+    if (this->buscarElemento(data->getId()) != nullptr) {
+        // Si el elemento ya existe, no se inserta y retorna false
+        return false;
+    }
     actual = new Node(data, nullptr);
     actual->next = primero;
     primero = actual;
