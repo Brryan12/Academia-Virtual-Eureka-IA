@@ -19,6 +19,7 @@ private:
 public:
 	Grupo();
 	Grupo(std::string periodo, Curso* curso, std::string IdGrupo, Horario* horario);
+	Grupo(std::string periodo, Curso* curso, std::string IdGrupo, Horario* horario, Profesor* profesor);
 	virtual ~Grupo();
 	int getCupo() const;
 	std::string getPeriodo() const;
