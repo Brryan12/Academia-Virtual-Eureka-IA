@@ -17,5 +17,7 @@ public:
 	void setGradoAcademico(std::string gradoAcademico);
 	std::string toString() const override;
 	std::string toStringPeriodo() const;
+	void guardar(std::ostream& salida) const override;
+	static Profesor* leer(std::istream& entrada);
 };
 

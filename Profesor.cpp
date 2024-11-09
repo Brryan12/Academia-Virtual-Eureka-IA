@@ -48,3 +48,30 @@ std::string Profesor::toStringPeriodo() const
 	}
 	return s.str();
 }
+
+void Profesor::guardar(std::ostream& salida) const
+{
+	salida << nombre << "\t"
+		<< cedula << "\t"
+		<< telefono << "\t"
+		<< email << "\t"
+		<< gradoAcademico << "\n";
+}
+
+Profesor* Profesor::leer(std::istream& entrada)
+{
+	Profesor* profesor = nullptr;
+	std::string nombre, cedula, telefono, email, gradoAcademico;
+	if (entrada)
+	{
+		std::getline(entrada, nombre, '\t');
+		std::getline(entrada, cedula, '\t');
+		std::getline(entrada, telefono, '\t');
+		std::getline(entrada, email, '\t');
+		std::getline(entrada, gradoAcademico, '\n');
+	}
+	if (!nombre.empty() && !cedula.empty() && !telefono.empty() && !email.empty() && !gradoAcademico.empty()){
+		profesor = new Profesor(nombre, cedula, telefono, email, gradoAcademico);
+	}
+	return profesor;
+}

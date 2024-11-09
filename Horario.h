@@ -26,7 +26,8 @@ public:
 	/// @param h Horario con el que se desea comparar
 	/// @return false si no chocan y true si chocan
 	bool compararHorarios(Horario* h);
-
+	void guardar(std::ostream& salida) const;
+	static Horario* leer(std::istream& entrada);
 	std::string toString() const;
 };
 

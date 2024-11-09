@@ -14,6 +14,30 @@ void Curso::setHoras(string horas) { horas = horas; }
 void Curso::setId(string id) { id = id; }
 void Curso::setPrecio(double precio) { precio = precio; }
 void Curso::setEstado(bool estado) { estado = estado; }
+void Curso::guardar(std::ostream& salida) const
+{
+	salida << nombre << "\t"
+		<< id << "\t"
+		<< horas << "\t"
+		<< precio << "\t"
+		<< estado << "\n";
+}
+Curso* Curso::leer(std::istream& entrada)
+{
+	string nombre, id, horas;
+	string precio;
+	bool estado;
+	getline(entrada, nombre, '\t');
+	getline(entrada, id, '\t');
+	getline(entrada, horas, '\t');
+	getline(entrada, precio, '\t');
+	entrada >> estado;
+	if (nombre.empty() || id.empty() || horas.empty() || precio.empty())
+	{
+		return nullptr;
+	}
+	return new Curso(nombre, id, horas, stod(precio), estado);
+}
 string Curso::toString() const{
 	stringstream s;
 

@@ -23,5 +23,7 @@ public:
 	void setId(string id);
 	void setPrecio(double precio);
 	void setEstado(bool estado);
-	virtual string toString() const;
+	void guardar(std::ostream& salida) const;
+	static Curso* leer(std::istream& entrada);
+	string toString() const;
 };

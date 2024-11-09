@@ -116,22 +116,13 @@ bool Estudiante::eliminarGrupo(std::string id)
 	return this->listaGrupo->eliminar(id);
 }
 
-//std::string Estudiante::Factura() const
-//{
-//	listaGrupo->setActual(listaGrupo->getPrimero());
-//
-//	while (listaGrupo->getActual() != nullptr)
-//	{
-//		std::cout << listaGrupo->getActual()->data->getCurso()->getNombre() << std::endl;
-//		std::cout << listaGrupo->getActual()->data->getCurso()->getPrecio() << std::endl;
-//		listaGrupo->setActual(listaGrupo->getActual()->next);
-//	}
-//	return std::string();
-//}
-
 void Estudiante::guardar(std::ostream& salida) const 
 {
-
+	salida << nombre << "\t"
+		<< cedula << "\t"
+		<< telefono << "\t"
+		<< email << "\t"
+		<< especialidad << "\n";
 }
 
 Estudiante* Estudiante::leer(std::istream& entrada)

@@ -55,6 +55,25 @@ bool Horario::compararHorarios(Horario* h)
 	return false;
 }
 
+void Horario::guardar(std::ostream& salida) const
+{
+	salida << horaInicio << "\t"
+		<< horaFinaliza << "\t"
+		<< dia1 << "\t"
+		<< dia2 << "\n";
+}
+
+Horario* Horario::leer(std::istream& entrada)
+{
+	std::string dia1, dia2, horaInicio, horaFinaliza;
+	entrada >> horaInicio >> horaFinaliza >> dia1 >> dia2;
+	if (horaInicio.empty() && horaFinaliza.empty() && dia1.empty() && dia2.empty())
+	{
+		return nullptr;
+	}
+	return new Horario(std::stoi(horaInicio), std::stoi(horaFinaliza), dia1, dia2);
+}
+
 std::string Horario::toString() const
 {
 	std::stringstream s;

@@ -36,11 +36,14 @@ public:
 	std::string toString() const;
 	bool insertarEstudiante(std::string id);
 	bool eliminarEstudiante(std::string id);
-	void guardarConEstudiantes(std::ostream& salida) const;
-	void leerConEstudiantes(std::istream& entrada);
 	static std::string toStringPeriodos(Lista<Grupo>* lista);
 	static std::string toStringBasico(Lista<Grupo>* lista);
 	static std::string GruposSinProfesor(Lista<Grupo>* lista);
 	static std::string GruposConProfesor(Lista<Grupo>* lista);
+	
+	void guardar(std::ostream& salida) const;
+	static Grupo* leer(std::istream& entrada);
+	void guardarPorPeriodos(std::ostream& salida) const;
+	static Grupo* leerPorPeriodos(std::istream& entrada);
 };
 

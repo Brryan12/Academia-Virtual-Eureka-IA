@@ -137,15 +137,6 @@ bool Grupo::eliminarEstudiante(std::string id)
 	return false;
 }
 
-void Grupo::guardarConEstudiantes(std::ostream& salida) const
-{
-
-}
-
-void Grupo::leerConEstudiantes(std::istream& entrada)
-{
-}
-
 std::string Grupo::toStringPeriodos(Lista<Grupo>* lista)
 {
 	std::stringstream s;
@@ -228,4 +219,68 @@ std::string Grupo::GruposConProfesor(Lista<Grupo>* lista) {
 		lista->setActual(lista->getActual()->next);
 	}
 	return s.str();
+}
+
+void Grupo::guardar(std::ostream& salida) const
+{
+	salida << periodo << "\t"
+		<< curso->getNombre() << "\t"
+		<< curso->getId() << "\t"
+		<< curso->getHoras() << "\t"
+		<< curso->getPrecio() << "\t"
+		<< curso->getEstado() << "\t"
+		<< IdGrupo << "\t"
+		<< horario->getHoraInicio() << "\t"
+		<< horario->getHoraFinaliza() << "\t"
+		<< horario->getDia1() << "\t";
+		
+	if (profesor != nullptr)
+	{
+		salida<< horario->getDia2() << "\t"
+		<< profesor->getNombre() << "\t"
+			<< profesor->getId() << "\t"
+			<< profesor->getTelefono() << "\t"
+			<< profesor->getEmail() << "\t"
+			<< profesor->getGradoAcademico() << "\n";
+	}
+	else
+		salida << horario->getDia2() << "\n";
+}
+
+Grupo* Grupo::leer(std::istream& entrada)
+{
+	std::string periodo, nombreCurso, idCurso, IdGrupo, horasCurso, precioCurso;
+	bool estado;
+	Profesor* profesor = nullptr;
+	std::string nombre, cedula, telefono, email, gradoAcademico;
+	Horario* horario = nullptr;
+	Curso* curso = nullptr;
+	getline(entrada, periodo, '\t');
+	getline(entrada, nombreCurso, '\t');
+	getline(entrada, idCurso, '\t');
+	getline(entrada, horasCurso, '\t');
+	getline(entrada, precioCurso, '\t');
+	entrada >> estado;
+	getline(entrada, IdGrupo, '\t');
+	getline(entrada, cedula, '\t');
+	std::getline(entrada, nombre, '\t');
+	std::getline(entrada, cedula, '\t');
+	std::getline(entrada, telefono, '\t');
+	std::getline(entrada, email, '\t');
+	std::getline(entrada, gradoAcademico, '\n');
+	if (periodo.empty() || nombreCurso.empty() || idCurso.empty() || IdGrupo.empty())
+	{
+		return nullptr;
+	}
+
+
+}
+
+void Grupo::guardarPorPeriodos(std::ostream& salida) const
+{
+}
+
+Grupo* Grupo::leerPorPeriodos(std::istream& entrada)
+{
+	return nullptr;
 }
