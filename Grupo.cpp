@@ -10,7 +10,6 @@ Grupo::~Grupo()
 {
 
 	delete horario;
-	delete curso;
 	delete profesor;
 	delete estudiantes;
 }
@@ -149,7 +148,7 @@ std::string Grupo::toStringPeriodos(Lista<Grupo>* lista)
 		while (lista->getActual() != nullptr) {
 			if (lista->getActual()->data->getPeriodo() == periodos[i]) {
 				s << "------------------------------------------------------------\n";
-				s<<"Nombre del curso: " << lista->getActual()->data->getCurso()->getNombre() << std::endl
+				s<< lista->getActual()->data->getCurso()->toString() << std::endl
 					<<"Id del grupo: " << lista->getActual()->data->getId() << std::endl;
 			}
 			lista->setActual(lista->getActual()->next);
