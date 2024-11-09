@@ -7,7 +7,7 @@ Estudiante::Estudiante(std::string nombre, std::string cedula, std::string telef
 
 Estudiante::~Estudiante()
 {
-	delete listaGrupo;
+	 listaGrupo=nullptr;
 }
 
 std::string Estudiante::getEspecialidad() const

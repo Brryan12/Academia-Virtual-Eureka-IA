@@ -142,26 +142,38 @@ std::string Grupo::toStringPeriodos(Lista<Grupo>* lista)
 	std::stringstream s;
 	for (int i = 0; i < CANTIDAD_PERIODOS; i++)
 	{
-		s << std::endl<<periodos[i] << duracion[i]<<std::endl;
+		s << std::endl << periodos[i] << duracion[i] << std::endl;
 		lista->setActual(lista->getPrimero());
+
+		// Verificación de la existencia de elementos en la lista
+		if (lista->getPrimero() == nullptr) {
+			s << "No hay grupos registrados en la lista." << std::endl;
+			continue;  // Pasa al siguiente periodo si la lista está vacía
+		}
+
+		int contadorGrupos = 0;  // Contador de grupos por periodo
 		while (lista->getActual() != nullptr) {
 			if (lista->getActual()->data->getPeriodo() == periodos[i]) {
 				s << "------------------------------------------------------------\n";
-				s<< lista->getActual()->data->getCurso()->toString() << std::endl
-					<<"Id del grupo: " << lista->getActual()->data->getId() << std::endl;
+				s << lista->getActual()->data->getCurso()->toString() << std::endl
+					<< "Id del grupo: " << lista->getActual()->data->getId() << std::endl;
+				contadorGrupos++;
 			}
 			lista->setActual(lista->getActual()->next);
 		}
+
+		if (contadorGrupos == 0) {
+			s << "No se encontraron grupos para el periodo " << periodos[i] << std::endl;
+		}
 		s << "------------------------------------------------------------\n";
-
 	}
-
 	return s.str();
 }
-std::string Grupo::toStringBasico(Lista<Grupo>* lista){
+
+std::string Grupo::toStringBasico(Lista<Grupo>* lista) {
 	std::stringstream s;
 	lista->setActual(lista->getPrimero());
-	while (lista->getActual() != nullptr){
+	while (lista->getActual() != nullptr) {
 		s << "Periodo: " << lista->getActual()->data->getPeriodo() << std::endl
 			<< "Curso: " << lista->getActual()->data->getCurso()->getNombre() << std::endl
 			<< "Precio: " << lista->getActual()->data->getCurso()->getPrecio() << std::endl
@@ -169,21 +181,21 @@ std::string Grupo::toStringBasico(Lista<Grupo>* lista){
 			<< "Cupo: " << lista->getActual()->data->getCupo() << std::endl
 			<< "Cantidad de Estudiantes: " << lista->getActual()->data->getCantidadEstudiantes() << std::endl
 			<< "Horario: " << lista->getActual()->data->getHorario()->toString() << std::endl;
-	if (lista->getActual()->data->getProfesor() != nullptr)
-	{
-		s << "Profesor: " << lista->getActual()->data->getProfesor()->toString() << std::endl;
+		if (lista->getActual()->data->getProfesor() != nullptr)
+		{
+			s << "Profesor: " << lista->getActual()->data->getProfesor()->toString() << std::endl;
+		}
+		else
+		{
+			s << "Profesor: " << "No asignado" << std::endl;
+		}
 	}
-	else
-	{
-		s << "Profesor: " << "No asignado" << std::endl;
-	}
-}
-		return s.str();
+	return s.str();
 }
 
-std::string Grupo::GruposSinProfesor(Lista<Grupo>* lista){
+std::string Grupo::GruposSinProfesor(Lista<Grupo>* lista) {
 	std::stringstream s;
-	
+
 	lista->setActual(lista->getPrimero());
 	while (lista->getActual() != nullptr) {
 		if (lista->getActual()->data->getProfesor() == nullptr)
@@ -220,31 +232,28 @@ std::string Grupo::GruposConProfesor(Lista<Grupo>* lista) {
 	}
 	return s.str();
 }
-
 void Grupo::guardar(std::ostream& salida) const
 {
+	// Escribir los datos del grupo
 	salida << periodo << "\t"
 		<< curso->getNombre() << "\t"
 		<< curso->getId() << "\t"
 		<< curso->getHoras() << "\t"
 		<< curso->getPrecio() << "\t"
 		<< curso->getEstado() << "\t"
-		<< IdGrupo << "\t"
-		<< horario->getHoraInicio() << "\t"
-		<< horario->getHoraFinaliza() << "\t"
-		<< horario->getDia1() << "\t";
-
+		<< IdGrupo << "\t";
 	if (profesor != nullptr)
 	{
-		salida << horario->getDia2() << "\t"
-			<< profesor->getNombre() << "\t"
+		salida << profesor->getNombre() << "\t"
 			<< profesor->getId() << "\t"
 			<< profesor->getTelefono() << "\t"
 			<< profesor->getEmail() << "\t"
-			<< profesor->getGradoAcademico() << "\n";
+			<< profesor->getGradoAcademico() << "\t";
 	}
-	else
-		salida << horario->getDia2() << "\n";
+	salida << horario->getHoraInicio() << "\t"
+		<< horario->getHoraFinaliza() << "\t"
+		<< horario->getDia1() << "\t"
+		<< horario->getDia2() << "\n";
 }
 
 Grupo* Grupo::leer(std::istream& entrada)
@@ -255,37 +264,45 @@ Grupo* Grupo::leer(std::istream& entrada)
 	std::string nombre, cedula, telefono, email, gradoAcademico;
 	Horario* horario = nullptr;
 	Curso* curso = nullptr;
-	getline(entrada, periodo, '\t');
-	getline(entrada, nombreCurso, '\t');
-	getline(entrada, idCurso, '\t');
-	getline(entrada, horasCurso, '\t');
-	getline(entrada, precioCurso, '\t');
-	entrada >> estado;
-	entrada.ignore();
+
+	// Leer los datos del grupo
+	std::getline(entrada, periodo, '\t');
+	std::getline(entrada, nombreCurso, '\t');
+	std::getline(entrada, idCurso, '\t');
+	std::getline(entrada, horasCurso, '\t');
+	std::getline(entrada, precioCurso, '\t');
+	entrada >> estado;  // Leer estado como booleano
+	entrada.ignore();    // Ignorar el salto de línea que sigue al estado
+
+	// Crear el objeto curso si los datos son válidos
 	if (!nombreCurso.empty() && !idCurso.empty() && !horasCurso.empty() && !precioCurso.empty())
 		curso = new Curso(nombreCurso, idCurso, horasCurso, std::stod(precioCurso), estado);
 	else
 		return nullptr;
-	getline(entrada, IdGrupo, '\t');
-	getline(entrada, horaInicio, '\t');
-	getline(entrada, HoraFinal, '\t');
-	getline(entrada, dia1, '\t');
-	getline(entrada, dia2, '\n');
+	std::getline(entrada, IdGrupo, '\t');
+	std::getline(entrada, cedula, '\t');
+	std::getline(entrada, nombre, '\t');
+	std::getline(entrada, cedula, '\t');  // Este parece ser un error de lectura duplicada
+	std::getline(entrada, telefono, '\t');
+	std::getline(entrada, email, '\t');
+	std::getline(entrada, gradoAcademico, '\t');  // Leer hasta el salto de línea
+
+	// Crear objeto profesor si los datos son válidos
+	if (!nombre.empty() && !cedula.empty() && !telefono.empty() && !email.empty() && !gradoAcademico.empty())
+		profesor = new Profesor(nombre, cedula, telefono, email, gradoAcademico);
+	// Leer el resto de los datos
+	std::getline(entrada, horaInicio, '\t');
+	std::getline(entrada, HoraFinal, '\t');
+	std::getline(entrada, dia1, '\t');
+	std::getline(entrada, dia2, '\n');  // Leer hasta el salto de línea
+
+	// Crear objeto horario si los datos son válidos
 	if (!dia2.empty() && !dia1.empty() && !horaInicio.empty() && !HoraFinal.empty())
 		horario = new Horario(std::stoi(horaInicio), std::stoi(HoraFinal), dia1, dia2);
 	else
 		return nullptr;
-	getline(entrada, cedula, '\t');
-	std::getline(entrada, nombre, '\t');
-	std::getline(entrada, cedula, '\t');
-	std::getline(entrada, telefono, '\t');
-	std::getline(entrada, email, '\t');
-	std::getline(entrada, gradoAcademico, '\n');
-	if (!nombre.empty() && !cedula.empty() && !telefono.empty() && !email.empty() && !gradoAcademico.empty())
-		profesor = new Profesor(nombre, cedula, telefono, email, gradoAcademico);
-	else {
-		entrada.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-	}
+
+	// Retornar el objeto Grupo creado, si los datos son válidos
 	if (!periodo.empty() && curso != nullptr && !IdGrupo.empty() && horario != nullptr) {
 		if (profesor != nullptr) {
 			return new Grupo(periodo, curso, IdGrupo, horario, profesor);
@@ -298,3 +315,4 @@ Grupo* Grupo::leer(std::istream& entrada)
 		return nullptr;
 	}
 }
+

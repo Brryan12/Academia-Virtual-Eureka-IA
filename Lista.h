@@ -134,8 +134,6 @@ inline std::string Lista<Datatype>::toString() const {
 // Método para guardar en archivo
 template<typename Datatype>
 bool Lista<Datatype>::guardarEnArchivo(std::ostream& salida) const {
-
-
     Node* actual = primero;
     while (actual != nullptr) {
         actual->data->guardar(salida);  

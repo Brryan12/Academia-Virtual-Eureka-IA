@@ -6,7 +6,7 @@ int Menu::menuPrincipal()
     system(cls);
     std::endl(std::cout);
     std::cout << "----Menu Principal----" << std::endl;
-    std::cout << "1- Submenu Administración" << std::endl;
+    std::cout << "1- Submenu Administracion" << std::endl;
     std::cout << "2- Submenu Matricula " << std::endl;
     std::cout << "3- Submenu Busquedas e Informes" << std::endl;
    std::cout << "4- Guardar los Datos en Archivos " << std::endl;
@@ -94,14 +94,14 @@ void Menu::ingresarProfesor(Lista<Profesor> * listaProfesores)
     std::cout << "(1) Ingresar Profesor" << std::endl;
     std::cout << "Ingrese el nombre del profesor: "; getline(std::cin, nombre);
     std::cout << "Nombre: " << nombre << std::endl;
-    std::cout << "Ingrese la cédula del profesor: "; std::cin >> id;
+    std::cout << "Ingrese la cedula del profesor: "; std::cin >> id;
     if (listaProfesores->buscarElemento(id)) {
         std::cerr << "Error ya existe un profesor con esa cedula" << std::endl;
         system(pause);
         return;
     }
     std::cout << "Cedula: " << id << std::endl; cin.ignore();
-    std::cout << "Ingrese el teléfono del profesor: "; getline(std::cin, telefono);
+    std::cout << "Ingrese el telefono del profesor: "; getline(std::cin, telefono);
     std::cout << "Telefono: " << telefono << std::endl;
     std::cout << "Ingrese el email del profesor: "; getline(std::cin, email);
     std::cout << "Email: " << email << std::endl;

@@ -1,5 +1,3 @@
-Maria	125	1744-25	das@gmail.com	Pedo
+Juan	123	1245-3	das@gmail.com	Doctor
 Pedro	124	125-644	das@gmail.com	Maestro
-Juan	123	1245-3	das@gmail.com	Doctor
-Juan	123	1245-3	das@gmail.com	Doctor
-
+Maria	125	1744-25	das@gmail.com	Pedo
