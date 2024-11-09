@@ -3,43 +3,44 @@
 int main()
 {
     int op, op1, op2, op3;
-	Lista<Profesor>* listaProfesores = new Lista<Profesor>();
-	Lista<Curso>* listaCursos = new Lista<Curso>();
-	Lista<Grupo>* listaGrupo = new Lista<Grupo>();
-	Lista<Estudiante>* listaEstudiantes = new Lista<Estudiante>();
+	Archivos* archivos = new Archivos();
+	Lista<Profesor>* listaProfesores = archivos->cargarProfesores();
+	Lista<Curso>* listaCursos = archivos->cargarCursos();
+	Lista<Grupo>* listaGrupo = archivos->cargarGrupos();
+	Lista<Estudiante>* listaEstudiantes = archivos->cargarEstudiantes();
     //Pruebas
-	Estudiante* estudianteAux1 = new Estudiante("Juan", "123", "11-23", "adas@gmail.com", "Mate");
-	Estudiante* estudianteAux2 = new Estudiante("Pedro", "124", "128-4", "das@gmail.com", "Medicina");
-	Estudiante* estudianteAux3 = new Estudiante("Maria", "125", "125-5", "das@gmail.com", "Mota");
-	Profesor* profAux1 = new Profesor("Juan", "123", "1245-3", "das@gmail.com", "Doctor");
-	Profesor* profAux2 = new Profesor("Pedro", "124", "125-644", "das@gmail.com", "Maestro");
-    Profesor* profAux3 = new Profesor("Maria", "125", "1744-25", "das@gmail.com", "Pedo");
-	listaEstudiantes->insertar(estudianteAux1);
-	listaEstudiantes->insertar(estudianteAux2);
-	listaEstudiantes->insertar(estudianteAux3);
-	listaProfesores->insertar(profAux1);
-	listaProfesores->insertar(profAux2);
-	listaProfesores->insertar(profAux3);
-	Curso* cursoAux1 = new Curso("Mate", "123", "12", 100, true);
-	Curso* cursoAux2 = new Curso("Fisica", "124", "12", 100, true);
-	Curso* cursoAux3 = new Curso("Quimica", "125", "12", 100, true);
-	listaCursos->insertar(cursoAux1);
-	listaCursos->insertar(cursoAux2);
-	listaCursos->insertar(cursoAux3);
-	Grupo* grupoAux1 = new Grupo(periodos[0], cursoAux1, "123", new Horario(12, 14, "Lunes", "Miercoles"));
-    Grupo* grupoAux11 = new Grupo(periodos[3], cursoAux1, "113", new Horario(12, 14, "Lunes", "Miercoles"));
+	//Estudiante* estudianteAux1 = new Estudiante("Juan", "123", "11-23", "adas@gmail.com", "Mate");
+	//Estudiante* estudianteAux2 = new Estudiante("Pedro", "124", "128-4", "das@gmail.com", "Medicina");
+	//Estudiante* estudianteAux3 = new Estudiante("Maria", "125", "125-5", "das@gmail.com", "Mota");
+	//Profesor* profAux1 = new Profesor("Juan", "123", "1245-3", "das@gmail.com", "Doctor");
+	//Profesor* profAux2 = new Profesor("Pedro", "124", "125-644", "das@gmail.com", "Maestro");
+ //   Profesor* profAux3 = new Profesor("Maria", "125", "1744-25", "das@gmail.com", "Pedo");
+	//listaEstudiantes->insertar(estudianteAux1);
+	//listaEstudiantes->insertar(estudianteAux2);
+	//listaEstudiantes->insertar(estudianteAux3);
+	//listaProfesores->insertar(profAux1);
+	//listaProfesores->insertar(profAux2);
+	//listaProfesores->insertar(profAux3);
+	//Curso* cursoAux1 = new Curso("Mate", "123", "12", 100, true);
+	//Curso* cursoAux2 = new Curso("Fisica", "124", "12", 100, true);
+	//Curso* cursoAux3 = new Curso("Quimica", "125", "12", 100, true);
+	//listaCursos->insertar(cursoAux1);
+	//listaCursos->insertar(cursoAux2);
+	//listaCursos->insertar(cursoAux3);
+	//Grupo* grupoAux1 = new Grupo(periodos[0], cursoAux1, "123", new Horario(12, 14, "Lunes", "Miercoles"));
+ //   Grupo* grupoAux11 = new Grupo(periodos[3], cursoAux1, "113", new Horario(12, 14, "Lunes", "Miercoles"));
 
-	Grupo* grupoAux2 = new Grupo(periodos[0], cursoAux2, "124", new Horario(12, 14, "Martes", "Jueves"));
-    Grupo* grupoAux22 = new Grupo(periodos[1], cursoAux3, "1232", new Horario(12, 14, "Martes", "Jueves"));
+	//Grupo* grupoAux2 = new Grupo(periodos[0], cursoAux2, "124", new Horario(12, 14, "Martes", "Jueves"));
+ //   Grupo* grupoAux22 = new Grupo(periodos[1], cursoAux3, "1232", new Horario(12, 14, "Martes", "Jueves"));
 
-	Grupo* grupoAux3 = new Grupo(periodos[2], cursoAux3, "125", new Horario(12, 14, "Viernes", "Sabado"));
-    Grupo* grupoAux33 = new Grupo(periodos[3], cursoAux3, "125745", new Horario(12, 14, "Viernes", "Sabado"));
-	listaGrupo->insertar(grupoAux1);
-	listaGrupo->insertar(grupoAux11);
-	listaGrupo->insertar(grupoAux2);
-	listaGrupo->insertar(grupoAux22);
-	listaGrupo->insertar(grupoAux3);
-	listaGrupo->insertar(grupoAux33);
+	//Grupo* grupoAux3 = new Grupo(periodos[2], cursoAux3, "125", new Horario(12, 14, "Viernes", "Sabado"));
+ //   Grupo* grupoAux33 = new Grupo(periodos[3], cursoAux3, "125745", new Horario(12, 14, "Viernes", "Sabado"));
+	//listaGrupo->insertar(grupoAux1);
+	//listaGrupo->insertar(grupoAux11);
+	//listaGrupo->insertar(grupoAux2);
+	//listaGrupo->insertar(grupoAux22);
+	//listaGrupo->insertar(grupoAux3);
+	//listaGrupo->insertar(grupoAux33);
 
 
     do {
@@ -150,9 +151,7 @@ int main()
             break;
 
         case 4:
-            system(cls);
-            // Llamar a la funcion de guardar los datos en archivos
-            system(pause);
+            Menu::guardarLosDatosEnArchivos(listaProfesores,listaEstudiantes,listaCursos,listaGrupo);
             break;
 
         case 5:

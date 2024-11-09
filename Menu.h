@@ -2,6 +2,7 @@
 #include "Grupo.h"
 #include "Lista.h"
 #include "Factura.h"
+#include "Archivos.h"
 
 #if defined(_WIN64) || defined(_WIN32)
 #define cls "cls"
@@ -18,7 +19,7 @@ public:
 	static int submenuAdministracion();
 	static int submenuMatricula();
 	static int submenuBusquedasEInformes();
-	static void guardarLosDatosEnArchivos();
+	static void guardarLosDatosEnArchivos(Lista<Profesor>* listaProfesores, Lista<Estudiante>* listaEstudiantes, Lista<Curso>* listaCursos, Lista<Grupo>* listaGrupo);
 	static void defaultSwitch();
 	static void regresarMenuPrincipal();
 	static void ingresarProfesor(Lista<Profesor>* listaProfesores);

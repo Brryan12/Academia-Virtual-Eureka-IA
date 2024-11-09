@@ -8,10 +8,9 @@ Grupo::Grupo(std::string periodo, Curso* curso, std::string IdGrupo, Horario* ho
 
 Grupo::~Grupo()
 {
-
 	delete horario;
-	delete profesor;
-	delete estudiantes;
+	estudiantes = nullptr;
+	profesor = nullptr;
 }
 int Grupo::getCupo() const
 {

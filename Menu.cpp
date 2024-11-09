@@ -9,7 +9,7 @@ int Menu::menuPrincipal()
     std::cout << "1- Submenu Administración" << std::endl;
     std::cout << "2- Submenu Matricula " << std::endl;
     std::cout << "3- Submenu Busquedas e Informes" << std::endl;
-   // std::cout << "4- Guardar los Datos en Archivos " << std::endl;
+   std::cout << "4- Guardar los Datos en Archivos " << std::endl;
     std::cout << "5- Salir" << std::endl;
     std::cout << "Seleccione una opcion: "; std::cin >> op;
 	return op;
@@ -58,9 +58,17 @@ int Menu::submenuBusquedasEInformes()
 	return op3;
 }
 
-void Menu::guardarLosDatosEnArchivos()
+void Menu::guardarLosDatosEnArchivos(Lista<Profesor>* listaProfesores, Lista<Estudiante>* listaEstudiantes, Lista<Curso>* listaCursos, Lista<Grupo>* listaGrupo)
 {
-
+    system(cls);
+    Archivos* archivos = new Archivos();
+    std::cout << "Guardando los datos en archivos..." << std::endl;
+    archivos->guardarEstudiantes(listaEstudiantes);
+    archivos->guardarProfesores(listaProfesores);
+    archivos->guardarCursos(listaCursos);
+    archivos->guardarGrupos(listaGrupo);
+    std::cout << "Datos guardados en archivos" << std::endl;
+    system(pause);
 }
 
 void Menu::defaultSwitch()
