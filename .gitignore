@@ -365,3 +365,8 @@ FodyWeavers.xsd
 bin/
 build/
 .vscode/
+
+Archivos/Estudiantes.txt
+Archivos/Cursos.txt
+Archivos/Grupos.txt
+Archivos/Profesores.txt
