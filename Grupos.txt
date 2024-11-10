@@ -1,0 +1,6 @@
+Periodo IV	Mate	123	12	100	1	113	14	Lunes	Miercoles
+Periodo I	Mate	123	12	100	1	123	Juan	123	1245-3	das@gmail.com	Doctor	12	14	Lunes	Miercoles
+Periodo II	Quimica	125	12	100	1	1232	14	Martes	Jueves
+Periodo I	Fisica	124	12	100	1	124	12	14	Martes	Jueves
+Periodo IV	Quimica	125	12	100	1	125745	14	Viernes	Sabado
+Periodo III	Quimica	125	12	100	1	125	12	14	Viernes	Sabado

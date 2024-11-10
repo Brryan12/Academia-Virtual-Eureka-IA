@@ -258,7 +258,7 @@ void Grupo::guardar(std::ostream& salida) const
 
 Grupo* Grupo::leer(std::istream& entrada)
 {
-	std::string periodo, nombreCurso, idCurso, IdGrupo, horasCurso, precioCurso, horaInicio, HoraFinal, dia1, dia2;
+	std::string periodo, nombreCurso, idCurso, IdGrupo, horasCurso, precioCurso, horaInicio, horaFinal, dia1, dia2;
 	bool estado;
 	Profesor* profesor = nullptr;
 	std::string nombre, cedula, telefono, email, gradoAcademico;
@@ -292,13 +292,13 @@ Grupo* Grupo::leer(std::istream& entrada)
 		profesor = new Profesor(nombre, cedula, telefono, email, gradoAcademico);
 	// Leer el resto de los datos
 	std::getline(entrada, horaInicio, '\t');
-	std::getline(entrada, HoraFinal, '\t');
+	std::getline(entrada, horaFinal, '\t');
 	std::getline(entrada, dia1, '\t');
 	std::getline(entrada, dia2, '\n');  // Leer hasta el salto de línea
 
 	// Crear objeto horario si los datos son válidos
-	if (!dia2.empty() && !dia1.empty() && !horaInicio.empty() && !HoraFinal.empty())
-		horario = new Horario(std::stoi(horaInicio), std::stoi(HoraFinal), dia1, dia2);
+	if (!dia2.empty() && !dia1.empty() && !horaInicio.empty() && !horaFinal.empty())
+		horario = new Horario(std::stoi(horaInicio), std::stoi(horaFinal), dia1, dia2);
 	else
 		return nullptr;
 

@@ -20,7 +20,5 @@ public:
 	void setTelefono(std::string telefono);
 	void setEmail(std::string email);
 	virtual std::string toString() const;
-	virtual void guardar(std::ostream& salida) const;
-	virtual void leer(std::istream& entrada);
 };
 

@@ -23,7 +23,7 @@ public:
 	double montoPagar() const;
 	std::string infoCursos() const;
 	bool eliminarGrupo(std::string id);
-	void guardar(std::ostream& salida) const override;
+	void guardar(std::ostream& salida) const;
 	static Estudiante* leer(std::istream& entrada);
 };
 
