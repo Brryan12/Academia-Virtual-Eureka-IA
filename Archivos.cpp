@@ -2,7 +2,7 @@
 
 void Archivos::guardarEstudiantes(Lista<Estudiante>* listaEstudiantes)
 {
-	salida.open("Estudiantes.txt");
+	salida.open("Archivos/Estudiantes.txt");
     if (salida.good()) {
 		listaEstudiantes->guardarEnArchivo(salida);
 	}
@@ -16,7 +16,7 @@ void Archivos::guardarEstudiantes(Lista<Estudiante>* listaEstudiantes)
 
 void Archivos::guardarProfesores(Lista<Profesor>* listaProfesores)
 {
-	salida.open("Profesores.txt");
+	salida.open("Archivos/Profesores.txt");
 	if (salida.good()) {
 		listaProfesores->guardarEnArchivo(salida);
 	}
@@ -31,7 +31,7 @@ void Archivos::guardarProfesores(Lista<Profesor>* listaProfesores)
 
 void Archivos::guardarCursos(Lista<Curso>* listaCursos)
 {
-	salida.open("Cursos.txt");
+	salida.open("Archivos/Cursos.txt");
 	if (salida.good()) {
 		listaCursos->guardarEnArchivo(salida);
 	}
@@ -45,7 +45,7 @@ void Archivos::guardarCursos(Lista<Curso>* listaCursos)
 
 void Archivos::guardarGrupos(Lista<Grupo>* listaGrupo)
 {
-	salida.open("Grupos.txt");
+	salida.open("Archivos/Grupos.txt");
 	if (salida.good()) {
 		listaGrupo->guardarEnArchivo(salida);
 	}
@@ -61,7 +61,7 @@ Lista<Estudiante>* Archivos::cargarEstudiantes()
 {
 	Lista<Estudiante>* listaEstudiantes = new Lista<Estudiante>();
 	Estudiante* estudiante = nullptr;
-	entrada.open("Estudiantes.txt");
+	entrada.open("Archivos/Estudiantes.txt");
 	if (entrada.good()) {
 		while (!entrada.eof()) {
 			estudiante=Estudiante::leer(entrada);
@@ -78,7 +78,7 @@ Lista<Profesor>* Archivos::cargarProfesores()
 {
 	Lista<Profesor>* listaProfesores = new Lista<Profesor>();
 	Profesor* profesor = nullptr;
-	entrada.open("Profesores.txt");
+	entrada.open("Archivos/Profesores.txt");
 	if (entrada.good()) {
 		while (!entrada.eof()) {
 			profesor = Profesor::leer(entrada);
@@ -95,7 +95,7 @@ Lista<Curso>* Archivos::cargarCursos()
 {
 	Lista<Curso>* listaCursos = new Lista<Curso>();
 	Curso* curso = nullptr;
-	entrada.open("Cursos.txt");
+	entrada.open("Archivos/Cursos.txt");
 	if (entrada.good()) {
 		while (!entrada.eof()) {
 			curso = Curso::leer(entrada);
@@ -113,7 +113,7 @@ Lista<Grupo>* Archivos::cargarGrupos()
 {
 	Lista<Grupo>* listaGrupos = new Lista<Grupo>();
 	Grupo* grupo = nullptr;
-	entrada.open("Grupos.txt");
+	entrada.open("Archivos/Grupos.txt");
 	if (entrada.good()) {
 		while (!entrada.eof()) {
 			grupo = Grupo::leer(entrada);

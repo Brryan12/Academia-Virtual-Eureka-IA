@@ -1,3 +1,0 @@
-Juan	123	11-23	adas@gmail.com	Mate
-Pedro	124	128-4	das@gmail.com	Medicina
-Maria	125	125-5	das@gmail.com	Mota
