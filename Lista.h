@@ -10,8 +10,8 @@ class Lista
 private:
     struct Node
     {
-        Node* next;
         Datatype* data;
+        Node* next;
         Node(Datatype* data, Node* next) : data(data), next(next) {}
     };
     Node* primero;

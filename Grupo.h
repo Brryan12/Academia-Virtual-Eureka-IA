@@ -11,10 +11,10 @@ private:
 	std::string periodo;
 	Curso* curso;
 	std::string IdGrupo;
-	const int cupo=30;	
+	const int cupo=30;
 	int cantidadEstudiantes;
-	Profesor* profesor;
 	Horario *horario;
+	Profesor* profesor;
 	Lista<Estudiante>* estudiantes;
 public:
 	Grupo();
@@ -41,7 +41,7 @@ public:
 	static std::string toStringBasico(Lista<Grupo>* lista);
 	static std::string GruposSinProfesor(Lista<Grupo>* lista);
 	static std::string GruposConProfesor(Lista<Grupo>* lista);
-	
+
 	void guardar(std::ostream& salida) const;
 	static Grupo* leer(std::istream& entrada);
 };

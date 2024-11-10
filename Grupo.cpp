@@ -1,6 +1,6 @@
 #include "Grupo.h"
 
-Grupo::Grupo() : periodo(""), curso(nullptr), IdGrupo(""), cantidadEstudiantes(0), profesor(nullptr), horario(nullptr), estudiantes(nullptr) {}
+Grupo::Grupo() : periodo(""), curso(nullptr), IdGrupo(""), cantidadEstudiantes(0), horario(nullptr), profesor(nullptr), estudiantes(nullptr) {}
 
 Grupo::Grupo(std::string periodo, Curso* curso, std::string IdGrupo, Horario* horario) : periodo(periodo), curso(curso), IdGrupo(IdGrupo), cantidadEstudiantes(0), horario(horario), profesor(nullptr), estudiantes(new Lista<Estudiante>()) {}
 
