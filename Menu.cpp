@@ -74,7 +74,7 @@ void Menu::guardarLosDatosEnArchivos(Lista<Profesor>* listaProfesores, Lista<Est
 void Menu::defaultSwitch()
 {
     system(cls);
-    cout << "Opción no válida. Intente de nuevo." << endl;
+    cout << "Opcion no valida. Intente de nuevo." << endl;
     system(pause);
 }
 
