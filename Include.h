@@ -165,8 +165,9 @@ void mostrarMenu() {
         }
     } while (op != 5);
 
+    delete listaEstudiantes;
     delete listaGrupo;
     delete listaCursos;
-    delete listaEstudiantes;
     delete listaProfesores;
+    delete archivos;
 }

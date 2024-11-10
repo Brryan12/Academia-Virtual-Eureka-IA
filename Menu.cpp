@@ -68,6 +68,7 @@ void Menu::guardarLosDatosEnArchivos(Lista<Profesor>* listaProfesores, Lista<Est
     archivos->guardarCursos(listaCursos);
     archivos->guardarGrupos(listaGrupo);
     std::cout << "Datos guardados en archivos" << std::endl;
+    delete archivos;
     system(pause);
 }
 

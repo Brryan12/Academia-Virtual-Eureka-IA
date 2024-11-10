@@ -4,16 +4,16 @@ Curso::Curso() : nombre(""), id(""), horas(""), precio(0), estado(false){}
 
 Curso::Curso(string nombre, string id, string horas, double precio, bool estado): nombre(nombre), id(id), horas(horas), precio(precio), estado(estado){}
 Curso::~Curso(){}
-string Curso::getNombre() const  { return nombre; }
-string Curso::getHoras() const { return horas; }
-string Curso::getId() const { return id; }
-double Curso::getPrecio() const { return precio; }
-bool Curso::getEstado() const { return estado; }
-void Curso::setNombre(string nombre) { nombre = nombre; }
-void Curso::setHoras(string horas) { horas = horas; }
-void Curso::setId(string id) { id = id; }
-void Curso::setPrecio(double precio) { precio = precio; }
-void Curso::setEstado(bool estado) { estado = estado; }
+string Curso::getNombre() const  { return this->nombre; }
+string Curso::getHoras() const { return this->horas; }
+string Curso::getId() const { return this->id; }
+double Curso::getPrecio() const { return this->precio; }
+bool Curso::getEstado() const { return this->estado; }
+void Curso::setNombre(string nombre) { this->nombre = nombre; }
+void Curso::setHoras(string horas) { this->horas = horas; }
+void Curso::setId(string id) { this->id = id; }
+void Curso::setPrecio(double precio) { this->precio = precio; }
+void Curso::setEstado(bool estado) { this->estado = estado; }
 void Curso::guardar(std::ostream& salida) const
 {
 	salida << nombre << "\t"
