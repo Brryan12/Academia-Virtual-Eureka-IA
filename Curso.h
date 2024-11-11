@@ -11,7 +11,7 @@ private:
 	string id;
 
 	/// @brief Horas del curso
-	string horas;
+	int horas;
 
 	/// @brief Precio del curso
 	double precio;
@@ -23,7 +23,7 @@ public:
 	Curso();
 
 	/// @brief Constructor con parametros
-	Curso(string nombre, string id, string horas, double precio, bool estado);
+	Curso(string nombre, string id, int horas, double precio, bool estado);
 
 	/// @brief Destructor
 	virtual ~Curso();
@@ -34,7 +34,7 @@ public:
 
 	/// @brief Devuelve las horas del curso
 	/// @return Horas del curso
-	string getHoras() const;
+	int getHoras() const;
 
 	/// @brief Devuelve el identificador del curso
 	/// @return Identificador del curso
@@ -54,7 +54,7 @@ public:
 
 	/// @brief Establece las horas del curso
 	/// @param horas Horas del curso
-	void setHoras (string horas);
+	void setHoras (int horas);
 
 	/// @brief Establece el identificador del curso
 	/// @param id Identificador del curso

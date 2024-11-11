@@ -206,7 +206,8 @@ void Menu::ingresarEstudiante(Lista<Estudiante>* listaEstudiantes)
 
 void Menu::ingresarCurso(Lista<Curso>* listaCursos)
 {
-	std::string nombre, id, horas;
+    std::string nombre, id;
+    int horas;
 	double precio;
 	int estado;
 	Curso* cursoAux = nullptr;
@@ -229,13 +230,12 @@ void Menu::ingresarCurso(Lista<Curso>* listaCursos)
         return;
     }
     std::cout << "ID: " << id << std::endl; cin.ignore();
-    std::cout << "Ingrese las horas del curso: "; getline(std::cin, horas);
-    if (horas.empty()) {
-        std::cerr << "Error al ingresar los datos" << std::endl;
-        std::cerr << "Hay datos vacios" << std::endl;
-        system(pause);
-        return;
-    }
+    std::cout << "Ingrese las horas del curso: "; std::cin>>horas;
+	if (horas < 1) {
+		std::cerr << "Error al ingresar las horas del curso" << std::endl;
+		system(pause);
+		return;
+	}
     std::cout << "Horas: " << horas << std::endl;
     std::cout << "Ingrese el precio del curso: "; std::cin >> precio;
 	if (precio < 1) {
@@ -259,7 +259,7 @@ void Menu::ingresarCurso(Lista<Curso>* listaCursos)
     else {
         std::cout << "Estado: Inactivo" << std::endl;
     }
-    if (nombre.empty() || id.empty() || horas.empty()) {
+    if (nombre.empty() || id.empty()) {
         std::endl(std::cout);
         std::cerr << "Error al ingresar los datos" << std::endl;
         std::cerr << "Hay datos vacios" << std::endl;
