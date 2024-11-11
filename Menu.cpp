@@ -12,6 +12,12 @@ int Menu::menuPrincipal()
    std::cout << "4- Guardar los Datos en Archivos " << std::endl;
     std::cout << "5- Salir" << std::endl;
     std::cout << "Seleccione una opcion: "; std::cin >> op;
+	if (op < 0 || op > 5)
+	{
+		std::cerr << "Error la opcion no es valida" << std::endl;
+		system(pause);
+		return 0;
+	}
 	return op;
 }
 
@@ -95,6 +101,12 @@ void Menu::ingresarProfesor(Lista<Profesor> * listaProfesores)
     std::cout << "(1) Ingresar Profesor" << std::endl;
     std::cout << "Ingrese el nombre del profesor: "; getline(std::cin, nombre);
     std::cout << "Nombre: " << nombre << std::endl;
+	if (nombre.empty()) {
+		std::cerr << "Error al ingresar los datos" << std::endl;
+		std::cerr << "Hay datos vacios" << std::endl;
+		system(pause);
+		return;
+	}
     std::cout << "Ingrese la cedula del profesor: "; std::cin >> id;
     if (listaProfesores->buscarElemento(id)) {
         std::cerr << "Error ya existe un profesor con esa cedula" << std::endl;
@@ -103,8 +115,20 @@ void Menu::ingresarProfesor(Lista<Profesor> * listaProfesores)
     }
     std::cout << "Cedula: " << id << std::endl; cin.ignore();
     std::cout << "Ingrese el telefono del profesor: "; getline(std::cin, telefono);
+    if (telefono.empty()) {
+        std::cerr << "Error al ingresar los datos" << std::endl;
+        std::cerr << "Hay datos vacios" << std::endl;
+        system(pause);
+        return;
+    }
     std::cout << "Telefono: " << telefono << std::endl;
     std::cout << "Ingrese el email del profesor: "; getline(std::cin, email);
+    if (email.empty()) {
+        std::cerr << "Error al ingresar los datos" << std::endl;
+        std::cerr << "Hay datos vacios" << std::endl;
+        system(pause);
+        return;
+    }
     std::cout << "Email: " << email << std::endl;
     std::cout << "Ingrese el grado academico del profesor: "; getline(std::cin, gradoAcademico);
     std::cout << "Grado Academico: " << gradoAcademico << std::endl;
@@ -135,6 +159,12 @@ void Menu::ingresarEstudiante(Lista<Estudiante>* listaEstudiantes)
     cin.ignore();
     std::cout << "(2) Ingresar Estudiante" << std::endl;
     std::cout << "Ingrese el nombre del estudiante: "; getline(std::cin, nombre);
+    if (nombre.empty()) {
+        std::cerr << "Error al ingresar los datos" << std::endl;
+        std::cerr << "Hay datos vacios" << std::endl;
+        system(pause);
+        return;
+    }
     std::cout << "Nombre: " << nombre << std::endl;
     std::cout << "Ingrese la cédula del estudiante: "; std::cin >> id;
     if (listaEstudiantes->buscarElemento(id)) {
@@ -277,8 +307,19 @@ void Menu::ingresarGrupo(Lista<Grupo>* listaGrupo, Lista<Curso>* listaCursos)
     }
     std::cout << "ID: " << id << std::endl;
     std::cout << "Ingrese el horario del grupo\n";
+	std::cout << "Los horarios son de 0 a 23\n";
     std::cout << "Ingrese la hora de inicio: "; std::cin >> horaInicio;
+	if (horaInicio < 0 || horaInicio > 23) {
+		std::cerr << "Error la hora no es valida" << std::endl;
+		system(pause);
+		return;
+	}
     std::cout << "Ingrese la hora de finalizacion: "; std::cin >> horaFinaliza;
+	if (horaFinaliza < 0 || horaFinaliza > 23) {
+		std::cerr << "Error la hora no es valida" << std::endl;
+		system(pause);
+		return;
+	}
     std::cout << "Hora de inicio: " << horaInicio << std::endl;
     std::cout << "Hora de finalizacion: " << horaFinaliza << std::endl;
     for (int i = 0; i < CANTIDAD_DIAS; i++) {
@@ -302,13 +343,14 @@ void Menu::ingresarGrupo(Lista<Grupo>* listaGrupo, Lista<Curso>* listaCursos)
         system(pause);
         return;
     }
-    if (dia2 == dia) {
-        std::cerr << "Error los dias no pueden ser iguales" << std::endl;
-        system(pause);
-        return;
-    }
-    else
+
         dia2 = dias[pos - 1];
+        
+        if (dia2 == dia) {
+            std::cerr << "Error los dias no pueden ser iguales" << std::endl;
+            system(pause);
+            return;
+        }
 
     std::cout << "Dia 1 seleccionado: " << dia << std::endl;
     std::cout << "Dia 2 seleccionado: " << dia2 << std::endl;

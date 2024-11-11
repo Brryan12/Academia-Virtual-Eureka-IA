@@ -65,8 +65,18 @@ public:
 	/// @return Informacion de los cursos en los que esta inscrito el estudiante
 	std::string infoCursos() const;
 
+	/// @brief Elimina un grupo de la lista de grupos del estudiante
+	/// @param id ID del grupo a eliminar
+	/// @return True si se elimino correctamente, false en caso contrario
 	bool eliminarGrupo(std::string id);
+
+	/// @brief Guarda la informacion del estudiante en un archivo
+	/// @param salida Flujo de salida donde se guardara la informacion
 	void guardar(std::ostream& salida) const;
+
+	/// @brief Lee la informacion del estudiante de un archivo
+	/// @param entrada Flujo de entrada de donde se leera la informacion
+	/// @return Estudiante leido
 	static Estudiante* leer(std::istream& entrada);
 };
 

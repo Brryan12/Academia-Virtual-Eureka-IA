@@ -1,5 +1,9 @@
 #include "Factura.h"
 
+Factura::Factura()
+{
+}
+
 Factura::Factura(Estudiante* estudiante): estudiante(estudiante){}
 
 Factura::~Factura()
