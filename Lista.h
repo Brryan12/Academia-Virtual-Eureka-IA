@@ -45,17 +45,17 @@ public:
 };
 
 template<typename Datatype>
-inline Lista<Datatype>::~Lista()
-{
+inline Lista<Datatype>::~Lista() {
     Node* actual = primero;
-    while (actual != nullptr)
-    {
-        primero = primero->next;
-        delete actual->data;
-        delete actual;
-        actual = primero;
+    while (actual != nullptr) {
+        Node* siguiente = actual->next; // Guardamos el siguiente nodo antes de eliminar el actual
+        delete actual->data;            // Eliminamos el dato solo si estamos seguros de que Lista es el único dueño
+        delete actual;                  // Eliminamos el nodo actual
+        actual = siguiente;             // Pasamos al siguiente nodo
     }
+    primero = nullptr; // Aseguramos que primero esté en nullptr al final
 }
+
 
 template<typename Datatype>
 inline bool Lista<Datatype>::insertar(Datatype* data)
@@ -70,37 +70,42 @@ inline bool Lista<Datatype>::insertar(Datatype* data)
     return true;
 }
 template<typename Datatype>
-inline bool Lista<Datatype>::eliminar(std::string id)
-{
+inline bool Lista<Datatype>::eliminar(std::string id) {
     actual = primero;
     Node* anterior = nullptr;
 
-    //lista vacia
+    // lista vacía
     if (actual == nullptr) {
+        std::cout << "vacio" << std::endl;
         return false;
+
     }
 
-    //recorrer lista
+    // recorrer lista
     while (actual != nullptr && actual->data->getId() != id) {
         anterior = actual;
         actual = actual->next;
     }
 
-    //Nunca encontro el nodo
+    // no encontró el nodo
     if (actual == nullptr) {
+        std::cout << "no me encontre" << std::endl;
         return false;
     }
 
-    //Caso si el primero es el que se quiere eliminar
+    // si el primero es el que se quiere eliminar
     if (anterior == nullptr) {
         primero = actual->next;
     }
-
-    //caso donde es x nodo
+    // si es otro nodo
     else {
         anterior->next = actual->next;
     }
+
+    // liberar memoria y evitar referencias colgantes
     delete actual;
+    actual = nullptr;
+
     return true;
 }
 

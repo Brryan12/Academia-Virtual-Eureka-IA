@@ -156,6 +156,12 @@
     <ClInclude Include="Persona.h" />
     <ClInclude Include="Profesor.h" />
   </ItemGroup>
+  <ItemGroup>
+    <Text Include="Archivos\Cursos.txt" />
+    <Text Include="Archivos\Estudiantes.txt" />
+    <Text Include="Archivos\Grupos.txt" />
+    <Text Include="Archivos\Profesores.txt" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

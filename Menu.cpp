@@ -417,8 +417,8 @@ void Menu::matricularEstudiante(Lista<Grupo>* listaGrupo, Lista<Estudiante>* lis
     }
     if (estudianteAux->insertarGrupo(grupoAux)) {
         if (grupoAux->getCantidadEstudiantes() < 30) {
-            if (grupoAux->insertarEstudiante(id)) {
-                std::cout << "Estudiante matriculado correctamente." << std::endl;
+            if (grupoAux->insertarEstudiante(estudianteAux)) {
+                std::cout << "Estudiante matriculado correctamente Grupo." << std::endl;
             }
             else {
                 std::cerr << "Error al matricular el estudiante." << std::endl;
@@ -431,6 +431,8 @@ void Menu::matricularEstudiante(Lista<Grupo>* listaGrupo, Lista<Estudiante>* lis
             system(pause);
             return;
         }
+        std::cout << "Estudiante matriculado correctamente estudiante." << std::endl;
+
     }
     else {
         std::cerr << "Error el estudiante ya esta matriculado en un grupo con este curso" << std::endl;
@@ -452,6 +454,7 @@ void Menu::desmatricularEstudiante(Lista<Grupo>* listaGrupo, Lista<Estudiante>* 
         system(pause);
         return;
     }
+    std::cout << "Estudiantes: \n" << listaEstudiantes->toString() << std::endl;
     std::cout << "Ingrese la cedula del estudiante: "; std::cin >> id;
     if (listaEstudiantes->buscarElemento(id))
         estudianteAux = listaEstudiantes->buscarElemento(id);
@@ -470,8 +473,14 @@ void Menu::desmatricularEstudiante(Lista<Grupo>* listaGrupo, Lista<Estudiante>* 
         return;
     }
     if (estudianteAux->eliminarGrupo(grupoAux->getId())) {
-        if (grupoAux->eliminarEstudiante(id)) {
-            std::cout << "Estudiante desmatriculado correctamente." << std::endl;
+        std::cout << "Estudiante desmatriculado correctamente." << std::endl;
+        if (grupoAux->eliminarEstudiante(estudianteAux->getId())) {
+            std::cout << "Estudiante desmatriculado correctamente Grupo." << std::endl;
+        }
+        else {
+            std::cerr << "Error al desmatricular el estudiante Grupo." << std::endl;
+            system(pause);
+            return;
         }
     }
     else {
@@ -489,6 +498,7 @@ void Menu::generarFactura(Lista<Estudiante>* listaEstudiantes)
 	Factura* facturaAux = nullptr;
 	system(cls);
     std::cout << "(3) Generar Factura del pago del estudiante" << std::endl;
+    std::cout << listaEstudiantes->toString() << endl;
     std::cout << "Ingrese la cedula del estudiante: "; std::cin >> id;
     if (listaEstudiantes->buscarElemento(id)) {
         estudianteAux = listaEstudiantes->buscarElemento(id);
@@ -552,6 +562,7 @@ void Menu::informeCursosMatriculadosPorEstudiante(Lista<Grupo>* listaGrupo, List
         system(pause);
         return;
     }
+    std::cout << listaEstudiantes->toString() << endl;
     std::cout << "Ingrese la cedula del estudiante: "; std::cin >> id;
     if (listaEstudiantes->buscarElemento(id))
         estudianteAux = listaEstudiantes->buscarElemento(id);
@@ -576,6 +587,7 @@ void Menu::informeProfesorEspecifico(Lista<Profesor>* listaProfesores)
         system(pause);
         return;
     }
+    std::cout << listaProfesores->toString() << endl;
     std::cout << "Ingrese la cedula del profesor: "; std::cin >> id;
     if (listaProfesores->buscarElemento(id))
         profAux = listaProfesores->buscarElemento(id);
@@ -616,6 +628,7 @@ void Menu::informeGrupoEspecifico(Lista<Grupo>* listaGrupo, Lista<Curso>* listaC
         system(pause);
         return;
     }
+    std::cout << listaGrupo->toString() << std::endl;
     std::cout << "Ingrese el id del grupo: "; std::cin >> id;
     if (listaGrupo->buscarElemento(id))
         grupoAux = listaGrupo->buscarElemento(id);

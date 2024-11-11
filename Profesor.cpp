@@ -36,14 +36,25 @@ std::string Profesor::toStringPeriodo() const
 	std::stringstream s;
 	for (int i = 0; i < CANTIDAD_PERIODOS; i++)
 	{
-		s << periodos[i] << duracion[i];
+		int contador = 0;
+		s << periodos[i] << duracion[i]<<std::endl;
 		this->listaGrupo->setActual(this->listaGrupo->getPrimero());
 		while (this->listaGrupo->getActual() != nullptr) {
 			if (this->listaGrupo->getActual()->data->getPeriodo() == periodos[i]) {
-				s << this->listaGrupo->getActual()->data->getCurso() << std::endl
+
+				s << "Nombre del curso:"
+					<< this->listaGrupo->getActual()->data->getCurso()->getNombre() << std::endl
+					<< "ID del curso: "
+					<< this->listaGrupo->getActual()->data->getCurso()->getId() << std::endl
+					<< "ID del grupo: "
 					<< this->listaGrupo->getActual()->data->getId() << std::endl;
+				contador++;
 			}
 			this->listaGrupo->setActual(this->listaGrupo->getActual()->next);
+		}
+		if (contador == 0) {
+			s << "\nNo se encontraron grupos para el periodo " << periodos[i] << std::endl;
+
 		}
 	}
 	return s.str();

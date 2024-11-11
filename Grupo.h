@@ -35,7 +35,7 @@ public:
 	void setHorario(Horario* horario);
 	bool setProfesor(Profesor* profesor);
 	std::string toString() const;
-	bool insertarEstudiante(std::string id);
+	bool insertarEstudiante(Estudiante* estudiante);
 	bool eliminarEstudiante(std::string id);
 	static std::string toStringPeriodos(Lista<Grupo>* lista);
 	static std::string toStringBasico(Lista<Grupo>* lista);

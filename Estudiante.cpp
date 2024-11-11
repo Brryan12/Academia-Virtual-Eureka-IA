@@ -38,31 +38,41 @@ std::string Estudiante::toString() const
 	return s.str();
 }
 
-bool Estudiante::insertarGrupo(Grupo* grupoAux)
-{
+bool Estudiante::insertarGrupo(Grupo* grupoAux) {
 	bool puedeInsertar = true;
-	this->listaGrupo->setActual(listaGrupo->getPrimero());
-	while (this->listaGrupo->getActual() != nullptr)
-	{
-		if (this->getListaGrupo()->getActual()->data->getId() == grupoAux->getId()) {
+	auto actualGrupo = listaGrupo->getPrimero(); // obtener primer elemento
+
+	while (actualGrupo != nullptr) {
+		auto grupoActual = actualGrupo->data;
+
+		// Verificación de duplicidad de grupo
+		if (grupoActual->getId() == grupoAux->getId()) {
 			puedeInsertar = false;
 			break;
 		}
-		if (this->listaGrupo->getActual()->data->getCurso() == grupoAux->getCurso()) {
-			if (this->listaGrupo->getActual()->data->getPeriodo() == grupoAux->getPeriodo()) {
-				puedeInsertar = false;
-				break;
-			}
-		}
-		else if (this->listaGrupo->getActual()->data->getPeriodo() == grupoAux->getPeriodo() 
-			&& this->getListaGrupo()->getActual()->data->getHorario()->compararHorarios(grupoAux->getHorario())) {
+
+		// Verificación de curso y periodo duplicados
+		if (grupoActual->getCurso() == grupoAux->getCurso() && grupoActual->getPeriodo() == grupoAux->getPeriodo()) {
 			puedeInsertar = false;
 			break;
 		}
-		this->getListaGrupo()->setActual(this->getListaGrupo()->getActual()->next);
+
+		// Verificación de conflicto de horario en el mismo periodo
+		if (grupoActual->getPeriodo() == grupoAux->getPeriodo() &&
+			grupoActual->getHorario()->compararHorarios(grupoAux->getHorario())) {
+			puedeInsertar = false;
+			break;
+		}
+
+		actualGrupo = actualGrupo->next;
+	}
+
+	if (puedeInsertar) {
+		listaGrupo->insertar(grupoAux);  // Insertar grupo si no hay conflicto
 	}
 	return puedeInsertar;
 }
+
 
 bool Estudiante::minimoDosGrupoPorPeriodo() const
 {

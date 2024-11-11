@@ -109,30 +109,31 @@ std::string Grupo::toString() const
 	return s.str();
 }
 
-bool Grupo::insertarEstudiante(std::string id)
-{
-	Estudiante* estudiante = nullptr;
-	if (cantidadEstudiantes < cupo)
-	{
-		estudiante=estudiantes->buscarElemento(id);
-		if (estudiante == nullptr)
-		{
+bool Grupo::insertarEstudiante(Estudiante* estudiante) {
+	if (cantidadEstudiantes < cupo) {
+		// Verificamos si el estudiante ya está en el grupo para evitar duplicados
+		if (estudiantes->buscarElemento(estudiante->getId()) == nullptr) {
+			if (estudiantes->insertar(estudiante)) {
+			cantidadEstudiantes++;
+			return true;
+			}
+		}
+		else {
+			// El estudiante ya está en el grupo
 			return false;
 		}
-		estudiantes->insertar(estudiante);
-		cantidadEstudiantes++;
-		return true;
 	}
+	// El grupo está lleno
 	return false;
 }
 
-bool Grupo::eliminarEstudiante(std::string id)
-{
-	if (cantidadEstudiantes > 0)
-	{
-		estudiantes->eliminar(id);
-		cantidadEstudiantes--;
-		return true;
+
+bool Grupo::eliminarEstudiante(std::string id) {
+	if (cantidadEstudiantes > 0) {
+		if (estudiantes->eliminar(id)) {  // Solo reducir cantidad si se eliminó exitosamente
+			cantidadEstudiantes--;
+			return true;
+		}
 	}
 	return false;
 }
