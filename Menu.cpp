@@ -12,12 +12,6 @@ int Menu::menuPrincipal()
    std::cout << "4- Guardar los Datos en Archivos " << std::endl;
     std::cout << "5- Salir" << std::endl;
     std::cout << "Seleccione una opcion: "; std::cin >> op;
-	if (op < 0 || op > 5)
-	{
-		std::cerr << "Error la opcion no es valida" << std::endl;
-		system(pause);
-		return 0;
-	}
 	return op;
 }
 
@@ -174,8 +168,20 @@ void Menu::ingresarEstudiante(Lista<Estudiante>* listaEstudiantes)
     }
     std::cout << "Cedula: " << id << std::endl; cin.ignore();
     std::cout << "Ingrese el teléfono del estudiante: "; getline(std::cin, telefono);
+    if (telefono.empty()) {
+        std::cerr << "Error al ingresar los datos" << std::endl;
+        std::cerr << "Hay datos vacios" << std::endl;
+        system(pause);
+        return;
+    }
     std::cout << "Telefono: " << telefono << std::endl;
     std::cout << "Ingrese el email del estudiante: "; getline(std::cin, email);
+    if (email.empty()) {
+        std::cerr << "Error al ingresar los datos" << std::endl;
+        std::cerr << "Hay datos vacios" << std::endl;
+        system(pause);
+        return;
+    }
     std::cout << "Email: " << email << std::endl;
     std::cout << "Ingrese la especialidad del estudiante: "; getline(std::cin, especialidad);
     std::cout << "Especialidad: " << especialidad << std::endl;
@@ -209,6 +215,12 @@ void Menu::ingresarCurso(Lista<Curso>* listaCursos)
     cin.ignore();
     std::cout << "(3) Ingresar Curso" << std::endl;
     std::cout << "Ingrese el nombre del curso: "; getline(std::cin, nombre);
+    if (nombre.empty()) {
+        std::cerr << "Error al ingresar los datos" << std::endl;
+        std::cerr << "Hay datos vacios" << std::endl;
+        system(pause);
+        return;
+    }
     std::cout << "Nombre: " << nombre << std::endl;
     std::cout << "Ingrese el id del curso: "; std::cin >> id;
     if (listaCursos->buscarElemento(id)) {
@@ -218,8 +230,19 @@ void Menu::ingresarCurso(Lista<Curso>* listaCursos)
     }
     std::cout << "ID: " << id << std::endl; cin.ignore();
     std::cout << "Ingrese las horas del curso: "; getline(std::cin, horas);
+    if (horas.empty()) {
+        std::cerr << "Error al ingresar los datos" << std::endl;
+        std::cerr << "Hay datos vacios" << std::endl;
+        system(pause);
+        return;
+    }
     std::cout << "Horas: " << horas << std::endl;
     std::cout << "Ingrese el precio del curso: "; std::cin >> precio;
+	if (precio < 1) {
+		std::cerr << "Error al ingresar el precio del curso" << std::endl;
+		system(pause);
+		return;
+	}
     std::cout << "Precio: " << precio << std::endl;
     std::cout << "Ingrese 0 si el curso no esta activo " << std::endl;
     std::cout << "Ingrese 1 si el curso esta activo " << std::endl;
@@ -285,6 +308,12 @@ void Menu::ingresarGrupo(Lista<Grupo>* listaGrupo, Lista<Curso>* listaCursos)
     std::cout << "Periodo seleccionado: " << periodo << std::endl;
     std::cout << "Cursos registrados: \n" << listaCursos->toString() << std::endl;
     std::cout << "Ingrese el id del curso: "; std::cin >> id;
+    if (id.empty()) {
+		std::cerr << "Error al ingresar los datos" << std::endl;
+		std::cerr << "Hay datos vacios" << std::endl;
+		system(pause);
+		return;
+    }
     if (listaCursos->buscarElemento(id)) {
         cursoAux = listaCursos->buscarElemento(id);
         if (cursoAux->getEstado() == false) {
@@ -300,6 +329,12 @@ void Menu::ingresarGrupo(Lista<Grupo>* listaGrupo, Lista<Curso>* listaCursos)
         return;
     }
     std::cout << "Ingrese el id del grupo: "; std::cin >> id;
+    if (id.empty()) {
+        std::cerr << "Error al ingresar los datos" << std::endl;
+        std::cerr << "Hay datos vacios" << std::endl;
+        system(pause);
+        return;
+    }
     if (listaGrupo->buscarElemento(id)) {
         std::cerr << "Error ya existe un grupo con ese id" << std::endl;
         system(pause);
@@ -387,6 +422,12 @@ void Menu::asignarProfesorAGrupo(Lista<Grupo>* listaGrupo, Lista<Profesor>* list
     }
 	std::cout << listaProfesores->toString() << std::endl;
     std::cout << "Ingrese la cedula del profesor a asignar: "; std::cin >> id;
+    if (id.empty()) {
+        std::cerr << "Error al ingresar los datos" << std::endl;
+        std::cerr << "Hay datos vacios" << std::endl;
+        system(pause);
+        return;
+    }
     if (listaProfesores->buscarElemento(id))
         profAux = listaProfesores->buscarElemento(id);
     else {
@@ -396,6 +437,12 @@ void Menu::asignarProfesorAGrupo(Lista<Grupo>* listaGrupo, Lista<Profesor>* list
     }
 	std::cout << Grupo::GruposSinProfesor(listaGrupo) << std::endl;
     std::cout << "Ingrese el id del grupo: "; std::cin >> id;
+    if (id.empty()) {
+        std::cerr << "Error al ingresar los datos" << std::endl;
+        std::cerr << "Hay datos vacios" << std::endl;
+        system(pause);
+        return;
+    }
     if (listaGrupo->buscarElemento(id))
         grupoAux = listaGrupo->buscarElemento(id);
     else {
@@ -436,6 +483,12 @@ void Menu::matricularEstudiante(Lista<Grupo>* listaGrupo, Lista<Estudiante>* lis
     }
     std::cout << "Estudiantes: \n" << listaEstudiantes->toString() << std::endl;
     std::cout << "Ingrese la cedula del estudiante: "; std::cin >> id;
+    if (id.empty()) {
+        std::cerr << "Error al ingresar los datos" << std::endl;
+        std::cerr << "Hay datos vacios" << std::endl;
+        system(pause);
+        return;
+    }
     if (listaEstudiantes->buscarElemento(id))
         estudianteAux = listaEstudiantes->buscarElemento(id);
     else {
@@ -498,6 +551,12 @@ void Menu::desmatricularEstudiante(Lista<Grupo>* listaGrupo, Lista<Estudiante>* 
     }
     std::cout << "Estudiantes: \n" << listaEstudiantes->toString() << std::endl;
     std::cout << "Ingrese la cedula del estudiante: "; std::cin >> id;
+    if (id.empty()) {
+        std::cerr << "Error al ingresar los datos" << std::endl;
+        std::cerr << "Hay datos vacios" << std::endl;
+        system(pause);
+        return;
+    }
     if (listaEstudiantes->buscarElemento(id))
         estudianteAux = listaEstudiantes->buscarElemento(id);
     else {
@@ -542,6 +601,12 @@ void Menu::generarFactura(Lista<Estudiante>* listaEstudiantes)
     std::cout << "(3) Generar Factura del pago del estudiante" << std::endl;
     std::cout << listaEstudiantes->toString() << endl;
     std::cout << "Ingrese la cedula del estudiante: "; std::cin >> id;
+    if (id.empty()) {
+        std::cerr << "Error al ingresar los datos" << std::endl;
+        std::cerr << "Hay datos vacios" << std::endl;
+        system(pause);
+        return;
+    }
     if (listaEstudiantes->buscarElemento(id)) {
         estudianteAux = listaEstudiantes->buscarElemento(id);
         if (estudianteAux->getListaGrupo()->vacio()) {
@@ -631,6 +696,12 @@ void Menu::informeProfesorEspecifico(Lista<Profesor>* listaProfesores)
     }
     std::cout << listaProfesores->toString() << endl;
     std::cout << "Ingrese la cedula del profesor: "; std::cin >> id;
+    if (id.empty()) {
+        std::cerr << "Error al ingresar los datos" << std::endl;
+        std::cerr << "Hay datos vacios" << std::endl;
+        system(pause);
+        return;
+    }
     if (listaProfesores->buscarElemento(id))
         profAux = listaProfesores->buscarElemento(id);
     else {
@@ -672,6 +743,12 @@ void Menu::informeGrupoEspecifico(Lista<Grupo>* listaGrupo, Lista<Curso>* listaC
     }
     std::cout << listaGrupo->toString() << std::endl;
     std::cout << "Ingrese el id del grupo: "; std::cin >> id;
+    if (id.empty()) {
+        std::cerr << "Error al ingresar los datos" << std::endl;
+        std::cerr << "Hay datos vacios" << std::endl;
+        system(pause);
+        return;
+    }
     if (listaGrupo->buscarElemento(id))
         grupoAux = listaGrupo->buscarElemento(id);
     else {
