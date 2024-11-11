@@ -42,11 +42,11 @@ Curso* Curso::leer(std::istream& entrada)
 string Curso::toString() const{
 	stringstream s;
 
-	s << "Nombre del curso: " << nombre << endl
-		<< "Horas del curso: " << horas << endl
-		<< "ID del Curso: " << id << endl
-		<< "Precio del curso: " << precio << endl
-		<< "Estado del curso: " << estado << endl;
+	s << "Nombre del curso: " << this->nombre << endl
+		<< "ID del Curso: " << this->id << endl
+		<< "Horas del curso: " << this->horas << endl
+		<< "Precio del curso: " << this->precio << endl
+		<< "Estado del curso: " << this->estado << endl;
 
 	return s.str();
 
