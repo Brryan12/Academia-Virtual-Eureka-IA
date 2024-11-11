@@ -1,27 +1,59 @@
 #include "Curso.h"
 
-Curso::Curso() : nombre(""), id(""), horas(""), precio(0), estado(false){}
+Curso::Curso() : nombre(""), id(""), horas(0), precio(0), estado(false){}
 
-Curso::Curso(string nombre, string id, string horas, double precio, bool estado): nombre(nombre), id(id), horas(horas), precio(precio), estado(estado){}
+Curso::Curso(string nombre, string id, int horas, double precio, bool estado): nombre(nombre), id(id), horas(horas), precio(precio), estado(estado){}
 Curso::~Curso(){}
-string Curso::getNombre() const  { return nombre; }
-string Curso::getHoras() const { return horas; }
-string Curso::getId() const { return id; }
-double Curso::getPrecio() const { return precio; }
-bool Curso::getEstado() const { return estado; }
-void Curso::setNombre(string nombre) { nombre = nombre; }
-void Curso::setHoras(string horas) { horas = horas; }
-void Curso::setId(string id) { id = id; }
-void Curso::setPrecio(double precio) { precio = precio; }
-void Curso::setEstado(bool estado) { estado = estado; }
+string Curso::getNombre() const  { return this->nombre; }
+int Curso::getHoras() const { return this->horas; }
+string Curso::getId() const { return this->id; }
+double Curso::getPrecio() const { return this->precio; }
+bool Curso::getEstado() const { return this->estado; }
+void Curso::setNombre(string nombre) { this->nombre = nombre; }
+void Curso::setHoras(int horas) { this->horas = horas; }
+void Curso::setId(string id) { this->id = id; }
+void Curso::setPrecio(double precio) { this->precio = precio; }
+void Curso::setEstado(bool estado) { this->estado = estado; }
+void Curso::guardar(std::ostream& salida) const
+{
+	salida << nombre << "\t"
+		<< id << "\t"
+		<< horas << "\t"
+		<< precio << "\t"
+		<< estado << "\n";
+}
+Curso* Curso::leer(std::istream& entrada)
+{
+	string nombre, id,horas;
+	string precio;
+	bool estado;
+	getline(entrada, nombre, '\t');
+	getline(entrada, id, '\t');
+	getline(entrada, horas, '\t');
+	getline(entrada, precio, '\t');
+	entrada >> estado;
+	entrada.ignore();
+	if (stoi(horas) < 1 || stod(precio) < 1)
+	{
+		return nullptr;
+	}
+	if (nombre.empty() || id.empty() || horas.empty() || precio.empty())
+	{
+		return nullptr;
+	}
+	if (estado == 1)
+		return new Curso(nombre, id, stoi(horas), stod(precio), true);
+	else if (estado == 0)
+		return new Curso(nombre, id, stoi(horas), stod(precio), false);
+}
 string Curso::toString() const{
 	stringstream s;
 
-	s << "Nombre del curso: " << nombre << endl
-		<< "Horas del curso: " << horas << endl
-		<< "ID del Curso: " << id << endl
-		<< "Precio del curso: " << precio << endl
-		<< "Estado del curso: " << estado << endl;
+	s << "Nombre del curso: " << this->nombre << endl
+		<< "ID del Curso: " << this->id << endl
+		<< "Horas del curso: " << this->horas << endl
+		<< "Precio del curso: " << this->precio << endl
+		<< "Estado del curso: " << this->estado << endl;
 
 	return s.str();
 

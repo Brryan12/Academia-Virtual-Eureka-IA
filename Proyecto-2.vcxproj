@@ -128,6 +128,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Archivos.cpp" />
     <ClCompile Include="Curso.cpp" />
     <ClCompile Include="Estudiante.cpp" />
     <ClCompile Include="Factura.cpp" />
@@ -142,6 +143,7 @@
     <None Include="proyecto2.pdf" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Archivos.h" />
     <ClInclude Include="Constantes.h" />
     <ClInclude Include="Curso.h" />
     <ClInclude Include="Estudiante.h" />
@@ -153,6 +155,12 @@
     <ClInclude Include="Menu.h" />
     <ClInclude Include="Persona.h" />
     <ClInclude Include="Profesor.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="Archivos\Cursos.txt" />
+    <Text Include="Archivos\Estudiantes.txt" />
+    <Text Include="Archivos\Grupos.txt" />
+    <Text Include="Archivos\Profesores.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -36,15 +36,53 @@ std::string Profesor::toStringPeriodo() const
 	std::stringstream s;
 	for (int i = 0; i < CANTIDAD_PERIODOS; i++)
 	{
-		s << periodos[i] << duracion[i];
+		int contador = 0;
+		s << periodos[i] << duracion[i]<<std::endl;
 		this->listaGrupo->setActual(this->listaGrupo->getPrimero());
 		while (this->listaGrupo->getActual() != nullptr) {
 			if (this->listaGrupo->getActual()->data->getPeriodo() == periodos[i]) {
-				s << this->listaGrupo->getActual()->data->getCurso() << std::endl
+
+				s << "Nombre del curso:"
+					<< this->listaGrupo->getActual()->data->getCurso()->getNombre() << std::endl
+					<< "ID del curso: "
+					<< this->listaGrupo->getActual()->data->getCurso()->getId() << std::endl
+					<< "ID del grupo: "
 					<< this->listaGrupo->getActual()->data->getId() << std::endl;
+				contador++;
 			}
 			this->listaGrupo->setActual(this->listaGrupo->getActual()->next);
 		}
+		if (contador == 0) {
+			s << "\nNo se encontraron grupos para el periodo " << periodos[i] << std::endl;
+
+		}
 	}
 	return s.str();
+}
+
+void Profesor::guardar(std::ostream& salida) const
+{
+	salida << nombre << "\t"
+		<< cedula << "\t"
+		<< telefono << "\t"
+		<< email << "\t"
+		<< gradoAcademico << "\n";
+}
+
+Profesor* Profesor::leer(std::istream& entrada)
+{
+	Profesor* profesor = nullptr;
+	std::string nombre, cedula, telefono, email, gradoAcademico;
+	if (entrada)
+	{
+		std::getline(entrada, nombre, '\t');
+		std::getline(entrada, cedula, '\t');
+		std::getline(entrada, telefono, '\t');
+		std::getline(entrada, email, '\t');
+		std::getline(entrada, gradoAcademico, '\n');
+	}
+	if (!nombre.empty() && !cedula.empty() && !telefono.empty() && !email.empty() && !gradoAcademico.empty()){
+		profesor = new Profesor(nombre, cedula, telefono, email, gradoAcademico);
+	}
+	return profesor;
 }

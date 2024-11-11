@@ -58,11 +58,3 @@ std::string Persona::toString() const
 		<< "Email: " << email << std::endl;
     return s.str();
 }
-
-void Persona::guardar(std::ostream& salida) const
-{
-}
-
-void Persona::leer(std::istream& entrada)
-{
-}

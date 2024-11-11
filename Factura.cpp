@@ -1,5 +1,7 @@
 #include "Factura.h"
 
+Factura::Factura(): estudiante(nullptr){}
+
 Factura::Factura(Estudiante* estudiante): estudiante(estudiante){}
 
 Factura::~Factura()
@@ -52,7 +54,7 @@ std::string Factura::factura()
 	s << "Subtotal: " << estudiante->montoPagar() << std::endl;
 	s << "IVA: " << estudiante->montoPagar() * IVA << std::endl;
 	s << "Descuento: " << this->descuento() << std::endl;
-	s << "Descuentos aplicados: ";
+	s << "Descuentos aplicados: "<<std::endl;
 	if (this->descuentoPeriodo())
 	{
 		s << "Descuento por tener mas de un grupo en un periodo" << std::endl;
