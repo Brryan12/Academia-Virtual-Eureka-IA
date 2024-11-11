@@ -292,17 +292,10 @@ Grupo* Grupo::leer(std::istream& entrada)
 
     // Validación del curso
     if (!nombreCurso.empty() && !idCurso.empty() && !horasCurso.empty() && !precioCurso.empty()) {
-        try {
             curso = new Curso(nombreCurso, idCurso, horasCurso, std::stod(precioCurso), estado);
-        }
-        catch (const std::invalid_argument& e) {
-            std::cerr << "Error: precioCurso no es un número válido." << std::endl;
-            return nullptr;
-        }
     } else {
         return nullptr;
     }
-
     std::getline(entrada, IdGrupo, '\t');
     std::getline(entrada, nombre, '\t');
     std::getline(entrada, cedula, '\t');  // Parece ser un error de lectura duplicada
