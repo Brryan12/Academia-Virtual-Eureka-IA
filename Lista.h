@@ -8,28 +8,70 @@ template <typename Datatype>
 class Lista
 {
 private:
+
+	/// @brief Nodo de la lista
     struct Node
     {
+		/// @brief  Dato almacenado en el nodo
         Datatype* data;
+
+		/// @brief Puntero al siguiente nodo
         Node* next;
+
+		/// @brief Constructor de la clase Node
+		/// @param data Dato a almacenar en el nodo
+		/// @param next Puntero al siguiente nodo
         Node(Datatype* data, Node* next) : data(data), next(next) {}
     };
+
+	/// @brief Puntero al primer nodo de la lista
     Node* primero;
+
+	/// @brief Puntero al nodo actual de la lista   
     Node* actual;
 public:
+	/// @brief Constructor de la clase Lista
 	Lista() : primero(nullptr), actual(nullptr) {}
+
+	/// @brief Destructor de la clase Lista
     virtual ~Lista();
+
+	/// @brief Metodo para insertar un elemento en la lista
+	/// @param data Dato a insertar en la lista
+	/// @return false si el elemento ya existe, true si se inserto correctamente
     bool insertar(Datatype* data);
+
+	/// @brief Metodo para eliminar un elemento de la lista
+	/// @param id Identificador del elemento a eliminar
+	/// @return false si el elemento no existe, true si se elimino correctamente
     bool eliminar(std::string id);
+
+	/// @brief Metodo para buscar un elemento en la lista
+	/// @param id Identificador del elemento a buscar
+	/// @return Puntero al elemento si se encontro, nullptr si no se encontro
 	Datatype* buscarElemento(std::string id);
+
+	/// @brief Metodo para convertir la lista en un string
+	/// @return String con los elementos de la lista
     std::string toString() const;
 
 	/// @brief Metodo que verifica si la lista esta vacia
 	/// @return false si la lista no esta vacia, true si la lista esta vacia
 	bool vacio() const { return primero == nullptr; }
+
+	/// @brief Metodo que retorna el primer nodo de la lista
+	/// @return el primer nodo de la lista
 	Node* getPrimero() const { return primero; }
+
+	/// @brief Metodo que retorna el nodo actual de la lista
+	/// @return el nodo actual de la lista
 	Node* getActual() const { return actual; }
+
+	/// @brief Metodo que setea el primer nodo de la lista
+	/// @param primero Puntero al primer nodo de la lista
 	void setPrimero(Node* primero) { this->primero = primero; }
+
+	/// @brief Metodo que retorna la cantidad de elementos de la lista
 	int cantidadElementos() const {
 		int cant = 0;
 		Node* actual = primero;
@@ -39,9 +81,14 @@ public:
 		}
 		return cant;
 	}
+
+	/// @brief Metodo que setea el nodo actual de la lista
+	/// @param actual Puntero al nodo actual de la lista
 	void setActual(Node* actual) { this->actual = actual; }
+
+	/// @brief Metodo para guardar en archivo
+	/// @param salida Flujo de salida
     bool guardarEnArchivo(std::ostream& salida) const;
-    //Datatype* leerDeArchivo(std::istream& entrada);
 };
 
 template<typename Datatype>

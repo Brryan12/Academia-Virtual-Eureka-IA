@@ -67,6 +67,10 @@ Horario* Horario::leer(std::istream& entrada)
 {
 	std::string dia1, dia2, horaInicio, horaFinaliza;
 	entrada >> horaInicio >> horaFinaliza >> dia1 >> dia2;
+	if (std::stoi(horaInicio) < 0 || std::stoi(horaFinaliza) < 0)
+	{
+		return nullptr;
+	}
 	if (horaInicio.empty() && horaFinaliza.empty() && dia1.empty() && dia2.empty())
 	{
 		return nullptr;

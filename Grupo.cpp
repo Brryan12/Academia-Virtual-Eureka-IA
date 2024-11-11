@@ -291,6 +291,9 @@ Grupo* Grupo::leer(std::istream& entrada)
     entrada.ignore();    // Ignorar el salto de línea que sigue al estado
 
     // Validación del curso
+	if (stoi(horasCurso) < 1 || stod(precioCurso) < 1) {
+		return nullptr;
+	}
     if (!nombreCurso.empty() && !idCurso.empty() && !horasCurso.empty() && !precioCurso.empty()) {
             curso = new Curso(nombreCurso, idCurso, stoi(horasCurso), std::stod(precioCurso), estado);
     } else {
@@ -315,6 +318,10 @@ Grupo* Grupo::leer(std::istream& entrada)
     std::getline(entrada, dia2, '\n');
 
     // Validación del horario
+	if (std::stoi(horaInicio) < 0 || std::stoi(horaInicio) >23 || (stoi(horaFinal) < 0 || stoi(horaFinal) > 23))
+	{
+		return nullptr;
+	}
     if (!horaInicio.empty() && !horaFinal.empty() && !dia1.empty() && !dia2.empty()) {
             horario = new Horario(std::stoi(horaInicio), std::stoi(horaFinal), dia1, dia2);
 
@@ -333,5 +340,3 @@ Grupo* Grupo::leer(std::istream& entrada)
         return nullptr;
     }
 }
-
-

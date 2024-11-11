@@ -33,11 +33,18 @@ Curso* Curso::leer(std::istream& entrada)
 	getline(entrada, precio, '\t');
 	entrada >> estado;
 	entrada.ignore();
+	if (stoi(horas) < 1 || stod(precio) < 1)
+	{
+		return nullptr;
+	}
 	if (nombre.empty() || id.empty() || horas.empty() || precio.empty())
 	{
 		return nullptr;
 	}
-	return new Curso(nombre, id, stoi(horas), stod(precio), estado);
+	if (estado == 1)
+		return new Curso(nombre, id, stoi(horas), stod(precio), true);
+	else if (estado == 0)
+		return new Curso(nombre, id, stoi(horas), stod(precio), false);
 }
 string Curso::toString() const{
 	stringstream s;
