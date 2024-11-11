@@ -292,7 +292,7 @@ Grupo* Grupo::leer(std::istream& entrada)
 
     // Validación del curso
     if (!nombreCurso.empty() && !idCurso.empty() && !horasCurso.empty() && !precioCurso.empty()) {
-            curso = new Curso(nombreCurso, idCurso, horasCurso, std::stod(precioCurso), estado);
+            curso = new Curso(nombreCurso, idCurso, stoi(horasCurso), std::stod(precioCurso), estado);
     } else {
         return nullptr;
     }

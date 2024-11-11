@@ -1,8 +1,6 @@
 #include "Factura.h"
 
-Factura::Factura()
-{
-}
+Factura::Factura(): estudiante(nullptr){}
 
 Factura::Factura(Estudiante* estudiante): estudiante(estudiante){}
 
