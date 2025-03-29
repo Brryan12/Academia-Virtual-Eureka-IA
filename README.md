@@ -1,5 +1,6 @@
 # Proyecto_2_Progra_1
 - [PDF con las instrucciones del proyecto](./proyecto2.pdf)
+---
 # Academic Management System  
 
 **A C++ program for managing students, professors, courses, and groups using OOP principles.**  
