@@ -29,6 +29,7 @@
 - Tested on Windows/Linux with GCC/Clang  
 - Includes comprehensive error handling
 
+---
 ### 📧 Contact  
 **Author**: Bryan Agüero Mata.   
 **Email**: [Bryancr1208@gmail.com](mailto:Bryancr1208@gmail.com )  
