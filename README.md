@@ -26,7 +26,7 @@
 5. **Dependency Inversion**: High-level modules depend on abstractions  
 
 ## How To Run
--Run Proyecto-2.sln
+- **Run Proyecto-2.sln**
 
 ## Development Notes  
 - Requires C++17 or later  
