@@ -1,4 +1,4 @@
-# Proyecto_2_Progra_1
+# Project 2 - Programming I
 - [PDF con las instrucciones del proyecto](./proyecto2.pdf)
 ---
 # Academic Management System  
