@@ -25,6 +25,9 @@
 4. **Interface Segregation**: Focused method sets per class  
 5. **Dependency Inversion**: High-level modules depend on abstractions  
 
+## How To Run
+-Run Proyecto-2.sln
+
 ## Development Notes  
 - Requires C++17 or later  
 - Tested on Windows/Linux with GCC/Clang  
