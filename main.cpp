@@ -1,10 +1,9 @@
 #include "Include.h"
-// Proyecto 2 - Programacion I - II Ciclo 2024
-// Creadores:
-// - Bryan Aguero Mata, cedula: 402690986
-// - Jean Gonzalez Campos, cedula: 208450945 
+// Project 2 - Programming I - II Cycle 2024
+// Creators:
+// - Bryan Aguero Mata, ID: 402690986
 int main()
 {
-	mostrarMenu();
-	return 0;
+    showMenu();
+    return 0;
 }

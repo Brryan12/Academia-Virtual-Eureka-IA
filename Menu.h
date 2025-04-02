@@ -1,102 +1,100 @@
 #pragma once
-#include "Grupo.h"
-#include "Lista.h"
-#include "Factura.h"
-#include "Archivos.h"
-
-
+#include "Group.h"
+#include "List.h"
+#include "Invoice.h"
+#include "Files.h"
 
 class Menu {
 public:
+    /// @brief Returns the selected option in the main menu
+    /// @return selected option
+    static int mainMenu();
 
-	/// @brief Retorna la opcion elegida en el menu principal
-	/// @return opcion elegida
-	static int menuPrincipal();
+    /// @brief Returns the selected option in the administration submenu
+    /// @return selected option
+    static int administrationSubmenu();
 
-	/// @brief Retorna la opcion elegida en el submenu de administracion
-	/// @return opcion elegida
-	static int submenuAdministracion();
+    /// @brief Returns the selected option in the enrollment submenu
+    /// @return selected option
+    static int enrollmentSubmenu();
 
-	/// @brief Retorna la opcion elegida en el submenu de matricula
-	/// @return opcion elegida
-	static int submenuMatricula();
+    /// @brief Returns the selected option in the search and reports submenu
+    /// @return selected option
+    static int searchAndReportsSubmenu();
 
-	/// @brief Retorna la opcion elegida en el submenu de busquedas e informes
-	/// @return opcion elegida
-	static int submenuBusquedasEInformes();
+    /// @brief Method to save data to files
+    /// @param professorList List of professors
+    /// @param studentList List of students
+    /// @param courseList List of courses
+    /// @param groupList List of groups
+    static void saveDataToFiles(List<Professor>* professorList, List<Student>* studentList, List<Course>* courseList, List<Group>* groupList);
 
-	/// @brief Metodo para guardar los datos en archivos
-	/// @param listaProfesores Lista de profesores
-	/// @param listaEstudiantes Lista de estudiantes
-	/// @param listaCursos Lista de cursos
-	/// @param listaGrupo Lista de grupos
-	static void guardarLosDatosEnArchivos(Lista<Profesor>* listaProfesores, Lista<Estudiante>* listaEstudiantes, Lista<Curso>* listaCursos, Lista<Grupo>* listaGrupo);
+    /// @brief Prints the default error message
+    static void defaultSwitch();
 
-	/// @brief Imprime el mensaje de error por defecto
-	static void defaultSwitch();
+    /// @brief Prints the return to main menu message
+    static void returnToMainMenu();
 
-	/// @brief Imprime el mensaje de retorno al menu principal
-	static void regresarMenuPrincipal();
+    /// @brief Prints the menu to add a professor
+    /// @param professorList list of professors
+    static void addProfessor(List<Professor>* professorList);
 
-	/// @brief Imprime le menu para ingresar un profesor
-	/// @param listaProfesores lista de profesores
-	static void ingresarProfesor(Lista<Profesor>* listaProfesores);
+    /// @brief Prints the menu to add a student
+    /// @param studentList list of students
+    static void addStudent(List<Student>* studentList);
 
-	/// @brief Imprime el menu para ingresar un estudiante
-	/// @param listaEstudiantes lista de estudiantes
-	static void ingresarEstudiante(Lista<Estudiante>* listaEstudiantes);
+    /// @brief Prints the menu to add a course
+    /// @param courseList list of courses
+    static void addCourse(List<Course>* courseList);
 
-	/// @brief Imprime el menu para ingresar un curso
-	/// @param listaCursos lista de cursos
-	static void ingresarCurso(Lista<Curso>* listaCursos);
+    /// @brief Prints the menu to add a group
+    /// @param groupList list of groups
+    /// @param courseList list of courses
+    static void addGroup(List<Group>* groupList, List<Course>* courseList);
 
-	/// @brief Imprime el menu para ingresar un grupo
-	/// @param listaGrupo lista de grupos
-	/// @param listaCursos lista de cursos
-	static void ingresarGrupo(Lista<Grupo>* listaGrupo, Lista<Curso>* listaCursos);
+    /// @brief Prints the menu to assign a professor to a group
+    /// @param groupList list of groups
+    /// @param professorList list of professors
+    static void assignProfessorToGroup(List<Group>* groupList, List<Professor>* professorList);
 
-	/// @brief Imprime el menu para asignar un profesor a un grupo
-	/// @param listaGrupo lista de grupos
-	/// @param listaProfesores lista de profesores
-	static void asignarProfesorAGrupo(Lista<Grupo>* listaGrupo, Lista<Profesor>* listaProfesores);
+    /// @brief Prints the menu to enroll a student
+    /// @param groupList list of groups
+    /// @param studentList list of students
+    static void enrollStudent(List<Group>* groupList, List<Student>* studentList);
 
-	/// @brief Imprime el menu para matricular un estudiante
-	/// @param listaGrupo lista de grupos
-	/// @param listaEstudiantes lista de estudiantes
-	static void matricularEstudiante(Lista<Grupo>* listaGrupo, Lista<Estudiante>* listaEstudiantes);
+    /// @brief Prints the menu to unenroll a student
+    /// @param groupList list of groups
+    /// @param studentList list of students
+    static void unenrollStudent(List<Group>* groupList, List<Student>* studentList);
 
-	/// @brief Imprime el menu para desmatricular un estudiante
-	/// @param listaGrupo lista de grupos
-	/// @param listaEstudiantes lista de estudiantes
-	static void desmatricularEstudiante(Lista<Grupo>* listaGrupo, Lista<Estudiante>* listaEstudiantes);
+    /// @brief Prints the menu to generate an invoice
+    /// @param studentList list of students
+    static void generateInvoice(List<Student>* studentList);
 
-	/// @brief Imprime el menu para generar una factura
-	/// @param listaEstudiantes lista de estudiantes
-	static void generarFactura(Lista<Estudiante>* listaEstudiantes);
+    /// @brief Prints the report of all registered professors
+    /// @param professorList list of professors
+    static void registeredProfessorsReport(List<Professor>* professorList);
 
-	/// @brief Imprime el informe de todos los profesores en la lista
-	/// @param listaProfesores lista de profesores
-	static void informeProfesoresRegistrados(Lista<Profesor>* listaProfesores);
+    /// @brief Prints the report of all registered students
+    /// @param studentList list of students
+    static void registeredStudentsReport(List<Student>* studentList);
 
-	/// @brief Imprime el informe de todos los estudiantes en la lista
-	/// @param listaEstudiantes lista de estudiantes
-	static void informeEstudiantesRegistrados(Lista<Estudiante>* listaEstudiantes);
+    /// @brief Prints the report of the groups enrolled by a student
+    /// @param groupList list of groups
+    /// @param studentList list of students
+    static void coursesEnrolledByStudentReport(List<Group>* groupList, List<Student>* studentList);
 
-	/// @brief Imprime el informe de los grupos matriculados por un estudiante
-	/// @param listaGrupo lista de grupos
-	/// @param listaEstudiantes lista de estudiantes
-	static void informeCursosMatriculadosPorEstudiante(Lista<Grupo>* listaGrupo, Lista<Estudiante>* listaEstudiantes);
+    /// @brief Prints the report of the groups assigned to a specific professor
+    /// @param professorList list of professors
+    static void specificProfessorReport(List<Professor>* professorList);
 
-	/// @brief Imprime el informe de los grupos asignados a un profesor
-	/// @param listaGrupo lista de grupos
-	static void informeProfesorEspecifico(Lista<Profesor>* listaProfesores);
+    /// @brief Prints the report of the groups by period
+    /// @param groupList list of groups
+    /// @param courseList list of courses
+    static void enabledPeriodsForYearReport(List<Group>* groupList, List<Course>* courseList);
 
-	/// @brief Imprime el informe de los grupos por periodo
-	/// @param listaGrupo lista de grupos
-	/// @param listaCursos lista de cursos
-	static void informePeriodosHabilitadosParaElAno(Lista<Grupo>* listaGrupo, Lista<Curso>* listaCursos);
-
-	/// @brief Imprime el informe de un grupo en espeficico
-	/// @param listaGrupo lista de grupos
-	static void informeGrupoEspecifico(Lista<Grupo>* listaGrupo, Lista<Curso>* listaCursos);
+    /// @brief Prints the report of a specific group
+    /// @param groupList list of groups
+    /// @param courseList list of courses
+    static void specificGroupReport(List<Group>* groupList, List<Course>* courseList);
 };

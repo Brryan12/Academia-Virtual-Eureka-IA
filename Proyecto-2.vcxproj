@@ -128,33 +128,33 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Archivos.cpp" />
-    <ClCompile Include="Curso.cpp" />
-    <ClCompile Include="Estudiante.cpp" />
-    <ClCompile Include="Factura.cpp" />
-    <ClCompile Include="Grupo.cpp" />
-    <ClCompile Include="Horario.cpp" />
-    <ClCompile Include="main.cpp" />
+    <ClCompile Include="Files.cpp" />
+    <ClCompile Include="Course.cpp" />
+    <ClCompile Include="Student.cpp" />
+    <ClCompile Include="Invoice.cpp" />
+    <ClCompile Include="Group.cpp" />
+    <ClCompile Include="Schedule.cpp" />
+    <ClCompile Include="Main.cpp" />
     <ClCompile Include="Menu.cpp" />
-    <ClCompile Include="Persona.cpp" />
-    <ClCompile Include="Profesor.cpp" />
+    <ClCompile Include="Person.cpp" />
+    <ClCompile Include="Professor.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="proyecto2.pdf" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Archivos.h" />
-    <ClInclude Include="Constantes.h" />
-    <ClInclude Include="Curso.h" />
-    <ClInclude Include="Estudiante.h" />
-    <ClInclude Include="Factura.h" />
-    <ClInclude Include="Grupo.h" />
-    <ClInclude Include="Horario.h" />
+    <ClInclude Include="Files.h" />
+    <ClInclude Include="Constants.h" />
+    <ClInclude Include="Course.h" />
+    <ClInclude Include="Student.h" />
+    <ClInclude Include="Invoice.h" />
+    <ClInclude Include="Group.h" />
+    <ClInclude Include="Schedule.h" />
     <ClInclude Include="Include.h" />
-    <ClInclude Include="Lista.h" />
+    <ClInclude Include="List.h" />
     <ClInclude Include="Menu.h" />
-    <ClInclude Include="Persona.h" />
-    <ClInclude Include="Profesor.h" />
+    <ClInclude Include="Person.h" />
+    <ClInclude Include="Professor.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="Archivos\Cursos.txt" />

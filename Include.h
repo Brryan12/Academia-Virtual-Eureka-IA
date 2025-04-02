@@ -1,47 +1,47 @@
 #pragma once
 #include "Menu.h"
-#include "Constantes.h"
+#include "Constants.h"
 
-/// @brief Funcion que muestra el menu principal del programa
-void mostrarMenu() {
+/// @brief Function that displays the main menu of the program
+void showMenu() {
     int op, op1, op2, op3;
-    Archivos* archivos = new Archivos();
-    Lista<Profesor>* listaProfesores = archivos->cargarProfesores();
-    Lista<Curso>* listaCursos = archivos->cargarCursos();
-    Lista<Grupo>* listaGrupo = archivos->cargarGrupos();
-    Lista<Estudiante>* listaEstudiantes = archivos->cargarEstudiantes();
+    Files* files = new Files();
+    List<Professor>* professorList = files->loadProfessors();
+    List<Course>* courseList = files->loadCourses();
+    List<Group>* groupList = files->loadGroups();
+    List<Student>* studentList = files->loadStudents();
     do {
-        op = Menu::menuPrincipal();
+        op = Menu::mainMenu();
         switch (op)
         {
         case 1:
             do {
-                op1 = Menu::submenuAdministracion();
+                op1 = Menu::administrationSubmenu();
 
                 switch (op1)
                 {
                 case 1:
-                    Menu::ingresarProfesor(listaProfesores);
+                    Menu::addProfessor(professorList);
                     break;
 
                 case 2:
-                    Menu::ingresarEstudiante(listaEstudiantes);
+                    Menu::addStudent(studentList);
                     break;
 
                 case 3:
-                    Menu::ingresarCurso(listaCursos);
+                    Menu::addCourse(courseList);
                     break;
 
                 case 4:
-                    Menu::ingresarGrupo(listaGrupo, listaCursos);
+                    Menu::addGroup(groupList, courseList);
                     break;
 
                 case 5:
-                    Menu::asignarProfesorAGrupo(listaGrupo, listaProfesores);
+                    Menu::assignProfessorToGroup(groupList, professorList);
                     break;
 
                 case 0:
-                    Menu::regresarMenuPrincipal();
+                    Menu::returnToMainMenu();
                     break;
 
                 default:
@@ -53,21 +53,21 @@ void mostrarMenu() {
 
         case 2:
             do {
-                op2 = Menu::submenuMatricula();
+                op2 = Menu::enrollmentSubmenu();
                 switch (op2)
                 {
                 case 1:
-                    Menu::matricularEstudiante(listaGrupo, listaEstudiantes);
+                    Menu::enrollStudent(groupList, studentList);
                     break;
 
                 case 2:
-                    Menu::desmatricularEstudiante(listaGrupo, listaEstudiantes);
+                    Menu::unenrollStudent(groupList, studentList);
                     break;
                 case 3:
-                    Menu::generarFactura(listaEstudiantes);
+                    Menu::generateInvoice(studentList);
                     break;
                 case 0:
-                    Menu::regresarMenuPrincipal();
+                    Menu::returnToMainMenu();
                     break;
 
                 default:
@@ -79,35 +79,35 @@ void mostrarMenu() {
 
         case 3:
             do {
-                op3 = Menu::submenuBusquedasEInformes();
+                op3 = Menu::searchAndReportsSubmenu();
 
                 switch (op3)
                 {
                 case 1:
-                    Menu::informeProfesoresRegistrados(listaProfesores);
+                    Menu::registeredProfessorsReport(professorList);
                     break;
 
                 case 2:
-                    Menu::informeEstudiantesRegistrados(listaEstudiantes);
+                    Menu::registeredStudentsReport(studentList);
                     break;
                 case 3:
-                    Menu::informeCursosMatriculadosPorEstudiante(listaGrupo, listaEstudiantes);
+                    Menu::coursesEnrolledByStudentReport(groupList, studentList);
                     break;
 
                 case 4:
-                    Menu::informeProfesorEspecifico(listaProfesores);
+                    Menu::specificProfessorReport(professorList);
                     break;
 
                 case 5:
-                    Menu::informePeriodosHabilitadosParaElAno(listaGrupo, listaCursos);
+                    Menu::enabledPeriodsForYearReport(groupList, courseList);
                     break;
 
                 case 6:
-                    Menu::informeGrupoEspecifico(listaGrupo, listaCursos);
+                    Menu::specificGroupReport(groupList, courseList);
                     break;
 
                 case 0:
-                    Menu::regresarMenuPrincipal();
+                    Menu::returnToMainMenu();
                     break;
 
                 default:
@@ -118,12 +118,12 @@ void mostrarMenu() {
             break;
 
         case 4:
-            Menu::guardarLosDatosEnArchivos(listaProfesores, listaEstudiantes, listaCursos, listaGrupo);
+            Menu::saveDataToFiles(professorList, studentList, courseList, groupList);
             break;
 
         case 5:
             system(cls);
-            std::cout << "Saliendo del programa..." << std::endl;
+            std::cout << "Exiting the program..." << std::endl;
             system(pause);
             break;
 
@@ -133,9 +133,9 @@ void mostrarMenu() {
         }
     } while (op != 5);
 
-    delete listaEstudiantes;
-    delete listaGrupo;
-    delete listaCursos;
-    delete listaProfesores;
-    delete archivos;
+    delete studentList;
+    delete groupList;
+    delete courseList;
+    delete professorList;
+    delete files;
 }
